@@ -1,105 +1,35 @@
-import me1 from '../images/me_1.jpg';
-import adnuLogo from '../images/adnu_logo.png'
-import ncshsLogo from '../images/ncshs_logo.png'
-import pandaliveryLogo from '../images/pandalivery_logo.png'
-import asiawiseLogo from '../images/asiawise_logo.png'
-import hahsyLogo from '../images/hahsy_logo.png'
+import adnuLogo from '../images/resume/adnu_logo.png'
+import ncshsLogo from '../images/resume/ncshs_logo.png'
 import { useRef, useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { faChevronLeft, faChevronRight, faStar } from '@fortawesome/free-solid-svg-icons'
+import { Intro } from './Home';
+import { addIntersectionObserver } from '../utilities/functions';
 
-function Resume() {
+function Resume(props) {
   const height = (window.screen.height * .75) + "px"
   const experienceRef = useRef(null)
   const workRef = useRef(null)
-  const sectionStyle = {"height": height}
+  const certificationsRef = useRef(null)
+  const certificateRef = useRef(null)
+  const sectionStyle = {"height": "max-content", "minHeight": height}
+  const starsContainer = ["", "", "", "", ""]
+
+  const workExperience = props.workExperience
+  const certifications = props.certifications
+  const skillSet = props.skillSet
 
   useEffect(() => {
-    const intersectionCallback = (entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('start');
-        }
-        else
-        {
-          entry.target.classList.remove('start');
-  
-        }
-      }
-    }
-    const observer = new IntersectionObserver(intersectionCallback);
-    const items = document.querySelectorAll('.animate');
-    for (const item of items) {
-      observer.observe(item);
-    }
+    addIntersectionObserver()
   }, []);
 
-  const scrollToRight = () => {
-    experienceRef.current.scrollLeft = experienceRef.current.scrollLeft + workRef.current.clientWidth
+  const scrollToRight = (parentRef, childRef) => {
+    parentRef.current.scrollLeft = parentRef.current.scrollLeft + childRef.current.clientWidth
   }
 
-  const scrollToLeft = () => {
-    experienceRef.current.scrollLeft = experienceRef.current.scrollLeft - workRef.current.clientWidth
+  const scrollToLeft = (parentRef, childRef) => {
+    parentRef.current.scrollLeft = parentRef.current.scrollLeft - childRef.current.clientWidth
   }
-
-  const workExperience = [
-    {
-      "date": "Feb 2023 - May 2023",
-      "position": "Junior Software Engineer",
-      "company": "Pandalivery",
-      "image": pandaliveryLogo,
-      "description": [
-        "Lead the UI/UX team",
-        "Developed a website",
-        "Co-developed mobile applications"
-      ]
-    },
-    {
-      "date": "Jul 2021 - Jan 2023",
-      "position": "Office Staff",
-      "company": "Hahsy Industries Inc., Naga",
-      "image": hahsyLogo,
-      "description": [
-        "Processed customer orders and requests",
-        "Scheduled order purchases and delivery errands",
-        "Handled sales invoice issuance and purchasing duties",
-        "Generated and compiled summary reports"
-      ]
-    },
-    {
-      "date": "Jun 2018 - Feb 2021",
-      "position": "Tutor",
-      "company": "Asiawise Study Center, Inc",
-      "image": asiawiseLogo,
-      "description": [
-        "Worked on classes of great volume",
-        "Aided in developing and improving student’s school performance",
-        "Helped students complete school deliverables"
-      ]
-    },
-    {
-      "date": "Jun 2018 - Aug 2019",
-      "position": "Teacher Assistant",
-      "company": "Ateneo de Naga University",
-      "image": adnuLogo,
-      "description": [
-        "Helped instructors manage classes",
-        "Corrected students’ mistakes and gave out lectures regarding the subject matter",
-        "Addressed student concerns and queries"
-      ]
-    },
-    {
-      "date": "Aug 2016 - Jan 2017",
-      "position": "Food Service Worker",
-      "company": "Chogee and Friends Eatery",
-      "image": null,
-      "description": [
-        "Skillfully addressed guest's service needs",
-        "Delivered friendly and fast service",
-        "Managed closing duties, including inventory checking and restocking"
-      ]
-    },
-  ]
 
   function WorkCard(props){
     const [isFlipped, setIsFlipped] = useState(false)
@@ -112,13 +42,13 @@ function Resume() {
         {!isFlipped?
           <div className="frame shape-square text-white p-5 shadow-none bg-gradient-blue clickable rotate-out d-flex flex-column align-items-center justify-content-center" style={{gap: "2em"}} onClick={()=>{setIsFlipped(!isFlipped)}}>
             <h3>{props.position}</h3>
-            {props.image && (<img className="w-25 object-fit-contain" src={props.image}/>)}
+            {props.image && (<img className="w-25 object-fit-contain" alt={props.company + " logo"} src={props.image}/>)}
             <h4 className="opacity-75">{props.company}</h4>
           </div>
         :
           <div className="frame shape-square p-3 shadow-none bg-white clickable rotate-in d-flex flex-column align-items-center justify-content-center" style={{gap: "1.5em"}} onClick={()=>{setIsFlipped(!isFlipped)}}>
             {props.description.map((item) =>
-              <h6>
+              <h6 key={item}>
                 {item}
               </h6>
             )}
@@ -128,71 +58,118 @@ function Resume() {
     )
   }
 
+  function CertificateCard(props){
+
+    return(
+      <div className="w-100 d-flex flex-column align-items-center animate appear-top" style={{gap: "2em"}}>
+        <div className="curvy-card py-2 px-4">
+          {props.date}
+        </div> 
+        <div className="frame shape-square p-0 shadow-none bg-transparent d-flex flex-column align-items-center justify-content-center overflow-visible" style={{gap: "2em"}}>
+            {props.image && (<img className="w-100 object-fit-contain shadow-full" alt={props.grantee + " logo"} src={props.image}/>)}
+          </div>
+      </div>      
+    )
+  }
+
   return (
     <div id="resume">
-      <section id="intro" style={sectionStyle}>
-        <div className="h-100 d-flex align-items-center justify-content-center p-5 flex-column">
-            <h1 className="font-regular zetta lh-3quarter animate appear-bottom fast">Mark Borja</h1>
-            <h1 className="font-regular zetta lh-3quarter animate appear-bottom very-fast">Gutierrez</h1>
-            <div className="py-3"></div>
-            <h3 className="font-light opacity-75 d-flex flex-row text-blue" style={{gap: "1.25em"}}>
-              <span className="animate appear-top fast">Software Developer</span>
-              <span className="animate appear-top">Software Engineer</span>
-              <span className="animate appear-top slow">UI Designer</span>
-            </h3>
-          </div>
-      </section>
-      <section id="profile" style={sectionStyle}>
-        <div className="row h-100">
-          <div className="col-5">
-            <div className="h-100 d-flex flex-row align-items-center justify-content-end">
-              <div>
-                <div className="frame shape-square lg animate fade-blur-float" width="300">
-                  <img src={me1}/>
+      
+      <Intro/>
+      <section id="skills" className="bg-blue-5" style={sectionStyle}>
+        <div className="h-100 w-100 d-flex flex-row align-items-end with-animation">
+          <div className="row h-100 w-100 m-0 h-0">
+              <div className="col-7 px-4">
+                <div className="curvy-card shadow-none animate fade-in">
+                  <div className="w-100 h-100 d-flex flex-row justify-content-start align-items-start" style={{gap: "2em"}}>
+                    <h1 className="mega"><FontAwesomeIcon icon={skillSet[0].icon}/></h1>
+                    <div className="w-100 d-flex flex-column align-items-start">
+                      <h3 className="font-regular">{skillSet[0].set}</h3>
+                      <h5 className="font-light">{skillSet[0].description}</h5>
+                      <div className="py-2"></div>
+                      <div className="w-100 emphasis ps-4 opacity-75">
+                        {skillSet[0].skills.map((skill) => {
+                          return(
+                            <div className="d-flex flex-row align-items-center justify-content-between">
+                              <p className="d-flex flex-column justify-content-start align-items-start">
+                                <small className="font-light text-blue">{skill.category}</small>
+                                <span>{skill.skill}</span>
+                              </p>
+                              <p className="font-light d-flex flex-row">
+                                {starsContainer.slice(5 - skill.rating).map((skill) => {
+                                  return (
+                                    <FontAwesomeIcon icon={faStar} className="mx-1"/>
+                                  )
+                                })}
+                                {starsContainer.slice(skill.rating).map((skill) => {
+                                  return (
+                                    <FontAwesomeIcon icon={faStar} className="mx-1 opacity-25"/>
+                                  )
+                                })}
+                              </p>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="d-flex flex-column align-items-start ps-5">
-                <div className="frame shape-square sm animate fade-blur-float slow mb-5" width="300">
-
-                </div>
-                <div className="frame shape-square xs animate fade-blur-float very-slow" width="300">
-
-                </div>
+              <div className="col-5 px-4">
+                {skillSet.slice(1, skillSet.length).map((skillset) => {
+                  return (
+                    <div className="col-12 mb-5">
+                      <div className="curvy-card shadow-none animate fade-in very-slow">
+                        <div className="w-100 h-100 d-flex flex-row justify-content-start align-items-start" style={{gap: "2em"}}>
+                          <h2><FontAwesomeIcon icon={skillset.icon}/></h2>
+                          <div className="d-flex flex-column align-items-start">
+                            <h4 className="font-regular text-start">{skillset.set}</h4>
+                            <p className="font-light text-start">{skillset.description}</p>
+                            <div className="py-1"></div>
+                            <div className="w-100 emphasis ps-4 opacity-75">
+                              {skillset.skills.map((skill) => {
+                                return(
+                                  <div className="d-flex flex-row align-items-center justify-content-between">
+                                    <p className="d-flex flex-column justify-content-start align-items-start">
+                                      <small className="font-light text-blue">{skill.category}</small>
+                                      <span>{skill.skill}</span>
+                                    </p>
+                                    <p className="font-light d-flex flex-row">
+                                      {starsContainer.slice(5 - skill.rating).map((skill) => {
+                                        return (
+                                          <FontAwesomeIcon icon={faStar} className="mx-1"/>
+                                        )
+                                      })}
+                                      {starsContainer.slice(skill.rating).map((skill) => {
+                                        return (
+                                          <FontAwesomeIcon icon={faStar} className="mx-1 opacity-25"/>
+                                        )
+                                      })}
+                                    </p>
+                                  </div>
+                                )
+                              })}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
             </div>
-          </div>
-          <div className="col-7 text-start ps-5">
-            <div className="h-100 d-flex align-items-start justify-content-center ps-5 pt-5 flex-column text-center">
-              <div className="py-3"></div>
-              <p className="text-start font-light lh-2">
-                <div className="row">
-                  <div className="col-6 p-3">
-                    While accomplishing my degree, I have taken up multiple jobs to support my studies. I worked as a food service crew in a small canteen, a teacher assistant in the university, a tutor in a renowned study center, and an office staff in a corporation.
-                  </div>
-                  <div className="col-6 p-3">
-                    Also, I dabbled in freelance work which consisted mainly of commissioned artworks such as t-shirt designs, posters, and infographics, and some technical and creative writing, and website design. 
-                  </div>
-                  <div className="col-12 p-3">
-                    Because of my former jobs I learned how to manage people, understand business processes, prioritize tasks, and most importantly, work with different personalities. They have helped me learn new skills and knowledge that prepared me as an IT professional.
-                  </div>
-                  <h5 className="col-12 p-3 lh-2">
-                    In the Information Technology environment, I consider myself a jack-of-all-trades. I am able to take on leadership duties as well as programming duties. I am a capable full-stack developer and a passionate web and mobile UI designer. Moreover, I enjoy project documentation that usually includes itemization of objectives and needs, and diagramming.
-                  </h5>
-                </div>
-                 
-              </p>
-            </div>
-          </div>
+          <div className="px-3"></div>
+          <h1 className="font-bold giga text-sideways top">Skills</h1>
         </div>
       </section>
-      <section id="education" className="bg-blue-5" style={sectionStyle}>
-        <div className="h-100 w-100 d-flex flex-row align-items-end">
-          <h1 className="font-bold giga text-upwards">Education</h1>
+      <section id="education" className="" style={sectionStyle}>
+        <div className="h-100 w-100 d-flex flex-row align-items-end with-animation">
+          <h1 className="font-bold giga text-sideways bottom">Education</h1>
           <div className="px-5"></div>
           <div className="h-100 d-flex flex-row align-items-start" style={{gap: "5em"}}>
             <div className="curvy-card mt-5 animate grow-bottom">
               <div className="w-100 h-100 d-flex flex-row justify-content-start align-items-start" style={{gap: "2em"}}>
-                <img src={adnuLogo} style={{width: "10em"}}/>
+                <img src={adnuLogo} alt="AdNU Logo" style={{width: "10em"}}/>
                 <div className="d-flex flex-column align-items-start">
                   <h3 className="font-regular">Ateneo de Naga University</h3>
                   <h5 className="font-regular">BS Information Technology</h5>
@@ -214,7 +191,7 @@ function Resume() {
             </div>
             <div className="curvy-card animate grow-bottom very-slow">
               <div className="w-100 h-100 d-flex flex-row justify-content-start align-items-start" style={{gap: "2em"}}>
-                <img src={ncshsLogo} style={{width: "7em"}}/>
+                <img src={ncshsLogo} alt="NCSHS Logo" style={{width: "7em"}}/>
                 <div className="d-flex flex-column align-items-start">
                   <h4 className="font-regular text-start">Naga City Science High School</h4>
                   <h6 className="font-regular">High School Diploma</h6>
@@ -227,16 +204,21 @@ function Resume() {
         </div>
       </section>
       <section id="experience" className="" style={sectionStyle}>
-        <div className="h-100 w-100 d-flex flex-column align-items-end">
+        <div className="h-100 w-100 d-flex flex-column align-items-end with-animation">
           <h1 className="font-bold mega">Experience</h1>
           <div className="d-flex flex-row align-items-center justify-content-center">
-            <button className="bttn-transparent px-4" onClick={scrollToLeft}><FontAwesomeIcon icon={faChevronLeft} /></button>
+            <button 
+              className="bttn-transparent px-4"
+              onClick={()=>{scrollToLeft(experienceRef, workRef)}}
+            >
+              <FontAwesomeIcon icon={faChevronLeft} />
+            </button>
             <div className="w-100 h-100 d-flex scroll-horizontal scrollbar-hidden p-5" style={{gap: "5em"}} ref={experienceRef}>
               {workExperience.map((experience, index) => {
                 return (
                   <>
                   {index === 0?
-                    <div className="flex-basis-25" ref={workRef}>
+                    <div className="flex-basis-25" ref={workRef} key={experience.position}>
                       <WorkCard
                         date={experience.date}
                         position={experience.position}
@@ -247,7 +229,7 @@ function Resume() {
                       />
                     </div>
                     :
-                      <div className="flex-basis-25">
+                      <div className="flex-basis-25" key={experience.position}>
                         <WorkCard
                           date={experience.date}
                           position={experience.position}
@@ -263,36 +245,46 @@ function Resume() {
               }
               )}
             </div>
-            <button className="bttn-transparent px-4" onClick={scrollToRight}><FontAwesomeIcon icon={faChevronRight}/></button>
+            <button 
+              className="bttn-transparent px-4"
+              onClick={()=>{scrollToRight(experienceRef, workRef)}}
+            >
+              <FontAwesomeIcon icon={faChevronRight}/>
+            </button>
           </div>
         </div>
       </section>
-      <section id="credentials" className="" style={sectionStyle}>
-        <div className="h-100 w-100 d-flex flex-column align-items-start">
-          <h1 className="font-bold mega">Experience</h1>
+      <section id="certifications" className="bg-blue-5" style={sectionStyle}>
+        <div className="h-100 w-100 d-flex flex-column align-items-start with-animation">
+          <h1 className="font-bold mega">Certifications</h1>
           <div className="d-flex flex-row align-items-center justify-content-center">
-            <button className="bttn-transparent px-4" onClick={scrollToLeft}><FontAwesomeIcon icon={faChevronLeft} /></button>
-            <div className="w-100 h-100 d-flex scroll-horizontal scrollbar-hidden p-5" style={{gap: "5em"}} ref={experienceRef}>
-              {workExperience.map((experience, index) => {
+            <button 
+              className="bttn-transparent px-4"
+              onClick={()=>{scrollToLeft(certificationsRef, certificateRef)}}
+            >
+              <FontAwesomeIcon icon={faChevronLeft} />
+            </button>
+            <div className="w-100 h-100 d-flex scroll-horizontal scrollbar-hidden p-5" style={{gap: "5em"}} ref={certificationsRef}>
+              {certifications.map((experience, index) => {
                 return (
                   <>
                   {index === 0?
-                    <div className="flex-basis-25" ref={workRef}>
-                      <WorkCard
+                    <div className="flex-basis-25" ref={certificateRef} key={experience.position}>
+                      <CertificateCard
                         date={experience.date}
-                        position={experience.position}
-                        company={experience.company}
+                        certification={experience.certification}
+                        grantee={experience.grantee}
                         image={experience.image}
                         description={experience.description}
                         index={index}
                       />
                     </div>
                     :
-                      <div className="flex-basis-25">
-                        <WorkCard
+                      <div className="flex-basis-25" key={experience.position}>
+                        <CertificateCard
                           date={experience.date}
-                          position={experience.position}
-                          company={experience.company}
+                          certification={experience.certification}
+                          grantee={experience.grantee}
                           image={experience.image}
                           description={experience.description}
                           index={index}
@@ -304,7 +296,12 @@ function Resume() {
               }
               )}
             </div>
-            <button className="bttn-transparent px-4" onClick={scrollToRight}><FontAwesomeIcon icon={faChevronRight}/></button>
+            <button 
+                className="bttn-transparent px-4" 
+                onClick={()=>{scrollToRight(certificationsRef, certificateRef)}}
+              >
+                <FontAwesomeIcon icon={faChevronRight}/>
+              </button>
           </div>
         </div>
       </section>
@@ -312,4 +309,4 @@ function Resume() {
   ); 
 }
 
-export default Resume;
+export default Resume
