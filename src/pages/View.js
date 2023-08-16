@@ -131,6 +131,7 @@ export default function View(props){
                                 {album.map((albumImage, index) => {
                                     return(
                                         <div 
+                                            key={albumImage.img}
                                             className={"album-thumbnail " + (index === currentIndex? "active": "clickable")}
                                             style={{aspectRatio: "3/4"}} 
                                             onClick={()=>{
@@ -204,6 +205,7 @@ export default function View(props){
                                                     {props.data.languages.map((language) => {
                                                         return (
                                                             <img 
+                                                                key={language}
                                                                 src={techIcons[language]}
                                                                 alt={language}
                                                                 title={language.charAt(0).toUpperCase() + language.slice(1)}
@@ -219,6 +221,7 @@ export default function View(props){
                                             {props.data.technologies.map((technology) => {
                                                 return (
                                                     <img 
+                                                        key={technology}
                                                         src={techIcons[technology]}
                                                         alt={technology}
                                                         title={technology.charAt(0).toUpperCase() + technology.slice(1).replace("_", " ")}
