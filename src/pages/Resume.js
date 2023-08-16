@@ -4,10 +4,10 @@ import { useRef, useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faStar } from '@fortawesome/free-solid-svg-icons'
 import { Intro } from './Home';
-import { addIntersectionObserver } from '../utilities/functions';
+import { addIntersectionObserver, sectionHeight } from '../utilities/functions';
 
 function Resume(props) {
-  const height = (window.screen.height * .75) + "px"
+  const height = sectionHeight()
   const experienceRef = useRef(null)
   const workRef = useRef(null)
   const certificationsRef = useRef(null)

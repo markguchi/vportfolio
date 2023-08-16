@@ -118,6 +118,12 @@ import roll1 from './images/works/roll_1.jpg'
 import roll2 from './images/works/roll_2.jpg'
 import roll3 from './images/works/roll_3.jpg'
 import roll4 from './images/works/roll_4.jpg'
+import arluz1 from './images/works/arluz_status.jpg'
+import arluz2 from './images/works/arluz_home.jpg'
+import arluz3 from './images/works/arluz_employee.jpg'
+import arluz4 from './images/works/arluz_new_order.jpg'
+import arluz5 from './images/works/arluz_new_purchase.jpg'
+import arluz6 from './images/works/arluz_strict.jpg'
 
 import pandaliveryLogo from './images/resume/pandalivery_logo.png'
 import asiawiseLogo from './images/resume/asiawise_logo.png'
@@ -135,111 +141,153 @@ function App() {
       "title": "Ar.Luz",
       "category": "development",
       "subtitle": "Commisioned Work",
-      "description": "A collection of icons, backgrounds, foregrounds, and placeholders used acrossed the different components of Woop!",
+      "description": "An Android application developed in Flutter which handles the sales and accounting of the medium enterprise ArLuz",
       "years": [2023],
-      "tags": ["Photoshop", "Graphic design", "Assets", "Icons"],
+      "languages": ["dart"],
+      "technologies": ["flutter", "firebase", "photoshop"],
+      "tags": ["Flutter", "Android", "Mobile", "Photoshhop"],
       "screens": [
           {
-          "img": woopAssetModules,
+          "img": arluz1,
           "desc": "Icons for the main services offered by Woop! From top-left to bottom-right: Parcel Delivery, Bills Payment, Food Delivery, Pasabuy, and Custom",
           },
           {
-          "img": woopAssetSubModules,
+          "img": arluz6,
           "desc": "Icons for every subservice of Parcel Delivery and Pasabuy. From top-left to bottom-right: Letter, Document, Parcel, Medicine, and Grocery"
           },
           {
-          "img": woopAssetMinis,
+          "img": arluz2,
           "desc": "Icons for the main services offered by Woop! but simplified for better readability.",
           },
           {
-          "img": woopAssetFeatures,
+          "img": arluz3,
           "desc": "Banner that displays the different features of Woop!.",
           },
           {
-          "img": woopAssetPlaceholders,
+          "img": arluz4,
           "desc": "Set of images used in place of empty establishment photos.",
           },
           {
-          "img": woopAssetErrors,
+          "img": arluz5,
           "desc": "Icons used in cases of empty lists or data errors.",
           },
       ]
       },
-    {
-      "id": "woop",
-      "title": "Woop!",
-      "category": "development",
-      "subtitle": "Internship Project",
-      "description": "Woop! is a three-component system composed of an admin web app, customer mobile app and a rider mobile app. It was designed to handle e-commerce processes such as order placement, order fulfillment, and order delivery. For the web application, React and Bootstrap were used while for the mobile applications, Dart and Flutter. As for the backend and API, Django and Axios were utilized",
-      "years": [2023],
-      "contributions": [
-          "Spearheaded the documentation process",
-          "Lead the UI/UX Team",
-          "Oversaw front-end developers' works",
-          "Developed the web application",
-          "Developed the UI of the mobile rider application",
-          "Co-developed the UI of the mobile customer application",
-          "Created the assets"
-      ],
-      "tags": ["Web development", "UI design", "Front-end", "Back-end", "Django", "Javascript", "HTML", "CSS", "Bootstrap", "FontAwesome", "Flutter", "Dart"],
-      "screens": [
-          {
-          "img": woopWeb2,
-          "desc": "The scheduling page allows admins to approve orders and assign them with riders.",
-          },
-          {
-          "img": woopWeb1,
-          "desc": "The records page allows admins to review completed, denied, and approved orders.",
-          },
-          {
-          "img": woopWeb3,
-          "desc": "The establishments page allows admin to add, edit, and remove partner stores.",
-          },
-          {
-          "img": woopRider1,
-          "desc": "The login screen allows riders to sign in.",
-          },
-          {
-          "img": woopRider2,
-          "desc": "The protected screen determines the rider's shift schedule.",
-          },
-          {
-          "img": woopRider3,
-          "desc": "The tasks screen allows riders to see the orders assigned to them.",
-          },
-          {
-          "img": woopRider4,
-          "desc": "The transaction logs screen allows riders to see errands they've accomplished.",
-          },
-          {
-          "img": woopRider5,
-          "desc": "The account screen allows riders to see their information and schedule.",
-          },
-          {
-          "img": woopCustomer1,
-          "desc": "The registration screen allows customers to sign up for Woop!.",
-          },
-          {
-          "img": woopCustomer2,
-          "desc": "The login screen allows customers to sign in.",
-          },
-          {
-          "img": woopCustomer3,
-          "desc": "The home screen allows customers to see promotions and select an errand.",
-          },
-          {
-          "img": woopCustomer4,
-          "desc": "The pasabuy screen allows customers to ask a rider to buy something for them.",
-          },
-          {
-          "img": woopCustomer5,
-          "desc": "The parcel delivery screen allows customers to ask a rider to deliver a letter, document, or parcel for them.",
-          },
-          {
-          "img": woopCustomer6,
-          "desc": "The account screen allows customers to see their information and ask for help.",
-          },
-        ]
+      {
+        "id": "woop-admin",
+        "title": "Woop! Admin",
+        "category": "development",
+        "subtitle": "Internship Project",
+        "description": "Woop! Admin a web app component of Woop! developed for the employees of Pandalivery to handle riders, orders, and customer concerns.",
+        "years": [2023],
+        "contributions": [
+            "Spearheaded the documentation process",
+            "Lead the UI/UX Team",
+            "Oversaw front-end developers' works",
+            "Developed the web application",
+            "Created the assets"
+        ],
+        "languages": ["javascript", "html", "css", "python"],
+        "technologies": ["react", "bootstrap", "font_awesome", "django"],
+        "tags": ["Web development", "UI design", "Front-end", "Back-end", "Django", "Javascript", "HTML", "CSS", "Bootstrap", "FontAwesome"],
+        "screens": [
+            {
+            "img": woopWeb2,
+            "desc": "The scheduling page allows admins to approve orders and assign them with riders.",
+            },
+            {
+            "img": woopWeb1,
+            "desc": "The records page allows admins to review completed, denied, and approved orders.",
+            },
+            {
+            "img": woopWeb3,
+            "desc": "The establishments page allows admin to add, edit, and remove partner stores.",
+            }
+          ]
+      },
+      {
+        "id": "woop-riders",
+        "title": "Woop! for Riders",
+        "category": "development",
+        "subtitle": "Internship Project",
+        "description": "Woop! for Riders is a mobile component of Woop! where riders can fulfill the orders assigned to them.",
+        "years": [2023],
+        "contributions": [
+            "Spearheaded the documentation process",
+            "Lead the UI/UX Team",
+            "Oversaw front-end developers' works",
+            "Developed the UI of the mobile rider application",
+            "Created the assets"
+        ],
+        "languages": ["dart"],
+        "technologies": ["flutter", "font_awesome"],
+        "tags": ["Web development", "UI design", "Front-end", "Back-end", "Django", "FontAwesome", "Flutter", "Dart", "Android"],
+        "screens": [
+            {
+            "img": woopRider1,
+            "desc": "The login screen allows riders to sign in.",
+            },
+            {
+            "img": woopRider2,
+            "desc": "The protected screen determines the rider's shift schedule.",
+            },
+            {
+            "img": woopRider3,
+            "desc": "The tasks screen allows riders to see the orders assigned to them.",
+            },
+            {
+            "img": woopRider4,
+            "desc": "The transaction logs screen allows riders to see errands they've accomplished.",
+            },
+            {
+            "img": woopRider5,
+            "desc": "The account screen allows riders to see their information and schedule.",
+            }
+          ]
+      },
+      {
+        "id": "woop",
+        "title": "Woop!",
+        "category": "development",
+        "subtitle": "Internship Project",
+        "description": "Woop! is the customer mobile component of Woop! In the application, users can place and pay for orders, and send feedback.",
+        "years": [2023],
+        "contributions": [
+            "Spearheaded the documentation process",
+            "Lead the UI/UX Team",
+            "Oversaw front-end developers' works",
+            "Developed the UI of the mobile rider application",
+            "Created the assets"
+        ],
+        "languages": ["dart"],
+        "technologies": ["flutter", "font_awesome"],
+        "tags": ["Web development", "UI design", "Front-end", "Back-end", "Django", "Javascript", "HTML", "CSS", "Bootstrap", "FontAwesome", "Flutter", "Dart", "Android"],
+        "screens": [
+            {
+            "img": woopCustomer1,
+            "desc": "The registration screen allows customers to sign up for Woop!.",
+            },
+            {
+            "img": woopCustomer2,
+            "desc": "The login screen allows customers to sign in.",
+            },
+            {
+            "img": woopCustomer3,
+            "desc": "The home screen allows customers to see promotions and select an errand.",
+            },
+            {
+            "img": woopCustomer4,
+            "desc": "The pasabuy screen allows customers to ask a rider to buy something for them.",
+            },
+            {
+            "img": woopCustomer5,
+            "desc": "The parcel delivery screen allows customers to ask a rider to deliver a letter, document, or parcel for them.",
+            },
+            {
+            "img": woopCustomer6,
+            "desc": "The account screen allows customers to see their information and ask for help.",
+            },
+          ]
       },
       {
       "id": "woop-assets",
@@ -248,6 +296,7 @@ function App() {
       "subtitle": "Internship Project",
       "description": "A collection of icons, backgrounds, foregrounds, and placeholders used acrossed the different components of Woop!",
       "years": [2023],
+      "technologies": ["photoshop"],
       "tags": ["Photoshop", "Graphic design", "Assets", "Icons"],
       "screens": [
           {
@@ -291,6 +340,8 @@ function App() {
           "Oversaw UI/UX design",
           "Headed the back-end development",
       ],
+      "languages": ["html", "css", "javascript"],
+      "technologies": ["react", "firebase", "bootstrap", "font_awesome", "photoshop"],
       "tags": ["Web development", "UI design", "Front-end", "Back-end", "Django", "Javascript", "HTML", "CSS", "Bootstrap", "FontAwesome"],
       "screens": [
           {
@@ -361,6 +412,7 @@ function App() {
       "subtitle": "Commisioned Work",
       "description": "A pamphlet made using Photoshop that gives relevant information about Dengue Fever — it's causes, symptoms, and treatments.",
       "years": [2021],
+      "technologies": ["photoshop"],
       "tags": ["Photoshop", "Graphic design", "Pamphlet"],
       "screens": [
           {
@@ -378,6 +430,8 @@ function App() {
       "subtitle": "Course Project",
       "description": "A roll-a-ball game in the first person point of view. The ball must obtain all the orbs while passing over the obstacles.",
       "years": [2020],
+      "languages": ["c#"],
+      "technologies": ["unity"],
       "tags": ["Unity", "Game development", "Scripting"],
       "screens": [
           {
@@ -402,6 +456,8 @@ function App() {
       "subtitle": "Course Project",
       "description": "Uno Punto is a vertical scrolling game developed using Unity. It is about the adventure of Uno Punto (0.1), the last known living germ from the tragic Baygon spraying incident that destroyed his home and people. He was away when the incident happened so he refuse to believe that his family are gone. Hoping to reunite with his family again, he travels the sanitized world of the homeowner.",
       "years": [2020],
+      "languages": ["c#"],
+      "technologies": ["unity"],
       "tags": ["Unity", "Game development", "Scripting"],
       "screens": [
           {
@@ -427,6 +483,8 @@ function App() {
       "description": "A commisioned website that showcases the background and services offered by Asiawise. The front-end framework used was Ruby on Rails.",
       "years": [2020],
       "reference": "https://asiawiseu.com/",
+      "languages": ["html", "javascript", "css", "ruby"],
+      "technologies": ["rails", "bootstrap", "font_awesome"],
       "tags": ["Web development", "UI design", "Front-end", "Ruby", "Javascript", "HTML", "CSS", "Bootstrap", "FontAwesome"],
       "screens": [
           {
@@ -514,6 +572,7 @@ function App() {
       "subtitle": "Commisioned Work",
       "description": "A collection of cover photos used on the online classes of Asiawise. Editing was made using Adobe Photoshop.",
       "years": [2020],
+      "technologies": ["photoshop"],
       "tags": ["Photoshop", "Graphic design", "Cover"],
       "screens": [
           {
@@ -546,6 +605,7 @@ function App() {
       "subtitle": "Commisioned Work",
       "description": "A Photoshop-created poster for Carolina National High School donation advisory held during their 2020 Brigada Eskwela.",
       "years": [2020],
+      "technologies": ["photoshop"],
       "tags": ["Photoshop", "Graphic design", "Banner"],
       "screens": [
           {
@@ -563,6 +623,7 @@ function App() {
       "subtitle": "Personal Project",
       "description": "A diverse set of wallpapers I made in Photoshop for my former Android phone and old desktop pc.",
       "years": [2019, 2020],
+      "technologies": ["photoshop"],
       "tags": ["Photoshop", "Graphic design", "Wallpaper"],
       "screens": [
           {
@@ -607,6 +668,7 @@ function App() {
       "subtitle": "Personal Project",
       "description": "A set of album covers I made in Adobe Photoshop for the imaginary band Katagalugan.",
       "years": [2019, 2020],
+      "technologies": ["photoshop"],
       "tags": ["Photoshop", "Graphic design", "Album cover"],
       "screens": [
           {
@@ -627,6 +689,7 @@ function App() {
       "subtitle": "Course  Project",
       "description": "A booklet that features three animals that are unique only to India. Editing was done in Photoshop.",
       "years": [2018],
+      "technologies": ["photoshop"],
       "tags": ["Photoshop", "Graphic design", "Booklet"],
       "screens": [
           {
@@ -647,6 +710,7 @@ function App() {
       "subtitle": "Personal Project",
       "description": "A collection of cover arts I made in Photoshop for my music playlist. It is used in BlackPlayer Ex music player.",
       "years": [2018],
+      "technologies": ["photoshop"],
       "tags": ["Photoshop", "Graphic design", "Cover art"],
       "screens": [
           {
@@ -673,6 +737,7 @@ function App() {
       "subtitle": "Personal Project",
       "description": "A customized boot animation I did in Adobe Flash for my O+ 8.5 Android phone.",
       "years": [2016],
+      "technologies": ["photoshop", "flash"],
       "tags": ["Adobe Flash", "Graphic design", "Animation"],
       "screens": [
           {
@@ -697,6 +762,7 @@ function App() {
       "subtitle": "Course Project",
       "description": "A documentation magazine of our outreach program in Casuray, Magarao. Editing was made using Adobe InDesign and Photoshop.",
       "years": [2016],
+      "technologies": ["photoshop"],
       "tags": ["Photoshop", "Graphic design", "Magazine"],
       "contributions": [
           "Lead the documentation team",
@@ -729,6 +795,7 @@ function App() {
       "subtitle": "Personal Project",
       "description": "A collection of diverse artworks I made which I think are worth showcasing.",
       "years": [2018, 2019, 2021, 2022],
+      "technologies": ["photoshop"],
       "tags": ["Photoshop", "Graphic design", "Cover art", "Animation", "Infographic", "Manual", "Poster", "Banner"],
       "screens": [
           {
@@ -816,13 +883,13 @@ function App() {
       "date": "Jun 21 2022",
       "certification": "CCNA Cybersecurity Essentials",
       "grantee": "Cisco NetAcad",
-      "image": introductionCertificate
+      "image": cybersecurtityCertificate
     },
     {
       "date": "Feb 29 2020",
       "certification": "CCNA Routing & Switching: Introduction to Networks",
       "grantee": "Cisco NetAcad",
-      "image": cybersecurtityCertificate
+      "image": introductionCertificate
     }
   ]
 

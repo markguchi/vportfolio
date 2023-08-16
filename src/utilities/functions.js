@@ -14,10 +14,14 @@ export const addIntersectionObserver = () => {
       }
       const observer = new IntersectionObserver(intersectionCallback,{
         root: null,
-        threshold: 0.25
+        threshold: 0
      });
       const items = document.querySelectorAll('.with-animation');
       for (const item of items) {
         observer.observe(item);
       }
+}
+
+export const sectionHeight = () => {
+  return window.screen.height * .75 + "px"
 }

@@ -27,7 +27,7 @@ export default function WorkCard(props) {
                 <div 
                     className="w-100" 
                     style={{
-                        height: "300px",
+                        aspectRatio: "4/3",
                         overflow: "hidden",
                         textAlign: "center",
                     }}
@@ -66,8 +66,8 @@ export default function WorkCard(props) {
                         </div>
                     </div>
                 </div>
-                <div className="m-0 p-3 text-start">
-                    <div className="w-100 d-flex align-items-center justify-content-between">
+                <div className="flex-grow-1 m-0 p-0 pt-3 text-start d-flex flex-column">
+                    <div className="w-100 px-3 d-flex align-items-center justify-content-between">
                         <h4 className="primary-text"><strong>{props.work.title}</strong></h4>
                         {props.isCategoryVisible &&
                             <h6 style={{opacity: 0.6}}>
@@ -83,7 +83,7 @@ export default function WorkCard(props) {
                             </h6>
                         }            
                     </div>
-                    <div className="w-100 row">
+                    <div className="w-100 px-3 row">
                         <div className="col-8 p-0">
                             <h6 className="subtitle">
                                 <a 
@@ -120,9 +120,9 @@ export default function WorkCard(props) {
                             })}
                         </div>
                     </div>
-                    <p className="w-100 pt-1 font-light truncate bg-blue-5">
-                        {props.work.description}
-                    </p>
+                    <div className="flex-grow-1 w-100 px-3 pt-2 pb-4 font-light bg-blue-5">
+                        <div className="truncate">{props.work.description}</div>
+                    </div>
                 </div>
             </div>
     )

@@ -15,7 +15,7 @@ function Intro(){
   }, []);
 
   return(
-    <section id="intro" style={sectionStyle} className="d-flex align-items-center justify-content-center p-5 flex-column with-animation">
+    <section id="intro" style={sectionStyle} className="d-flex align-items-center justify-content-center p-0 p-md-5 flex-column with-animation">
     <h1 className="font-regular zetta lh-3quarter animate appear-top fast">Mark Borja</h1>
         <h1 className="font-regular zetta lh-3quarter animate appear-top very-fast">Gutierrez</h1>
         <div className="py-3"></div>
@@ -38,8 +38,8 @@ function Home(){
             <Intro/>
       <section id="profile" style={sectionStyle}>
         <div className="row h-100 with-animation">
-          <div className="col-5">
-            <div className="h-100 d-flex flex-row align-items-center justify-content-end">
+          <div className="col-12 col-md-5">
+            <div className="h-100 d-flex flex-column flex-md-row align-items-center justify-content-end">
               <div>
                 <div className="frame shape-square lg animate fade-blur-float" width="300">
                   <img src={me1} alt="Me"/>
@@ -57,15 +57,15 @@ function Home(){
               </div>
             </div>
           </div>
-          <div className="col-7 text-start ps-5">
-            <div className="h-100 d-flex align-items-start justify-content-center ps-5 pt-5 flex-column text-center">
+          <div className="col-12 col-md-7 text-start px-0 ps-md-5">
+            <div className="h-100 d-flex align-items-start justify-content-center px-0 ps-md-5 pt-5 flex-column text-center">
               <div className="py-3"></div>
               <div className="text-start font-light lh-2 animate fade-in">
                 <div className="row">
-                  <div className="col-6 p-3">
+                  <div className="col-12 col-md-6 p-3">
                     While accomplishing my degree, I have taken up multiple jobs to support my studies. I worked as a food service crew in a small canteen, a teacher assistant in the university, a tutor in a renowned study center, and an office staff in a corporation.
                   </div>
-                  <div className="col-6 p-3">
+                  <div className="col-12 col-md-6 p-3">
                     Also, I dabbled in freelance work which consisted mainly of commissioned artworks such as t-shirt designs, posters, and infographics, and some technical and creative writing, and website design. 
                   </div>
                   <div className="col-12 p-3">
