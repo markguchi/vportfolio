@@ -1,0 +1,316 @@
+.animate{
+  visibility: hidden;
+}
+
+.rotate-in {
+  animation: rotateIn 0.5s;
+}
+
+.rotate-out {
+  animation: rotateOut 0.5s;
+}
+
+.with-animation.start .animate {
+  visibility: visible;
+}
+
+.with-animation.start .animate.fade-in.very-fast {
+  animation: fade 0.25s;
+}
+
+.with-animation.start .animate.fade-in.fast {
+  animation: fade 0.5s !important;
+}
+
+.with-animation.start .animate.fade-in {
+  animation: fade 0.75s;
+}
+
+.with-animation.start .animate.fade-in.slow {
+  animation: fade 1s !important;
+}
+
+.with-animation.start .animate.fade-in.very-slow {
+  animation: fade 1.5s !important;
+}
+
+.with-animation.start .animate.fade-in.very-slow.delay-500 {
+  animation: fade 2s !important;
+}
+
+.with-animation.start .animate.fade-in.very-slow.delay-1000 {
+  animation: fade 2.5s !important;
+}
+
+.with-animation.start .animate.fade-blur-float.very-fast {
+  animation: fadeBlurFloat 0.25s;
+}
+
+.with-animation.start .animate.fade-blur-float.fast {
+  animation: fadeBlurFloat 0.5s;
+}
+
+.with-animation.start .animate.fade-blur-float {
+  animation: fadeBlurFloat 0.75s;
+}
+
+.with-animation.start .animate.fade-blur-float.slow {
+  animation: fadeBlurFloat 1s !important;
+}
+
+.with-animation.start .animate.fade-blur-float.very-slow {
+  animation: fadeBlurFloat 1.5s !important;
+}
+
+.with-animation.start .animate.appear-right {
+  animation: appearFromRight 0.75s;
+}
+
+.with-animation.start .animate.appear-right.slow {
+  animation: appearFromRight 1s !important;
+}
+
+.with-animation.start .animate.appear-right.very-slow {
+  animation: appearFromRight 1.5s !important;
+}
+
+.with-animation.start .animate.appear-left {
+  animation: appearFromLeft 0.75s;
+}
+
+.with-animation.start .animate.appear-left.slow {
+  animation: appearFromLeft 1s !important;
+}
+
+.with-animation.start .animate.appear-left.very-slow {
+  animation: appearFromLeft 1.5s !important;
+}
+
+.with-animation.start .animate.appear-top.very-fast {
+  animation: appearFromTop 0.25s;
+}
+
+.with-animation.start .animate.appear-top.fast {
+  animation: appearFromTop 0.5s;
+}
+
+.with-animation.start .animate.appear-top {
+  animation: appearFromTop 0.75s !important;
+}
+
+.with-animation.start .animate.appear-top.slow {
+  animation: appearFromTop 1s !important;
+}
+
+.with-animation.start .animate.appear-top.very-slow {
+  animation: appearFromTop 1.5s !important;
+}
+
+.with-animation.start .animate.appear-bottom.very-fast {
+  animation: appearFromBottom 0.25s;
+}
+
+.with-animation.start .animate.appear-bottom.fast {
+  animation: appearFromBottom 0.5s;
+}
+
+.with-animation.start .animate.appear-bottom {
+  animation: appearFromBottom 0.75s;
+}
+
+.with-animation.start .animate.appear-bottom.slow {
+  animation: appearFromBottom 1s !important;
+}
+
+.with-animation.start .animate.appear-bottom.very-slow {
+  animation: appearFromBottom 1.5s !important;
+}
+
+.with-animation.start .animate.grow-bottom {
+  animation: growFromBottom 0.75s;
+}
+
+.with-animation.start .animate.grow-bottom.slow {
+  animation: growFromBottom 1s;
+}
+
+.with-animation.start .animate.grow-bottom.very-slow {
+  animation: growFromBottom 1.5s;
+}
+
+.with-animation.start .animate.bump-scoot-right {
+  animation: bumpScootFromRight 1s;
+}
+
+.with-animation.start .animate.bump-scoot-right.delay-0 {
+  animation: bumpScootFromRight 1s;
+}
+
+.with-animation.start .animate.bump-scoot-right.delay-1 {
+  animation: bumpScootFromRight 1s 0.1s;
+}
+
+.with-animation.start .animate.bump-scoot-right.delay-2 {
+  animation: bumpScootFromRight 1s 0.2s;
+}
+
+.with-animation.start .animate.bump-scoot-right.delay-3 {
+  animation: bumpScootFromRight 1s 0.3s;
+}
+
+.with-animation.start .animate.bump-scoot-right.delay-4 {
+  animation: bumpScootFromRight 1s 0.4s;
+}
+
+.with-animation.start .animate.bump-scoot-left {
+  animation: bumpScootFromLeft 1s;
+}
+
+.with-animation.start .animate.bump-scoot-left.delay-0 {
+  animation: bumpScootFromLeft 1s;
+}
+
+.with-animation.start .animate.bump-scoot-left.delay-1 {
+  animation: bumpScootFromLeft 1s 0.1s;
+}
+
+.with-animation.start .animate.bump-scoot-left.delay-2 {
+  animation: bumpScootFromLeft 1s 0.2s;
+}
+
+.with-animation.start .animate.bump-scoot-left.delay-3 {
+  animation: bumpScootFromLeft 1s 0.3s;
+}
+
+.with-animation.start .animate.bump-scoot-left.delay-4 {
+  animation: bumpScootFromLeft 1s 0.4s;
+}
+
+@keyframes fadeBlurFloat {
+  0% {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translate(0, 5em);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes rotateIn {
+  0% {
+    scale: 1 -1;
+  }
+  100% {
+    scale: 1 1;
+  }
+}
+
+@keyframes rotateOut {
+  0% {
+    scale: 1 -1;
+  }
+  100% {
+    scale: 1 1;
+  }  
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes appearFromLeft {
+  0% {
+    transform: translateX(-10%);
+    visibility: hidden;
+  }
+  100% {
+    transform: translateX(0);
+    visibility: visible;
+  }
+}
+
+@keyframes appearFromRight {
+  0% {
+    transform: translateX(10%);
+    visibility: hidden;
+  }
+  100% {
+    transform: translateX(0);
+    visibility: visible;
+  }
+}
+
+@keyframes appearFromTop {
+  0% {
+    transform: translateY(-100%);
+    visibility: hidden;
+  }
+  100% {
+    transform: translateY(0);
+    visibility: visible;
+  }
+}
+
+@keyframes appearFromBottom {
+  0% {
+    transform: translateY(100%);
+    visibility: hidden;
+  }
+  100% {
+    transform: translateY(0);
+    visibility: visible;
+  }
+}
+
+@keyframes growFromBottom {
+  0% {
+    scale: .9;
+    transform: translateY(25%);
+    visibility: hidden;
+  }
+  100% {
+    scale: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+}
+
+@keyframes bumpScootFromRight {
+  0% {
+    transform: translateX(25%) scaleX(1);
+    visibility: hidden;
+  }
+  50%{
+    transform: translateX(-25%) scaleX(0.85);
+    visibility: visible;
+  }
+  100% {
+    transform: translateX(0) scaleX(1);
+    visibility: visible;
+  }
+}
+
+@keyframes bumpScootFromLeft {
+  0% {
+    transform: translateX(-25%) scaleX(1);
+    visibility: hidden;
+  }
+  50%{
+    transform: translateX(25%) scaleX(0.85);
+    visibility: visible;
+  }
+  100% {
+    transform: translateX(0) scaleX(1);
+    visibility: visible;
+  }
+}

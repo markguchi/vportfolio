@@ -35,16 +35,16 @@ function Intro(){
     <section id="intro" style={{height: dimensions.height + "px"}} className="d-flex align-items-center justify-content-center ">
       <div className="w-100 p-0 m-0 d-flex align-items-center justify-content-center p-0 p-md-5 flex-column with-animation">
         <h5 className="font-light w-100 w-xl-25 w-xxl-25 opacity-50 d-flex flex-column flex-lg-row justify-content-between ">
-          <span className="w-100 px-3 mb-3 animate fade-in very-slow delay-1000">09615383895  /  rmbg2798@gmail.com</span>
+          <span className="w-100 px-3 mb-3 text-center animate fade-in very-slow delay-1000">09615383895  /  rmbg2798@gmail.com</span>
         </h5>
         <div className="py-2"></div>
         <h1 className="font-regular yota lh-3quarter animate appear-top fast">Mark Borja</h1>
         <h1 className="font-regular yota lh-3quarter animate appear-top very-fast">Gutierrez</h1>
         <div className="py-4"></div>
         <h3 className="font-light w-100 w-xl-75 w-xxl-50 opacity-75 d-flex flex-column flex-lg-row justify-content-between text-blue">
-          <span className="flex-basis-33 px-3 mb-3 animate appear-top fast">Software Developer</span>
-          <span className="flex-basis-33 px-3 mb-3 animate appear-top">Software Engineer</span>
-          <span className="flex-basis-33 px-3 mb-3 animate appear-top slow">UI Designer</span>
+          <span className="flex-basis-33 px-3 mb-3 text-center animate appear-top fast">Software Developer</span>
+          <span className="flex-basis-33 px-3 mb-3 text-center animate appear-top">Software Engineer</span>
+          <span className="flex-basis-33 px-3 mb-3 text-center animate appear-top slow">UI Designer</span>
         </h3>
       </div>
     </section>
@@ -91,11 +91,9 @@ function Home(props){
               <div className="flex-basis-30 flex-basis-xxl-40 d-flex flex-column align-items-start">
                 <div className="frame shape-square sm animate fade-blur-float slow mb-4 mb-lg-4 w-75">
                   <img src={me2} alt="Me"/>
-
                 </div>
                 <div className="frame shape-square xs animate fade-blur-float very-slow w-50">
                   <img src={me3} alt="Me"/>
-
                 </div>
               </div>
             </div>
@@ -118,14 +116,13 @@ function Home(props){
                     In the Information Technology environment, I consider myself a jack-of-all-trades. I am able to take on leadership duties as well as programming duties. I am a capable full-stack developer and a passionate web and mobile UI designer. Moreover, I enjoy project documentation that usually includes itemization of objectives and needs, and diagramming.
                   </div>
                 </div>
-                 
               </div>
             </div>
           </div>
         </div>
       </section>
       <section id="tech-background">
-        <h1 className="giga with-animation with-animation">
+        <h1 className="giga text-center with-animation with-animation">
           <span className="animate fade-in">Tools I work with</span>
         </h1>
         <div className="py-3 py-md-5"></div>
@@ -135,7 +132,7 @@ function Home(props){
               <div className="col-6 col-md-4 col-xxl-2 px-2 py-3 px-md-3 py-md-4 px-xl-4 py-xl-5 with-animation">
                 <div className="w-100 h-100 bg-white border-round d-flex flex-column align-items-center px-3 py-2 mb-5 animate fade-blur-float">
                   <div className="flex-basis-60 d-flex align-items-center justify-content-center">
-                    <img src={techIcons[tech.id]} className="tech-icon w-50 w-md-75 h-auto object-fit-contain opacity-75"/>
+                    <img src={techIcons[tech.id]} alt={techIcons[tech.id]} className="tech-icon w-50 w-md-75 h-auto object-fit-contain opacity-75"/>
                   </div>
                   <div className="flex-basis-40">
                     {tech.name?
@@ -162,7 +159,7 @@ function Home(props){
               <div className="col-6 col-md-4 col-xxl-2 px-2 py-3 px-md-3 py-md-4 px-xl-4 py-xl-5 with-animation">
                 <div className="w-100 h-100 bg-dark border-round d-flex flex-column align-items-center px-3 py-2 mb-5 text-white animate fade-blur-float">
                   <div className="flex-basis-60 d-flex align-items-center justify-content-center">
-                    <img src={techIcons[tech.id]} className="tech-icon light w-50 w-md-75 h-auto object-fit-contain opacity-75"/>
+                    <img src={techIcons[tech.id]} alt={techIcons[tech.id]} className="tech-icon light w-50 w-md-75 h-auto object-fit-contain opacity-75"/>
                   </div>
                   <div className="flex-basis-40">
                     {tech.name?
@@ -188,27 +185,27 @@ function Home(props){
                 {props.developmentBackground.filter(tech => tech.years < 1.0).map((tech) => {
                   return(
                     <div className="h-100 d-flex flex-column align-items-start justify-content-between p-2 text-center">
-                        <div className="h-100 d-flex align-items-center justify-content-center">
-                          <img src={techIcons[tech.id]} className="tech-icon w-50 h-auto object-fit-contain opacity-75"/>
-                        </div>
-                        <div className="w-100">
-                          {tech.name?
-                            <h6 className="w-100">{tech.name}</h6>
-                          :
-                            
-                            <h6 className="w-100">{tech.id.charAt(0).toUpperCase() + tech.id.slice(1, tech.id.length)}</h6>
-                          }
-                        </div>
+                      <div className="h-100 d-flex align-items-center justify-content-center">
+                        <img src={techIcons[tech.id]} alt={techIcons[tech.id]} className="tech-icon w-50 h-auto object-fit-contain opacity-75"/>
                       </div>
+                      <div className="w-100">
+                        {tech.name?
+                          <h6 className="w-100">{tech.name}</h6>
+                        :
+                            
+                          <h6 className="w-100">{tech.id.charAt(0).toUpperCase() + tech.id.slice(1, tech.id.length)}</h6>
+                        }
+                      </div>
+                    </div>
                   )
                 })}
               </div>
-          </div>
+            </div>
           </div>
         </div>
       </section>
       <section id="recent-works">
-        <h1 className="giga with-animation">
+        <h1 className="giga text-center with-animation">
           <span className="animate fade-in">My most recent works</span>
         </h1>
         <div className="py-3 py-md-5"></div>
@@ -220,7 +217,8 @@ function Home(props){
                   {props.recentWorks[0].screens.slice(0, 5).map((work, index) => {
                     return(
                       <img 
-                        src={work.img} 
+                        src={work.img}
+                        alt={work.img}
                         className={"stack-item flex-basis-100 w-100 h-auto object-fit-contain shadow-full border-round animate bump-scoot-right delay-" + index}
                         style={{
                           translate: index * - 50 + "% 0",
@@ -289,6 +287,7 @@ function Home(props){
                     return(
                       <img 
                         src={work.img} 
+                        alt={work.img}
                         className={"stack-item flex-basis-100 w-100 h-auto object-fit-contain shadow-full border-round animate bump-scoot-left delay-" + index}
                         style={{
                           translate: index * - 75 + "% " + index * 50 + "%",

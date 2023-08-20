@@ -1,7 +1,8 @@
-import { Link, useNavigate } from "react-router-dom"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useNavigate } from "react-router-dom"
 
 import { categoryIcons } from "../utilities/library"
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export default function WorkCard(props) {
     const navigate = useNavigate()
@@ -71,46 +72,42 @@ export default function WorkCard(props) {
                             <strong>{props.work.title}</strong>
                         </h4>
                         {props.isCategoryVisible &&
-                            <h6 style={{opacity: 0.6}}>
-                                <a 
-                                    className="clickable text-decoration-none"
-                                    onClick={(e)=>{
-                                        e.stopPropagation()
-                                        navigate('/listbycategory', { state: props.work.category })
-                                    }}
-                                >
-                                    <FontAwesomeIcon icon={categoryIcons[props.work.category]}/>
-                                </a>
+                            <h6 
+                                className="clickable text-decoration-none"
+                                onClick={(e)=>{
+                                    e.stopPropagation()
+                                    navigate('/listbycategory', { state: props.work.category })
+                                }}
+                                style={{opacity: 0.6}}
+                            >
+                                <FontAwesomeIcon icon={categoryIcons[props.work.category]}/>
                             </h6>
                         }            
                     </div>
-                    <div className="w-100 px-3 row">
+                    <div className="w-100 row px-3">
                         <div className="col-12 col-md-8 p-0">
-                            <h6 className="subtitle text-center text-md-start">
-                                <a 
-                                    className="clickable text-decoration-none"
-                                    onClick={(e)=>{
-                                        e.stopPropagation()
-                                        navigate('/listbytype', { state: props.work.subtitle })
-                                    }}
-                                >
-                                    {props.work.subtitle}
-                                </a>
+                            <h6 
+                                className="clickable subtitle text-center text-md-start"
+                                onClick={(e)=>{
+                                    e.stopPropagation()
+                                    navigate('/listbytype', { state: props.work.subtitle })
+                                }}
+                            >
+                                {props.work.subtitle}
                             </h6>
                         </div>
                         <div className="col-12 col-md-4 p-0 text-center text-md-end mb-2 mb-md-0">
                             {props.work.years.map((year, index)=>{
                                 return(
-                                    <span key={year}>
-                                        <a 
-                                            className="clickable text-decoration-none"
-                                            onClick={(e)=>{
-                                                e.stopPropagation()
-                                                navigate('/listbyyear',  { state: year } )
-                                            }}
-                                        >
-                                            {year}
-                                        </a>
+                                    <span 
+                                        key={year}
+                                        className="clickable text-decoration-none"
+                                        onClick={(e)=>{
+                                            e.stopPropagation()
+                                            navigate('/listbyyear',  { state: year } )
+                                        }}
+                                    >
+                                        {year}
                                         {index !== props.work.years.length - 1?
                                             <span>, </span>
                                         :

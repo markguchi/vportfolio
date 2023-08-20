@@ -1,16 +1,14 @@
-import adnuLogo from '../images/resume/adnu_logo.png'
-import ncshsLogo from '../images/resume/ncshs_logo.png'
 import { useRef, useState, useEffect } from 'react'
+
+import { addIntersectionObserver } from '../utilities/functions';
+import { Intro } from './Home';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faStar } from '@fortawesome/free-solid-svg-icons'
-import { Intro } from './Home';
-import { addIntersectionObserver, sectionHeight } from '../utilities/functions';
+import adnuLogo from '../images/resume/adnu_logo.png'
+import ncshsLogo from '../images/resume/ncshs_logo.png'
 
 function Resume(props) {
-  const [dimensions, setDimensions] = useState({ 
-    height: window.innerHeight,
-    width: window.innerWidth
-  })
 
   const experienceRef = useRef(null)
   const workRef = useRef(null)
@@ -26,20 +24,6 @@ function Resume(props) {
     addIntersectionObserver()
   }, []);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setDimensions({
-        height: window.innerHeight,
-        width: window.innerWidth
-      })
-    }
-    window.addEventListener('resize', handleResize)
-    return _ => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
-
-
   const scrollToRight = (parentRef, childRef) => {
     parentRef.current.scrollLeft = parentRef.current.scrollLeft + childRef.current.clientWidth
   }
@@ -48,7 +32,7 @@ function Resume(props) {
     parentRef.current.scrollLeft = parentRef.current.scrollLeft - childRef.current.clientWidth
   }
 
-  function WorkCard(props){
+  function ExperienceCard(props){
     const [isFlipped, setIsFlipped] = useState(false)
 
     return(
@@ -58,9 +42,9 @@ function Resume(props) {
         </div> 
         {!isFlipped?
           <div className="flex-grow-1 frame shape-square text-white py-4 px-5 p-lg-5 aspect-ratio-3-4 aspect-ratio-md-1-1 shadow-none bg-gradient-blue clickable rotate-out d-flex flex-column align-items-center justify-content-between" onClick={()=>{setIsFlipped(!isFlipped)}}>
-            <h3>{props.position}</h3>
+            <h3 className="text-center">{props.position}</h3>
             {props.image && (<img className="w-25 object-fit-contain" alt={props.company + " logo"} src={props.image}/>)}
-            <h4 className="opacity-75">{props.company}</h4>
+            <h4 className="opacity-75 text-center">{props.company}</h4>
           </div>
         :
           <div className="frame shape-square p-3 aspect-ratio-3-4 aspect-ratio-md-1-1 shadow-none bg-white clickable rotate-in d-flex flex-column align-items-center justify-content-center" style={{gap: "1.5em"}} onClick={()=>{setIsFlipped(!isFlipped)}}>
@@ -188,7 +172,7 @@ function Resume(props) {
                 <div className="w-100 h-100 d-flex flex-column flex-md-row justify-content-start align-items-center align-items-md-start" style={{gap: "2em"}}>
                   <img src={adnuLogo} alt="AdNU Logo" className="w-25 w-xl-50"/>
                   <div className="d-flex flex-column align-items-center align-items-md-start">
-                    <h3 className="font-regular">Ateneo de Naga University</h3>
+                    <h3 className="font-regular text-center text-md-start">Ateneo de Naga University</h3>
                     <h5 className="font-regular">BS Information Technology</h5>
                     <h6 className="font-light">2015 - 2016,  2018 - 2023</h6>
                     <div className="py-2"></div>
@@ -239,7 +223,7 @@ function Resume(props) {
                   <>
                   {index === 0?
                     <div className="flex-basis-75 flex-basis-xl-50 flex-basis-xxl-25 me-4 me-lg-5" ref={workRef} key={experience.position}>
-                      <WorkCard
+                      <ExperienceCard
                         date={experience.date}
                         position={experience.position}
                         company={experience.company}
@@ -250,7 +234,7 @@ function Resume(props) {
                     </div>
                     :
                       <div className="flex-basis-75 flex-basis-xl-50 flex-basis-xxl-25 me-4 me-lg-5" key={experience.position}>
-                        <WorkCard
+                        <ExperienceCard
                           date={experience.date}
                           position={experience.position}
                           company={experience.company}

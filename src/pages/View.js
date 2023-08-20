@@ -1,18 +1,17 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { categoryIcons, techIcons } from "../utilities/library";
+import { addIntersectionObserver } from "../utilities/functions";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserGroup } from "@fortawesome/free-solid-svg-icons";
-import { addIntersectionObserver } from "../utilities/functions";
 
 export default function View(props){
     const navigate = useNavigate()
     const [imageToViewIndex, setImageToViewIndex] = useState(0)
     const [showEnlargedImageModal, setShowEnlargedImageModal] = useState(false)
-    const location = useLocation();
 
     useEffect(() => {
         addIntersectionObserver()
@@ -140,7 +139,7 @@ export default function View(props){
 
         return(
             <>
-                <div className={"lightbox-modal" + (params.show == true? " show": "")} style={{height: dimensions.height, width: dimensions.width}}>
+                <div className={"lightbox-modal" + (params.show? " show": "")} style={{height: dimensions.height, width: dimensions.width}}>
                     <button className="lightbox-close" onClick={params.onHide}>×</button>
                     <div className="lightbox-contents">
                         <button 
@@ -156,7 +155,7 @@ export default function View(props){
                             <div className="lightbox-gallery-content touchable" onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
                                 <div className="gallery-images">
                                     <div className="album-entry">
-                                        <img src={album[currentIndex].img}/>
+                                        <img src={album[currentIndex].img} alt={album[currentIndex].description}/>
                                     </div>
                                 </div>
                                 <div className="gallery-image-description">
@@ -175,7 +174,7 @@ export default function View(props){
                                                     removeImageAnimation()
                                                 }}
                                             >
-                                                <img src={albumImage.img}/>
+                                                <img src={albumImage.img} alt={albumImage.description}/>
                                             </div>
                                         )
                                     })}
@@ -214,9 +213,9 @@ export default function View(props){
                                 <div className="w-100 w-lg-75 w-xl-50 d-flex align-items-center justify-content-center with-animation">
                                     <hr className="flex-grow-1 my-4 animate fade-in"/>
                                     <h5 className="opacity-75 px-3 animate appear-top">
-                                        <a className="clickable text-decoration-none animate fade-in mb-2" onClick={()=>{navigate('/listbycategory', { state: props.data.category })}}>
+                                        <span className="clickable text-decoration-none animate fade-in mb-2" onClick={()=>{navigate('/listbycategory', { state: props.data.category })}}>
                                             <FontAwesomeIcon icon={categoryIcons[props.data.category]}/>
-                                        </a>
+                                        </span>
                                     </h5>
                                     <hr className="flex-grow-1 my-2 animate fade-in"/>
                                 </div>
@@ -271,10 +270,12 @@ export default function View(props){
                                     <h4 className="opacity-75 px-3 animate appear-top">
                                     {props.data.years.map((year, index)=>{
                                                 return(
-                                                    <span key={year}>
-                                                        <a className="clickable text-decoration-none" onClick={()=>{navigate('/listbyyear',  { state: year } )}}>
-                                                            {year}
-                                                        </a>
+                                                    <span 
+                                                        key={year}
+                                                        className="clickable text-decoration-none"
+                                                        onClick={()=>{navigate('/listbyyear',  { state: year } )}}
+                                                    >
+                                                        {year}
                                                         {index !== props.data.years.length - 1 &&
                                                             <span> • </span>
                                                         }
@@ -395,9 +396,12 @@ export default function View(props){
                                                     key={tag}
                                                     className="d-inline-block px-2 mb-4 animate fade-in"
                                                 >
-                                                    <a className="clickable text-decoration-none bg-blue-25 p-2 px-3 border-round text-nowrap" onClick={()=>{navigate('/listbytag', { state: tag })}}>
+                                                    <span 
+                                                        className="clickable text-decoration-none bg-blue-25 p-2 px-3 border-round text-nowrap"
+                                                        onClick={()=>{navigate('/listbytag', { state: tag })}}
+                                                    >
                                                         {tag}
-                                                    </a>
+                                                    </span>
                                                 </h6>  
                                             )
                                         })}

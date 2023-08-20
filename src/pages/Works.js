@@ -8,7 +8,6 @@ import { categoryIcons } from '../utilities/library'
 
 import { Carousel } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import FormSelect from 'react-bootstrap'
  
 export default function Works(props) {
     const works = props.works
@@ -41,7 +40,7 @@ export default function Works(props) {
     }, [filteredWorks]);
 
     const filterWorks = (filterValue) => {
-        if(filterValue == "all"){
+        if(filterValue === "all"){
             setFilteredWorks(works)
         }
         else
@@ -99,25 +98,26 @@ export default function Works(props) {
                                 <h1 className="text-start tera lh-half font-bold"><strong>{filteredWorks[0].title}</strong></h1>
                             </Link>
                             {props.isCategoryVisible &&
-                                <h2>
-                                    <a className="clickable text-decoration-none" onClick={()=>{navigate('/listbycategory', { state: filteredWorks[0].category })}}>
-                                        <FontAwesomeIcon icon={categoryIcons[filteredWorks[0].category]}/>
-                                    </a>
+                                <h2 
+                                    className="clickable text-decoration-none"
+                                    onClick={()=>{navigate('/listbycategory', { state: filteredWorks[0].category })}}
+                                >
+                                    <FontAwesomeIcon icon={categoryIcons[filteredWorks[0].category]}/>
                                 </h2>
                             }            
                         </div>   
-                        <h3 className="subtitle font-light clickable">
-                            <a className="clickable text-decoration-none" onClick={()=>{navigate('/listbytype', { state: filteredWorks[0].subtitle })}}>
-                                {filteredWorks[0].subtitle}
-                            </a>
+                        <h3 className="subtitle font-light clickable" onClick={()=>{navigate('/listbytype', { state: filteredWorks[0].subtitle })}}>
+                            {filteredWorks[0].subtitle}
                         </h3>
                         <h4>
                             {filteredWorks[0].years.map((year, index)=>{
                                 return(
-                                    <span key={year}>
-                                        <a className="clickable text-decoration-none" onClick={()=>{navigate('/listbyyear',  { state: year } )}}>
-                                            {year}
-                                        </a>
+                                    <span 
+                                        key={year}
+                                        className="clickable text-decoration-none"
+                                        onClick={()=>{navigate('/listbyyear',  { state: year } )}}
+                                    >
+                                        {year}
                                         {index !== filteredWorks[0].years.length - 1 &&
                                             <span>, </span>
                                         }
@@ -135,9 +135,9 @@ export default function Works(props) {
                                                     key={tag}
                                                     className="d-inline-block pe-2 mb-4 animate fade-in"
                                                 >
-                                                    <a className="clickable text-decoration-none bg-blue-25 p-2 px-3 border-round text-nowrap" onClick={()=>{navigate('/listbytag', { state: tag })}}>
+                                                    <span className="clickable text-decoration-none bg-blue-25 p-2 px-3 border-round text-nowrap" onClick={()=>{navigate('/listbytag', { state: tag })}}>
                                                         {tag}
-                                                    </a>
+                                                    </span>
                                                 </h6>  
                                             )
                                         })}

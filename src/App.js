@@ -1,9 +1,7 @@
-import mbgLogo from './images/logo.png'
-import mbgLogoShadowed from './images/logo_shadowed.png'
-import 'bootstrap/dist/css/bootstrap.css'
-import './App.css';
 import { Routes, Route } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
+
+import 'bootstrap/dist/css/bootstrap.css'
 
 import Resume from './pages/Resume';
 import Works from './pages/Works';
@@ -14,6 +12,8 @@ import ListByYear from './pages/ListByYear';
 import ListBySubtitle from './pages/ListBySubtitle';
 import ListByCategory from './pages/ListByCategory';
 
+import mbgLogo from './images/logo.png'
+import mbgLogoShadowed from './images/logo_shadowed.png'
 import woopWeb1 from './images/works/woop_web_1.jpg'
 import woopWeb2 from './images/works/woop_web_2.jpg'
 import woopWeb3 from './images/works/woop_web_3.jpg'
@@ -1039,6 +1039,7 @@ function App() {
       "years": 1.0
     }
   ]
+
   return (
     <div className="App">
       <nav className="navbar navbar-expand-lg bg-gray-50 bg-blur p-0 sticky-none sticky-md-top">
@@ -1106,7 +1107,6 @@ function App() {
             isCategoryVisible={true}
           />}
         />
-        
        <Route 
          path="/view"
          element={

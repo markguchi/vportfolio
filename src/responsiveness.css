@@ -1,0 +1,227 @@
+
+
+@media only screen and (min-width: 992px){
+  .gallery-thumbnails {
+    overflow-x: hidden;
+  }
+}
+
+/** ----------------- **/
+
+
+@media only screen and (max-width: 767.98px) {
+  .curvy-card {
+    padding: 2em 1.5em 3em 1.5em;
+    border-radius: 20px;
+  }
+
+  #logo {
+    width: auto !important;
+    height: 4em !important;
+    aspect-ratio: 0 !important;
+    background-color: transparent !important;
+  }
+
+  #logo img {
+    width: auto !important;
+    height: 100% !important;
+  }
+
+  #logo img {
+    filter: saturate(0) brightness(0.75);
+  }
+
+  .active #logo img {
+    filter: none;
+  }
+}
+
+/*** MD **/
+
+@media only screen and (min-width: 768px){
+  section {
+    padding: 2em 3.2em !important;
+  }
+  
+  .section-padding {
+    padding: 2em 3.2em !important;
+  }
+
+  .emphasis-md {
+    border-left: 2px solid var(--blue) !important;
+  }
+
+  div.bg-md-white {
+    background: white !important;
+  }
+
+  .aspect-ratio-md-0 {
+    aspect-ratio: 0 !important;
+  }
+
+  .aspect-ratio-md-1-1 {
+    aspect-ratio: 1/1 !important;
+  }
+
+  .aspect-ratio-md-4-3 {
+    aspect-ratio: 4/3 !important;
+  }
+
+  *.w-md-50 {
+    width: 50% !important;
+  }
+  
+  *.w-md-75 {
+    width: 75% !important;
+  }
+
+  *.h-md-50 {
+    height: 50% !important;
+  }
+  
+  *.h-md-75 {
+    height: 75% !important;
+  }
+
+  *.h-md-auto {
+    height: auto !important;
+  }
+
+  .flex-basis-md-auto {
+    flex: 0 0 auto !important;
+    flex-basis: auto !important;
+    height: auto !important;
+  }
+
+  .text-md-black * {
+    color: var(--black) !important;
+  }
+
+  .text-md-black a {
+    color: var(--black) !important;
+  }
+}
+/***  ------ ***/
+
+/*** LG **/
+
+@media only screen and (min-width: 992px){
+  section {
+    padding: 3em 4.8em !important;
+  }
+  
+  .section-padding {
+    padding: 3em 4.8em !important;
+  }
+
+  *.w-lg-50 {
+    width: 50% !important;
+  }
+  
+  *.w-lg-75 {
+    width: 75% !important;
+  }
+
+  *.w-lg-50 {
+    width: 50% !important;
+  }
+  
+  *.w-lg-75 {
+    width: 75% !important;
+  }
+
+  .gallery-thumbnails {
+    overflow-x: hidden;
+  }
+  
+}
+
+/***  ------ ***/
+
+/*** XL **/
+
+@media only screen and (min-width: 1200px) {
+  section {
+    padding: 4em 6.45em !important;
+  }
+  
+  .section-padding {
+    padding: 4em 6.45em !important;
+  }
+
+  .flex-basis-xl-50 {
+    flex: 0 0 auto;
+    flex-basis: 50%;
+    height: auto;
+  }
+
+  *.w-xl-50 {
+    width: 50% !important;
+  }
+  
+  *.w-xl-75 {
+    width: 75% !important;
+  }  
+
+  *w-xl-100 {
+    width: 100% !important;
+  }
+
+  *.w-xl-50 {
+    width: 50% !important;
+  }
+  
+  *.w-xl-75 {
+    width: 75% !important;
+  }
+}
+/***  ------ ***/
+
+/*** XXL **/
+
+@media only screen and (min-width: 1400px) {
+  section {
+    padding: 5em 8em !important;
+  }
+  
+  .section-padding {
+    padding: 5em 8em !important;
+  }
+
+  .text-xxl-sideways.bottom {
+    writing-mode: vertical-rl !important;
+    transform: rotate(-180deg) !important;
+  }
+  
+  .text-xxl-sideways.top {
+    writing-mode: vertical-lr !important;
+  }
+
+  .flex-basis-xxl-75 {
+    flex: 0 0 auto;
+    flex-basis: 75%;
+    height: auto;
+  }
+
+  .flex-basis-xxl-25 {
+    flex: 0 0 auto;
+    flex-basis: 25%;
+    height: auto;
+  }
+  
+  .flex-basis-xxl-65 {
+    flex: 0 0 auto;
+    flex-basis: 60%;
+    height: auto;
+  }
+
+  .flex-basis-xxl-35 {
+    flex: 0 0 auto;
+    flex-basis: 40%;
+    height: auto;
+  }
+
+  *.w-xxl-25 {
+    width: 25% !important;
+  }
+}
