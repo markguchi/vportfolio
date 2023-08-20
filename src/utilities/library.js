@@ -1,5 +1,8 @@
+import afterEffects from '../images/techs/aftereffects.png'
 import bootstrap from '../images/techs/bootstrap.png'
 import cSharp from '../images/techs/c#.png'
+import camtasia from '../images/techs/camtasia.png'
+import codeIgniter from '../images/techs/codeigniter.png'
 import css from '../images/techs/css.png'
 import dart from '../images/techs/dart.png'
 import django from '../images/techs/django.png'
@@ -8,9 +11,11 @@ import firebase from '../images/techs/firebase.png'
 import flutter from '../images/techs/flutter.png'
 import fontAwesome from '../images/techs/font_awesome.png'
 import html from '../images/techs/html5.png'
+import illustrator from '../images/techs/illustrator.png'
 import javascript from '../images/techs/javascript.png'
 import mysql from '../images/techs/mysql.png'
 import photoshop from '../images/techs/photoshop.png'
+import premiere from '../images/techs/premiere.png'
 import python from '../images/techs/python.png'
 import rails from '../images/techs/rails.png'
 import react from '../images/techs/react.png'
@@ -26,8 +31,11 @@ export const categoryIcons = {
 }
 
 export const techIcons = {
+    'aftereffects': afterEffects,
     'bootstrap': bootstrap,
     'c#': cSharp,
+    'camtasia': camtasia,
+    'codeigniter': codeIgniter,
     'css': css,
     'dart': dart,
     'django': django,
@@ -36,8 +44,10 @@ export const techIcons = {
     'flutter': flutter,
     'font_awesome': fontAwesome,
     'html': html,
+    'illustrator': illustrator,
     'javascript': javascript,
     'mysql': mysql,
+    'premiere': premiere,
     'python': python,
     'photoshop': photoshop,
     'rails': rails,

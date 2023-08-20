@@ -1,25 +1,10 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router"
 
-export const ListenToScreenResize = () => {
-  const [dimensions, setDimensions] = useState({ 
-    height: window.innerHeight,
-    width: window.innerWidth
-  })
+export const NavigateToWork = (id) => {
+  const navigate = useNavigate()
 
-  useEffect(() => {
-    const handleResize = () => {
-      setDimensions({
-        height: window.innerHeight,
-        width: window.innerWidth
-      })
-    }
-    window.addEventListener('resize', handleResize)
-    return _ => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
-
-  return dimensions
+  navigate("/view-work/" + id)
 }
 
 export const addIntersectionObserver = () => {

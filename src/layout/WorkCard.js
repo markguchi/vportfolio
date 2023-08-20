@@ -18,23 +18,22 @@ export default function WorkCard(props) {
 
     return(
             <div 
-                className="work-card w-100 h-100 d-flex align-items-start justify-content-start flex-column shadow-full animate fade-in very-fast"
-                style={{ rowGap: "0.6em" }}
+                className="work-card w-100 h-100 d-flex flex-row flex-md-column align-items-center align-items-md-start justify-content-center justify-content-md-center shadow-full animate fade-in very-fast aspect-ratio-4-3 aspect-ratio-md-0 bg-md-white text-md-black"
+                style={{ rowGap: "0.6em", background: "linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(" + props.work.screens[0].img + ") ", backgroundSize: "cover" }}
                 onClick={(e)=>{
                     navigate("/view-work/" + props.work.id)
                 }}
             >
                 <div 
-                    className="w-100" 
+                    className="w-100 h-100 h-md-auto aspect-ratio-0 aspect-ratio-md-4-3 flex-basis-50 flex-basis-md-auto d-none d-md-inline-block" 
                     style={{
-                        aspectRatio: "4/3",
                         overflow: "hidden",
                         textAlign: "center",
                     }}
                 >
                     <div className="w-100 h-100 d-flex align-items-center justify-content-start flex-column" style={{rowGap: "3px"}}>
                         <div className={
-                            "w-100 h-75" + 
+                            "w-100 h-100 h-md-75" + 
                             (props.work.screens[0].img.substring(props.work.screens[0].img.length-2, props.work.screens[0].img.length) === "ng"?
                                 " bg-black-50 soft-edge-curve p-2"
                             :
@@ -44,7 +43,7 @@ export default function WorkCard(props) {
                             
                             <img src={props.work.screens[0].img} alt={""} className="w-100 h-100 object-fit-cover"/>
                         </div>
-                        <div id="image-frame-slideshow"  className="w-100 h-25">
+                        <div id="image-frame-slideshow"  className="w-100 h-25 d-none d-md-inline-block">
                             <div className="w-100 h-100 row">
                                 {sliceImages(props.work.screens).map((screen) => {
                                     return(
@@ -66,9 +65,11 @@ export default function WorkCard(props) {
                         </div>
                     </div>
                 </div>
-                <div className="flex-grow-1 m-0 p-0 pt-3 text-start d-flex flex-column">
-                    <div className="w-100 px-3 d-flex align-items-center justify-content-between">
-                        <h4 className="primary-text"><strong>{props.work.title}</strong></h4>
+                <div className="p-0 pt-3 text-start flex-basis-100 flex-basis-md-auto d-flex flex-column justify-content-center text-white">
+                    <div className="w-100 px-3 d-flex flex-column-reverse flex-md-row align-items-center justify-content-between">
+                        <h4 className="flex-grow-1 text-center text-md-start">
+                            <strong>{props.work.title}</strong>
+                        </h4>
                         {props.isCategoryVisible &&
                             <h6 style={{opacity: 0.6}}>
                                 <a 
@@ -84,8 +85,8 @@ export default function WorkCard(props) {
                         }            
                     </div>
                     <div className="w-100 px-3 row">
-                        <div className="col-8 p-0">
-                            <h6 className="subtitle">
+                        <div className="col-12 col-md-8 p-0">
+                            <h6 className="subtitle text-center text-md-start">
                                 <a 
                                     className="clickable text-decoration-none"
                                     onClick={(e)=>{
@@ -97,7 +98,7 @@ export default function WorkCard(props) {
                                 </a>
                             </h6>
                         </div>
-                        <div className="col-4 p-0 text-end">
+                        <div className="col-12 col-md-4 p-0 text-center text-md-end mb-2 mb-md-0">
                             {props.work.years.map((year, index)=>{
                                 return(
                                     <span key={year}>
@@ -120,7 +121,7 @@ export default function WorkCard(props) {
                             })}
                         </div>
                     </div>
-                    <div className="flex-grow-1 w-100 px-3 pt-2 pb-4 font-light bg-blue-5">
+                    <div className="w-100 px-3 pt-2 pb-4 font-light text-center text-md-start">
                         <div className="truncate">{props.work.description}</div>
                     </div>
                 </div>

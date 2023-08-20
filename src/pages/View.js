@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useLocation, Link, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { categoryIcons, techIcons } from "../utilities/library";
 
-import { Modal, Accordion } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose, faUserGroup } from "@fortawesome/free-solid-svg-icons";
+import { faUserGroup } from "@fortawesome/free-solid-svg-icons";
 import { addIntersectionObserver } from "../utilities/functions";
 
 export default function View(props){
@@ -26,6 +25,26 @@ export default function View(props){
             height: window.innerHeight,
             width: window.innerWidth
         })
+
+        const [touchStart, setTouchStart] = useState(null)
+        const [touchEnd, setTouchEnd] = useState(null)
+
+        const minSwipeDistance = 50 
+
+        const onTouchStart = (e) => {
+            setTouchStart(e.targetTouches[0].clientX)
+        }
+
+        const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX)
+
+        const onTouchEnd = () => {
+        if (!touchStart || !touchEnd) return
+        const distance = touchStart - touchEnd
+        const isLeftSwipe = distance > minSwipeDistance
+        const isRightSwipe = distance < -minSwipeDistance
+        if (isLeftSwipe || isRightSwipe) isLeftSwipe ? nextImage() : previousImage()
+            
+        }
         
         useEffect(() => {
             const handleResize = () => {
@@ -97,67 +116,77 @@ export default function View(props){
             }, 500)
         }
 
+        const nextImage = () => {
+            animateImageChangeNext()
+            if(params.isEndless){
+                currentIndex === album.length - 1? setCurrentIndex(0) : setCurrentIndex(currentIndex + 1)
+            }
+            else{
+                setCurrentIndex(currentIndex + 1)
+            }
+            removeImageAnimation()
+        }
+
+        const previousImage = () => {
+            animateImageChangePrevious()
+            if(params.isEndless){
+                currentIndex === 0? setCurrentIndex(album.length - 1) : setCurrentIndex(currentIndex - 1)
+            }
+            else{
+                setCurrentIndex(currentIndex - 1)
+            }
+            removeImageAnimation()
+        }
+
         return(
             <>
                 <div className={"lightbox-modal" + (params.show == true? " show": "")} style={{height: dimensions.height, width: dimensions.width}}>
                     <button className="lightbox-close" onClick={params.onHide}>×</button>
                     <div className="lightbox-contents">
                         <button 
-                            className="gallery-nav"
+                            className="d-none d-lg-inline-block gallery-nav"
                             disabled={params.isEndless? false : currentIndex === 0}
                             onClick={()=>{
-                                animateImageChangePrevious()
-                                if(params.isEndless){
-                                    currentIndex === 0? setCurrentIndex(album.length - 1) : setCurrentIndex(currentIndex - 1)
-                                }
-                                else{
-                                    setCurrentIndex(currentIndex - 1)
-                                }
-                                removeImageAnimation()
+                                previousImage()
                             }}
                         >
                             &#10094;
                         </button>
                         <div className="lightbox-gallery">
-                            <div className="gallery-images pb-5">
-                                <div className="album-entry">
-                                    <img src={album[currentIndex].img}/>
+                            <div className="lightbox-gallery-content touchable" onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
+                                <div className="gallery-images">
+                                    <div className="album-entry">
+                                        <img src={album[currentIndex].img}/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="gallery-image-description">
-                                {album[currentIndex].description}
-                            </div>
-                            <div className="gallery-thumbnails">
-                                {album.map((albumImage, index) => {
-                                    return(
-                                        <div 
-                                            key={albumImage.img}
-                                            className={"album-thumbnail " + (index === currentIndex? "active": "clickable")}
-                                            style={{aspectRatio: "3/4"}} 
-                                            onClick={()=>{
-                                                animateImageChange()
-                                                setCurrentIndex(index)
-                                                removeImageAnimation()
-                                            }}
-                                        >
-                                            <img src={albumImage.img}/>
-                                        </div>
-                                    )
-                                })}
+                                <div className="gallery-image-description">
+                                    {album[currentIndex].description}
+                                </div>
+                                <div className="gallery-thumbnails">
+                                    {album.map((albumImage, index) => {
+                                        return(
+                                            <div 
+                                                key={albumImage.img}
+                                                className={"album-thumbnail " + (index === currentIndex? "active": "clickable")}
+                                                style={{aspectRatio: "3/4"}} 
+                                                onClick={()=>{
+                                                    animateImageChange()
+                                                    setCurrentIndex(index)
+                                                    removeImageAnimation()
+                                                }}
+                                            >
+                                                <img src={albumImage.img}/>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
                             </div>
                         </div>
                         <button 
-                            className="gallery-nav"
+                            className="d-none d-lg-inline-block gallery-nav"
                             disabled={params.isEndless? false : currentIndex === album.length - 1}
                             onClick={()=>{
-                                animateImageChangeNext()
-                                if(params.isEndless){
-                                    currentIndex === album.length - 1? setCurrentIndex(0) : setCurrentIndex(currentIndex + 1)
-                                }
-                                else{
-                                    setCurrentIndex(currentIndex + 1)
-                                }
-                                removeImageAnimation()
+                                nextImage()
                             }}
                         >
                             &#10095;
@@ -182,7 +211,7 @@ export default function View(props){
                     <div className="col-12 px-1 py-2 p-md-0 text-start">
                         <section id="view">
                             <div className="w-100 d-flex flex-column justify-content-between align-items-center">
-                                <div className="w-100 w-md-50 d-flex align-items-center justify-content-center with-animation">
+                                <div className="w-100 w-lg-75 w-xl-50 d-flex align-items-center justify-content-center with-animation">
                                     <hr className="flex-grow-1 my-4 animate fade-in"/>
                                     <h5 className="opacity-75 px-3 animate appear-top">
                                         <a className="clickable text-decoration-none animate fade-in mb-2" onClick={()=>{navigate('/listbycategory', { state: props.data.category })}}>
@@ -192,7 +221,7 @@ export default function View(props){
                                     <hr className="flex-grow-1 my-2 animate fade-in"/>
                                 </div>
                                 <div className="py-5"></div>
-                                <div className="w-100 w-md-50 text-center m-0 with-animation">
+                                <div className="w-100 w-lg-75 w-xl-50 text-center m-0 with-animation">
                                     <h1 className="animate appear-bottom tera mb-4">
                                         <strong className="font-bold">
                                             {props.data.title}
@@ -201,7 +230,8 @@ export default function View(props){
                                     <div className="d-flex justify-content-center align-items-center with animation">
                                         {props.data.category === "development" &&
                                                 <>
-                                                <div className="opacity-50 animate appear-top">
+                                                <div className="px-2 px-lg-4 flex-basis-50 opacity-50 animate appear-top text-end"
+                                                >
                                                     {props.data.languages.map((language) => {
                                                         return (
                                                             <img 
@@ -214,10 +244,13 @@ export default function View(props){
                                                         )
                                                     })}
                                                 </div>
-                                                <div className="px-2 opacity-50 animate appear-top">•</div>
+                                                <div className="flex-separator px-2 opacity-50 animate appear-top">•</div>
                                             </>
                                         }
-                                        <div className="opacity-50 animate appear-top">
+                                        <div className={
+                                            "px-2 px-lg-4 flex-basis-50 opacity-50 animate appear-top " +
+                                            (props.data.category === "development"? "text-start" : "text-center")
+                                        }>
                                             {props.data.technologies.map((technology) => {
                                                 return (
                                                     <img 
@@ -233,7 +266,7 @@ export default function View(props){
                                     </div>
                                 </div>
                                 <div className="py-5"></div>
-                                <div className="w-100 w-md-50 d-flex align-items-center justify-content-center with-animation">
+                                <div className="w-100 w-lg-75 w-xl-50 d-flex align-items-center justify-content-center with-animation">
                                     <hr className="flex-grow-1 my-4 animate fade-in"/>
                                     <h4 className="opacity-75 px-3 animate appear-top">
                                     {props.data.years.map((year, index)=>{
@@ -254,24 +287,24 @@ export default function View(props){
                                 </div>
                                 <div className="py-2 py-md-5"></div>
                                 <div className="py-2 py-md-5"></div>
-                                <div className="w-100 w-md-50 ">
-                                    <div className="h-100 text-start border-round d-flex flex-column align-items-start justify-content-between with-animation">
-                                        <div className="mb-3 font-light d-flex animate fade-in very-slow">
-                                            <h1 className="tera">&ldquo;</h1>
-                                            <h4 className="px-5 text-justified">{props.data.description}</h4>
-                                            <h1 className="tera align-self-end">&rdquo;</h1>
+                                <div className="w-100 w-lg-75 w-xl-50">
+                                    <div className="h-100 text-start border-round d-flex flex-column align-items-start justify-content-between">
+                                        <div className="mb-3 font-light d-flex animate with-animation">
+                                            <h1 className="tera animate fade-in very-slow">&ldquo;</h1>
+                                            <h4 className="px-5 text-justified animate fade-in very-slow">{props.data.description}</h4>
+                                            <h1 className="tera align-self-end animate fade-in very-slow">&rdquo;</h1>
                                         </div>
                                         <div className="py-4"></div>
                                         {props.data.contributions &&
-                                            <div className="p-5 d-flex flex-row with-animation">
-                                                <h2 className="flex-grow-1 d-flex align-items-center text-end opacity-75 animate appear-right very-slow" style={{fontWeight: "300"}}>
+                                            <div className="p-1 p-md-2 p-lg-3 p-xl-4 p-xxl-5 w-100 d-flex flex-column flex-md-row align-items-center justify-content-center with-animation">
+                                                <h2 className="flex-grow-1 d-flex align-items-center text-center text-md-end opacity-75 animate appear-right very-slow" style={{fontWeight: "300"}}>
                                                     Specific contributions
                                                 </h2>
-                                                <div className="d-flex flex-column px-5 animate grow-bottom very-slow">
-                                                    <div className="h-50 emphasis ms-2 pe-2" style={{width: "2px"}}>
+                                                <div className="d-none d-md-flex flex-column px-5 animate grow-bottom very-slow">
+                                                    <div className="h-50 emphasis-md ms-2 pe-2" style={{width: "2px"}}>
                                                     </div>
                                                     <FontAwesomeIcon icon={faUserGroup} className="py-2 opacity-75"/>
-                                                    <div className="h-50 emphasis ms-2 pe-2" style={{width: "2px"}}>
+                                                    <div className="h-50 emphasis-md ms-2 pe-2" style={{width: "2px"}}>
                                                     </div>
                                                 </div>
                                                 <h6 className="animate appear-left very-slow">
@@ -288,22 +321,26 @@ export default function View(props){
                                     </div>
                                 </div>
                                 <div className="py-2 py-md-5"></div>
-                                <div className="w-100 w-md-75 py-2 with-animation">
-                                        <h1 className="text-center animate fade-in">Screens</h1>
+                                <div className="w-100 w-lg-75 py-2">
+                                    <h1 className="text-center with-animation"><span className="animate fade-in">Screens</span></h1>
                                         <div className="py-3"></div>
-                                        <div className="w-100 row with-animation">
+                                        <div className="w-100 row">
                                             {props.data.screens.map((screen, index) => {
                                                 return (
                                                     <div 
                                                         key={screen.img}
                                                         className={
                                                             props.data.content === undefined || props.data.content === null?
-                                                                ("col-12 col-md-4 p-2 m-0 animate bump-scoot-right delay-" + (index % 3))
+                                                                "with-animation col-12 col-md-4 p-2 m-0)"
                                                             :
-                                                                ("col-12 col-md-" + (12/props.data.screens.length) + " p-2 m-0 animate bump-scoot-right delay-" + (index % 3))
+                                                                ("with-animation col-12 col-md-" + (12/props.data.screens.length) + " p-2 m-0 animate bump-scoot-right delay-" + (index % 3))
                                                         }
                                                     >
-                                                        <div className={"screen-card" + (screen.desc ? " hoverable" : "")}>
+                                                        <div 
+                                                            className={
+                                                                "screen-card" + (screen.desc ? " hoverable" : "") +
+                                                                " animate bump-scoot-right delay-" + (index % 3)
+                                                            }>
                                                             <img
                                                                 src={screen.img}
                                                                 alt={""}
@@ -350,21 +387,21 @@ export default function View(props){
                                             </>
     }
                                 </div>
-                                <div className="py-5"></div>
-                                <div className="w-100 w-md-50 text-center px-5">
+                                <div className="py-2 py-md-3 py-lg-4 py-xl-5"></div>
+                                <div className="w-100 w-md-50 text-center px-1 px-md-2 px-lg-3 px-xl-4 px-xxl-5 with-animation">
                                         {props.data.tags.map((tag) => {
                                             return(
-                                                <small 
+                                                <h6 
                                                     key={tag}
-                                                    className="d-inline-block px-2 mb-4"
+                                                    className="d-inline-block px-2 mb-4 animate fade-in"
                                                 >
                                                     <a className="clickable text-decoration-none bg-blue-25 p-2 px-3 border-round text-nowrap" onClick={()=>{navigate('/listbytag', { state: tag })}}>
                                                         {tag}
                                                     </a>
-                                                </small>  
+                                                </h6>  
                                             )
                                         })}
-                                    </div> 
+                                </div> 
                             </div>
                         </section>
                     </div>

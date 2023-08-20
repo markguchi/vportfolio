@@ -3,14 +3,16 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 import WorkCard from '../layout/WorkCard'
+import { addIntersectionObserver } from '../utilities/functions'
 import { categoryIcons } from '../utilities/library'
 
 import { Carousel } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { addIntersectionObserver } from '../utilities/functions'
-
+import FormSelect from 'react-bootstrap'
+ 
 export default function Works(props) {
     const works = props.works
+    const [filteredWorks, setFilteredWorks] = useState(works)
     const location = useLocation();
     const navigate = useNavigate()
     const [index, setIndex] = useState(0);
@@ -36,15 +38,24 @@ export default function Works(props) {
 
     useEffect(() => {
         addIntersectionObserver()
-    }, []);
+    }, [filteredWorks]);
+
+    const filterWorks = (filterValue) => {
+        if(filterValue == "all"){
+            setFilteredWorks(works)
+        }
+        else
+        {
+            setFilteredWorks(works.filter((work) => work.category === filterValue))
+        }
+    }
 
 
     return(
     <div id="works" className="w-100 row align-items-stretch justify-content-start">
-        <section className="col-12 mb-4 mb-md-0">
+        <section className="col-12 mb-0 mb-md-4">
             <div className="w-100 row">
-                <div className="d-none d-xl-flex col-xl-1 text-start p-2 p-lg-3 p-xl-4 pe-0"/>
-                <div className="col-md-7 col-lg-7 col-xl-6 p-2 p-lg-3 p-xl-4 with-animation">
+                <div className="col-12 col-md-7 col-xl-6 p-0 p-md-2 p-lg-3 p-xl-4 mb-5 mb-md-0 with-animation">
                     <div 
                         className="w-100 d-flex align-items-center justify-content-center animate appear-left" 
                         style={{
@@ -62,7 +73,7 @@ export default function Works(props) {
                             activeIndex={index}
                             onSelect={handleSelect}
                         >
-                            {sliceImages(works[0].screens).map((image) => {
+                            {sliceImages(filteredWorks[0].screens).map((image) => {
                                     return(
                                         <Carousel.Item key={image.img}>
                                             <img
@@ -81,33 +92,33 @@ export default function Works(props) {
                         </Carousel>
                     </div>
                 </div>
-                <div className="col-md-5 col-lg-5 col-xl-4 p-2 p-lg-3 p-xl-4 with-animation">
+                <div className="col-12 col-md-5 col-xl-4 p-0 p-md-2 p-lg-3 p-xl-4 with-animation">
                     <div className="w-100 h-100 d-flex align-items-start justify-content-center flex-column animate appear-right" style={{ gap: "1em" }}>
                         <div className="w-100 d-flex align-items-center justify-content-between">
-                            <Link className="text-decoration-none" to={"/view-work/" + works[0].id}>
-                                <h1 className="tera lh-half font-bold"><strong>{works[0].title}</strong></h1>
+                            <Link className="text-decoration-none" to={"/view-work/" + filteredWorks[0].id}>
+                                <h1 className="text-start tera lh-half font-bold"><strong>{filteredWorks[0].title}</strong></h1>
                             </Link>
                             {props.isCategoryVisible &&
                                 <h2>
-                                    <a className="clickable text-decoration-none" onClick={()=>{navigate('/listbycategory', { state: works[0].category })}}>
-                                        <FontAwesomeIcon icon={categoryIcons[works[0].category]}/>
+                                    <a className="clickable text-decoration-none" onClick={()=>{navigate('/listbycategory', { state: filteredWorks[0].category })}}>
+                                        <FontAwesomeIcon icon={categoryIcons[filteredWorks[0].category]}/>
                                     </a>
                                 </h2>
                             }            
                         </div>   
                         <h3 className="subtitle font-light clickable">
-                            <a className="clickable text-decoration-none" onClick={()=>{navigate('/listbytype', { state: works[0].subtitle })}}>
-                                {works[0].subtitle}
+                            <a className="clickable text-decoration-none" onClick={()=>{navigate('/listbytype', { state: filteredWorks[0].subtitle })}}>
+                                {filteredWorks[0].subtitle}
                             </a>
                         </h3>
                         <h4>
-                            {works[0].years.map((year, index)=>{
+                            {filteredWorks[0].years.map((year, index)=>{
                                 return(
                                     <span key={year}>
                                         <a className="clickable text-decoration-none" onClick={()=>{navigate('/listbyyear',  { state: year } )}}>
                                             {year}
                                         </a>
-                                        {index !== works[0].years.length - 1 &&
+                                        {index !== filteredWorks[0].years.length - 1 &&
                                             <span>, </span>
                                         }
                                     </span>
@@ -115,32 +126,45 @@ export default function Works(props) {
                             })}
                         </h4>
                         <h5 className="w-100 font-light lh-wholeAndHalf" style={{textAlign: "justify"}}>
-                            {works[0].description}
+                            {filteredWorks[0].description}
                         </h5>
-                        <p className="text-start">
-                            <span>Tags: </span>
-                            {works[0].tags.map((tag, index)=>{
-                                return(
-                                    <span key={tag}>
-                                        <a className="clickable" onClick={()=>{navigate('/listbytag', { state: tag })}}>
-                                            {tag}
-                                        </a>
-                                        {index !== works[0].tags.length - 1 &&
-                                            <span>, </span>
-                                        }
-                                    </span>  
-                                )
-                            })}
-                        </p>
+                        <div className="w-100 text-start with-animation">
+                                        {filteredWorks[0].tags.map((tag) => {
+                                            return(
+                                                <h6 
+                                                    key={tag}
+                                                    className="d-inline-block pe-2 mb-4 animate fade-in"
+                                                >
+                                                    <a className="clickable text-decoration-none bg-blue-25 p-2 px-3 border-round text-nowrap" onClick={()=>{navigate('/listbytag', { state: tag })}}>
+                                                        {tag}
+                                                    </a>
+                                                </h6>  
+                                            )
+                                        })}
+                                </div> 
                     </div>
                 </div>
-                <div className="d-none d-xl-flex col-xl-1 text-start p-2 p-lg-3 p-xl-4 pe-0"/>
             </div>
         </section>
-        <section className="w-100 row section-padding animate fade-blur-float">
-            {works.slice(1).map((work) => {
+        <section id="works" className="w-100 row section-padding">
+            <div className="row justify-content-center">
+                <div className="col-12 col-md-6 col-lg-4 col-xl-3 text-center with-animation">
+                    <select
+                        id="work-type"
+                        name="work-type"
+                        className="p-3 border-round animate appear-top"
+                        onChange={(e)=>{filterWorks(e.target.value)}}
+                    >
+                        <option value="all" className='text-blue'>All Works</option>
+                        <option value="development">Development</option>
+                        <option value="design">Design</option>
+                    </select>
+                </div>
+            </div>
+            <div className="py-2 py-md-3 py-lg-4"></div>
+            {filteredWorks.slice(1).map((work) => {
                 return(
-                    <div className="col-12 col-md-6 col-lg-4 col-xl-3 p-4 p-md-3 p-lg-4 px-1 py-3 p-md-2 p-lg-3 mb-4 mb-md-0  with-animation" key={work.title}>
+                    <div className="col-12 col-md-6 col-lg-4 col-xxl-3 px-0 px-sm-1 px-md-3 px-xl-4 py-3 py-md-4 py-xl-5 with-animation" key={work.title}>
                         <WorkCard
                             work={work}
                             isCategoryVisible={props.isCategoryVisible}

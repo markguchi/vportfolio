@@ -1,8 +1,8 @@
 import mbgLogo from './images/logo.png'
+import mbgLogoShadowed from './images/logo_shadowed.png'
 import 'bootstrap/dist/css/bootstrap.css'
 import './App.css';
-import { Routes, Route, useLocation } from 'react-router';
-import { useLayoutEffect } from 'react';
+import { Routes, Route } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import Resume from './pages/Resume';
@@ -132,6 +132,8 @@ import hahsyLogo from './images/resume/hahsy_logo.png'
 import introductionCertificate from './images/resume/intro_certification.png'
 import cybersecurtityCertificate from './images/resume/cybersecurity_certification.png'
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook, faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faDesktop, faBriefcase, faVideoCamera } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
@@ -141,7 +143,7 @@ function App() {
       "title": "Ar.Luz",
       "category": "development",
       "subtitle": "Commisioned Work",
-      "description": "An Android application developed in Flutter which handles the sales and accounting of the medium enterprise ArLuz",
+      "description": "An Android application that handles the sales and accounting of the medium enterprise ArLuz.",
       "years": [2023],
       "languages": ["dart"],
       "technologies": ["flutter", "firebase", "photoshop"],
@@ -410,7 +412,7 @@ function App() {
       "title": "Dengue Fever Pamphlet",
       "category": "design",
       "subtitle": "Commisioned Work",
-      "description": "A pamphlet made using Photoshop that gives relevant information about Dengue Fever — it's causes, symptoms, and treatments.",
+      "description": "A pamphlet made that gives relevant information about Dengue Fever — it's causes, symptoms, and treatments.",
       "years": [2021],
       "technologies": ["photoshop"],
       "tags": ["Photoshop", "Graphic design", "Pamphlet"],
@@ -480,7 +482,7 @@ function App() {
       "title": "Asiawise Website",
       "category": "development",
       "subtitle": "Freelance Project",
-      "description": "A commisioned website that showcases the background and services offered by Asiawise. The front-end framework used was Ruby on Rails.",
+      "description": "A commisioned website that showcases the background and services offered by Asiawise.",
       "years": [2020],
       "reference": "https://asiawiseu.com/",
       "languages": ["html", "javascript", "css", "ruby"],
@@ -527,7 +529,7 @@ function App() {
       "title": "NAPOLCOM Reviewer Book Cover",
       "category": "design",
       "subtitle": "Commisioned Work",
-      "description": "A commisioned book cover layout done in Photoshop for a NAPOLCOM Reviewer.",
+      "description": "A commisioned book cover layout for a NAPOLCOM Reviewer.",
       "years": [2020],
       "tags": ["Photoshop", "Graphic design", "Book Cover"],
       "screens": [
@@ -544,7 +546,7 @@ function App() {
       "title": "Asiawise Math Manuals",
       "category": "design",
       "subtitle": "Commisioned Work",
-      "description": "A collection of manuals on how to interpret or evaluate math topics. Editing was made using Adobe Photoshop.",
+      "description": "A collection of manuals on how to interpret or evaluate math topics.",
       "years": [2020],
       "tags": ["Photoshop", "Graphic design", "Manual", "Infographic"],
       "screens": [
@@ -570,7 +572,7 @@ function App() {
       "title": "Asiawise Google Classroom Covers",
       "category": "design",
       "subtitle": "Commisioned Work",
-      "description": "A collection of cover photos used on the online classes of Asiawise. Editing was made using Adobe Photoshop.",
+      "description": "A collection of cover photos used on the online classes of Asiawise.",
       "years": [2020],
       "technologies": ["photoshop"],
       "tags": ["Photoshop", "Graphic design", "Cover"],
@@ -603,7 +605,7 @@ function App() {
       "title": "Brigada Eskwela '20 Banner",
       "category": "design",
       "subtitle": "Commisioned Work",
-      "description": "A Photoshop-created poster for Carolina National High School donation advisory held during their 2020 Brigada Eskwela.",
+      "description": "A poster for Carolina National High School donation advisory held during their 2020 Brigada Eskwela.",
       "years": [2020],
       "technologies": ["photoshop"],
       "tags": ["Photoshop", "Graphic design", "Banner"],
@@ -621,7 +623,7 @@ function App() {
       "title": "Minimalist Wallpapers",
       "category": "design",
       "subtitle": "Personal Project",
-      "description": "A diverse set of wallpapers I made in Photoshop for my former Android phone and old desktop pc.",
+      "description": "A diverse set of wallpapers I made for my former Android phone and old desktop pc.",
       "years": [2019, 2020],
       "technologies": ["photoshop"],
       "tags": ["Photoshop", "Graphic design", "Wallpaper"],
@@ -666,7 +668,7 @@ function App() {
       "title": "Katagalugan Album Covers",
       "category": "design",
       "subtitle": "Personal Project",
-      "description": "A set of album covers I made in Adobe Photoshop for the imaginary band Katagalugan.",
+      "description": "A set of album covers I made for the imaginary band Katagalugan.",
       "years": [2019, 2020],
       "technologies": ["photoshop"],
       "tags": ["Photoshop", "Graphic design", "Album cover"],
@@ -687,7 +689,7 @@ function App() {
       "title": "India's Living Treasures Booklet",
       "category": "design",
       "subtitle": "Course  Project",
-      "description": "A booklet that features three animals that are unique only to India. Editing was done in Photoshop.",
+      "description": "A booklet that features three animals that are unique only to India.",
       "years": [2018],
       "technologies": ["photoshop"],
       "tags": ["Photoshop", "Graphic design", "Booklet"],
@@ -708,7 +710,7 @@ function App() {
       "title": "Playlist Arts",
       "category": "design",
       "subtitle": "Personal Project",
-      "description": "A collection of cover arts I made in Photoshop for my music playlist. It is used in BlackPlayer Ex music player.",
+      "description": "A collection of cover arts I made for my music playlist. It is used in BlackPlayer Ex music player.",
       "years": [2018],
       "technologies": ["photoshop"],
       "tags": ["Photoshop", "Graphic design", "Cover art"],
@@ -735,7 +737,7 @@ function App() {
       "title": "Custom Boot Animation",
       "category": "design",
       "subtitle": "Personal Project",
-      "description": "A customized boot animation I did in Adobe Flash for my O+ 8.5 Android phone.",
+      "description": "A customized boot animation I did for my O+ 8.5 Android phone.",
       "years": [2016],
       "technologies": ["photoshop", "flash"],
       "tags": ["Adobe Flash", "Graphic design", "Animation"],
@@ -760,7 +762,7 @@ function App() {
       "title": "ICFP II Magazine",
       "category": "design",
       "subtitle": "Course Project",
-      "description": "A documentation magazine of our outreach program in Casuray, Magarao. Editing was made using Adobe InDesign and Photoshop.",
+      "description": "A documentation magazine of our outreach program in Casuray, Magarao.",
       "years": [2016],
       "technologies": ["photoshop"],
       "tags": ["Photoshop", "Graphic design", "Magazine"],
@@ -980,29 +982,100 @@ function App() {
     }
   ]
 
+  const developmentBackground = [
+    {
+      "id": "react",
+      "years": 3.0
+    },
+    {
+      "id": "firebase",
+      "years": 3.0
+    },
+    {
+      "id": "mysql",
+      "years": 2.0,
+      "name": "MySql"
+    },
+    {
+      "id": "django",
+      "years": 2.0
+    },
+    {
+      "id": "flutter",
+      "years": 1.0
+    },
+    {
+      "id": "rails",
+      "years": 0.5,
+      "name": "Ruby on Rails"
+    },
+    {
+      "id": "codeigniter",
+      "years": 0.5,
+      "name": "Code Igniter"
+    }
+  ]
 
+  const designBackground = [
+    {
+      "id": "photoshop",
+      "years": 9.0
+    },
+    {
+      "id": "flash",
+      "years": 4.0
+    },
+    {
+      "id": "aftereffects",
+      "years": 3.0,
+      "name": "AfterEffects"
+    },
+    {
+      "id": "camtasia",
+      "years": 5.0
+    },
+    {
+      "id": "premiere",
+      "years": 1.0
+    }
+  ]
   return (
     <div className="App">
-      <nav className="navbar navbar-expand-lg bg-gray-50 bg-blur sticky-top p-0">
+      <nav className="navbar navbar-expand-lg bg-gray-50 bg-blur p-0 sticky-none sticky-md-top">
         <div className="container-fluid align-items-center p-1">
-          <ul className="navbar-nav mx-auto mb-2 mb-lg-0 align-items-center flex-row" style={{gap: "1em"}}>
+          <ul className="w-100 navbar-nav align-items-center justify-content-start justify-content-md-center flex-row ps-2 ps-md-0" style={{gap: "1em"}}>
               <LinkContainer to="/works">
-                <a className="nav-link">
+                <a className="nav-link py-0 p-lg-2 d-none d-md-inline-block">
                   Works 
                 </a>
               </LinkContainer>
               <LinkContainer to="/">
-                <a className="nav-link align-self-center">
+                <a className="nav-link py-0 p-lg-2 align-self-start align-self-lg-center">
                   <div id="logo">
-                    <img src={mbgLogo}/>
+                    <img className="d-inline-block d-md-none" src={mbgLogo}/>
+                    <img className="d-none d-md-inline-block" src={mbgLogoShadowed}/>
                   </div>
                 </a>
               </LinkContainer>
+              <LinkContainer to="/works">
+                <a className="nav-link py-0 p-lg-2 d-inline-block d-md-none">
+                  Works 
+                </a>
+              </LinkContainer>
               <LinkContainer to="/resume">
-                <a className="nav-link">
+                <a className="nav-link py-0 p-lg-2">
                   Resume
                 </a>
               </LinkContainer>
+              <div id="nav-socials-container">
+                <div id="nav-socials" className="h-100">
+                  <div className="h-100 d-flex align-items-center pe-2">
+                    <a className="social-link mx-1 mx-lg-2" href="https://www.facebook.com/JunathanAchuete/" target="_blank"><FontAwesomeIcon icon={faFacebook}/></a>
+                    <a className="social-link mx-1 mx-lg-2" href="https://www.linkedin.com/in/mark-gutierrez-303653205" target="_blank"><FontAwesomeIcon icon={faLinkedin}/></a>
+                    <a className="social-link mx-1 mx-lg-2" href="https://github.com/markguchi/"  target="_blank"><FontAwesomeIcon icon={faGithub}/></a>
+                  </div>
+                </div>
+            </div>
             </ul>
         </div>
       </nav>
@@ -1010,7 +1083,11 @@ function App() {
         <Route
           path="/"
           element={
-          <Home/>}  
+          <Home
+            recentWorks={[works[0], works[1]]}
+            developmentBackground={developmentBackground}
+            designBackground={designBackground}
+          />}  
         />
         <Route
           path="/resume"
