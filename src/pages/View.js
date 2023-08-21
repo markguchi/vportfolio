@@ -6,7 +6,7 @@ import { categoryIcons, techIcons } from "../utilities/library";
 import { addIntersectionObserver } from "../utilities/functions";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserGroup } from "@fortawesome/free-solid-svg-icons";
+import { faUserGroup, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
 export default function View(props){
     const navigate = useNavigate()
@@ -241,11 +241,16 @@ export default function View(props){
                                 </div>
                                 <div className="py-5"></div>
                                 <div className="w-100 w-lg-75 w-xl-50 text-center m-0 with-animation">
-                                    <h1 className="animate appear-bottom tera mb-4">
-                                        <strong className="font-bold">
-                                            {props.data.title}
-                                        </strong>
-                                    </h1>
+                                    <div className="animate appear-bottom mb-4 d-flex align-items-start justify-content-center">
+                                        <h1 className="tera">
+                                            <strong className="font-bold">
+                                                {props.data.title}
+                                            </strong>
+                                        </h1>
+                                        {props.data.reference &&
+                                            <a href={props.data.reference}><FontAwesomeIcon icon={faArrowUpRightFromSquare}/></a>
+                                        }
+                                    </div>
                                     <div className="d-flex justify-content-center align-items-center with animation">
                                         {props.data.category === "development" &&
                                                 <>

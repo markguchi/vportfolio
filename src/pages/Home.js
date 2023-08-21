@@ -3,6 +3,10 @@ import { useNavigate } from "react-router";
 
 import { addIntersectionObserver } from "../utilities/functions";
 import { techIcons } from "../utilities/library";
+import { skillSet } from "../utilities/data";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 import me1 from '../images/me_1.png';
 import me2 from '../images/me_2.png';
@@ -49,6 +53,104 @@ function Intro(){
       </div>
     </section>
   )
+}
+
+function Skills(){
+  const starsContainer = ["", "", "", "", ""]
+
+  useEffect(() => {
+    addIntersectionObserver()
+  }, []);
+
+  return(
+    <section id="skills" className="bg-blue-5">
+      <div className="h-100 w-100 d-flex flex-column-reverse flex-xxl-row align-items-end with-animation">
+        <div className="row h-100 w-100 m-0 p-0">
+            <div className="col-12 col-xxl-7 px-0 px-xxl-4 mb-5 mb-xxl-0">
+              <div className="curvy-card shadow-none animate fade-in">
+                <div className="w-100 h-100 d-flex flex-column flex-xxl-row justify-content-start align-items-center align-items-xxl-start">
+                  <h1 className="mega me-0 me-lg-5"><FontAwesomeIcon icon={skillSet[0].icon}/></h1>
+                  <div className="w-100 d-flex flex-column align-items-center align-items-xxl-start">
+                    <h3 className="font-regular text-center text-lg-start">{skillSet[0].set}</h3>
+                    <h5 className="font-light text-center text-lg-start">{skillSet[0].description}</h5>
+                    <div className="py-2"></div>
+                    <div className="w-100 emphasis-none emphasis-md ps-0 ps-md-3 ps-lg-4 opacity-75">
+                      {skillSet[0].skills.map((skill) => {
+                        return(
+                          <div className="d-flex flex-row align-items-center justify-content-between">
+                            <p className="d-flex flex-column justify-content-start align-items-start">
+                              <small className="font-light text-blue">{skill.category}</small>
+                              <span>{skill.skill}</span>
+                            </p>
+                            <p className="font-light d-flex flex-row">
+                              {starsContainer.slice(5 - skill.rating).map((skill) => {
+                                return (
+                                  <FontAwesomeIcon icon={faStar} className="mx-1"/>
+                                )
+                              })}
+                              {starsContainer.slice(skill.rating).map((skill) => {
+                                return (
+                                  <FontAwesomeIcon icon={faStar} className="mx-1 opacity-25"/>
+                                )
+                              })}
+                            </p>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-12 col-xxl-5 px-0 px-xxl-4">
+              {skillSet.slice(1, skillSet.length).map((skillset) => {
+                return (
+                  <div className="col-12 mb-5">
+                    <div className="curvy-card shadow-none animate fade-in very-slow">
+                      <div className="w-100 h-100 d-flex flex-column flex-xxl-row justify-content-start align-items-center align-items-xxl-start">
+                        <h2 className="me-0 me-lg-4"><FontAwesomeIcon icon={skillset.icon}/></h2>
+                        <div className="w-100 d-flex flex-column align-items-center align-items-xxl-start">
+                          <h4 className="font-regular text-center text-lg-start">{skillset.set}</h4>
+                          <p className="font-light text-center text-lg-start">{skillset.description}</p>
+                          <div className="py-1"></div>
+                          <div className="w-100 emphasis-none emphasis-md ps-0 ps-md-3 ps-lg-4 opacity-75">
+                            {skillset.skills.map((skill) => {
+                              return(
+                                <div className="d-flex flex-row align-items-center justify-content-between">
+                                  <p className="d-flex flex-column justify-content-start align-items-start">
+                                    <small className="font-light text-blue text-start">{skill.category}</small>
+                                    <span className="text-start">{skill.skill}</span>
+                                  </p>
+                                  <p className="font-light d-flex flex-row">
+                                    {starsContainer.slice(5 - skill.rating).map(() => {
+                                      return (
+                                        <FontAwesomeIcon icon={faStar} className="mx-1"/>
+                                      )
+                                    })}
+                                    {starsContainer.slice(skill.rating).map(() => {
+                                      return (
+                                        <FontAwesomeIcon icon={faStar} className="mx-1 opacity-25"/>
+                                      )
+                                    })}
+                                  </p>
+                                </div>
+                              )
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        <div className="px-3"></div>
+        <h1 className="font-bold mega text-upright text-xxl-sideways top mb-4 mb-xxl-0">Skills</h1>
+      </div>
+    </section>
+  )
+  
 }
 
 function Home(props){
@@ -121,6 +223,7 @@ function Home(props){
           </div>
         </div>
       </section>
+      <Skills/>
       <section id="tech-background">
         <h1 className="giga text-center with-animation with-animation">
           <span className="animate fade-in">Tools I work with</span>
@@ -360,4 +463,4 @@ function Home(props){
   )
 }
 
-export { Home, Intro }
+export { Home, Intro, Skills }

@@ -1,11 +1,4 @@
-import { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
-
-export const NavigateToWork = (id) => {
-  const navigate = useNavigate()
-
-  navigate("/view-work/" + id)
-}
 
 export const addIntersectionObserver = () => {
     const intersectionCallback = (entries) => {

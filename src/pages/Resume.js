@@ -1,10 +1,10 @@
 import { useRef, useState, useEffect } from 'react'
 
 import { addIntersectionObserver } from '../utilities/functions';
-import { Intro } from './Home';
+import { Intro, Skills } from './Home';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight, faStar } from '@fortawesome/free-solid-svg-icons'
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import adnuLogo from '../images/resume/adnu_logo.png'
 import ncshsLogo from '../images/resume/ncshs_logo.png'
 
@@ -14,11 +14,9 @@ function Resume(props) {
   const workRef = useRef(null)
   const certificationsRef = useRef(null)
   const certificateRef = useRef(null)
-  const starsContainer = ["", "", "", "", ""]
 
   const workExperience = props.workExperience
   const certifications = props.certifications
-  const skillSet = props.skillSet
 
   useEffect(() => {
     addIntersectionObserver()
@@ -47,7 +45,7 @@ function Resume(props) {
             <h4 className="opacity-75 text-center">{props.company}</h4>
           </div>
         :
-          <div className="frame shape-square p-3 aspect-ratio-3-4 aspect-ratio-md-1-1 shadow-none bg-white clickable rotate-in d-flex flex-column align-items-center justify-content-center" style={{gap: "1.5em"}} onClick={()=>{setIsFlipped(!isFlipped)}}>
+          <div className="frame shape-square p-3 aspect-ratio-3-4 aspect-ratio-md-1-1 shadow-none bg-white clickable rotate-in d-flex flex-column align-items-center justify-content-center text-center" style={{gap: "1.5em"}} onClick={()=>{setIsFlipped(!isFlipped)}}>
             {props.description.map((item) =>
               <h6 key={item}>
                 {item}
@@ -76,92 +74,7 @@ function Resume(props) {
   return (
     <div id="resume">
       <Intro/>
-      <section id="skills" className="bg-blue-5">
-        <div className="h-100 w-100 d-flex flex-column-reverse flex-xxl-row align-items-end with-animation">
-          <div className="row h-100 w-100 m-0 p-0">
-              <div className="col-12 col-xxl-7 px-0 px-xxl-4 mb-5 mb-xxl-0">
-                <div className="curvy-card shadow-none animate fade-in">
-                  <div className="w-100 h-100 d-flex flex-column flex-xxl-row justify-content-start align-items-center align-items-xxl-start">
-                    <h1 className="mega me-0 me-lg-5"><FontAwesomeIcon icon={skillSet[0].icon}/></h1>
-                    <div className="w-100 d-flex flex-column align-items-center align-items-xxl-start">
-                      <h3 className="font-regular text-center text-lg-start">{skillSet[0].set}</h3>
-                      <h5 className="font-light text-center text-lg-start">{skillSet[0].description}</h5>
-                      <div className="py-2"></div>
-                      <div className="w-100 emphasis-none emphasis-md ps-0 ps-md-3 ps-lg-4 opacity-75">
-                        {skillSet[0].skills.map((skill) => {
-                          return(
-                            <div className="d-flex flex-row align-items-center justify-content-between">
-                              <p className="d-flex flex-column justify-content-start align-items-start">
-                                <small className="font-light text-blue">{skill.category}</small>
-                                <span>{skill.skill}</span>
-                              </p>
-                              <p className="font-light d-flex flex-row">
-                                {starsContainer.slice(5 - skill.rating).map((skill) => {
-                                  return (
-                                    <FontAwesomeIcon icon={faStar} className="mx-1"/>
-                                  )
-                                })}
-                                {starsContainer.slice(skill.rating).map((skill) => {
-                                  return (
-                                    <FontAwesomeIcon icon={faStar} className="mx-1 opacity-25"/>
-                                  )
-                                })}
-                              </p>
-                            </div>
-                          )
-                        })}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-12 col-xxl-5 px-0 px-xxl-4">
-                {skillSet.slice(1, skillSet.length).map((skillset) => {
-                  return (
-                    <div className="col-12 mb-5">
-                      <div className="curvy-card shadow-none animate fade-in very-slow">
-                        <div className="w-100 h-100 d-flex flex-column flex-xxl-row justify-content-start align-items-center align-items-xxl-start">
-                          <h2 className="me-0 me-lg-4"><FontAwesomeIcon icon={skillset.icon}/></h2>
-                          <div className="w-100 d-flex flex-column align-items-center align-items-xxl-start">
-                            <h4 className="font-regular text-center text-lg-start">{skillset.set}</h4>
-                            <p className="font-light text-center text-lg-start">{skillset.description}</p>
-                            <div className="py-1"></div>
-                            <div className="w-100 emphasis-none emphasis-md ps-0 ps-md-3 ps-lg-4 opacity-75">
-                              {skillset.skills.map((skill) => {
-                                return(
-                                  <div className="d-flex flex-row align-items-center justify-content-between">
-                                    <p className="d-flex flex-column justify-content-start align-items-start">
-                                      <small className="font-light text-blue text-start">{skill.category}</small>
-                                      <span className="text-start">{skill.skill}</span>
-                                    </p>
-                                    <p className="font-light d-flex flex-row">
-                                      {starsContainer.slice(5 - skill.rating).map((skill) => {
-                                        return (
-                                          <FontAwesomeIcon icon={faStar} className="mx-1"/>
-                                        )
-                                      })}
-                                      {starsContainer.slice(skill.rating).map((skill) => {
-                                        return (
-                                          <FontAwesomeIcon icon={faStar} className="mx-1 opacity-25"/>
-                                        )
-                                      })}
-                                    </p>
-                                  </div>
-                                )
-                              })}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-          <div className="px-3"></div>
-          <h1 className="font-bold mega text-upright text-xxl-sideways top mb-4 mb-xxl-0">Skills</h1>
-        </div>
-      </section>
+      <Skills/>
       <section id="education" className="">
         <div className="h-100 w-100 d-flex flex-column flex-xxl-row align-items-start with-animation">
           <h1 className="font-bold mega text-upright text-xxl-sideways bottom mb-4 mb-xxl-0">Education</h1>
@@ -176,7 +89,7 @@ function Resume(props) {
                     <h5 className="font-regular">BS Information Technology</h5>
                     <h6 className="font-light">2015 - 2016,  2018 - 2023</h6>
                     <div className="py-2"></div>
-                    <div className="emphasis-none emphasis-md ps-4 opacity-75">
+                    <div className="emphasis-none emphasis-md ps-0 ps-md-4 opacity-75">
                     <p className="d-flex flex-column align-items-center align-items-md-start justify-content-start">
                       <small className="font-light text-blue text-center">Awards</small>
                       <span>President's Lister (2015-2016)</span>

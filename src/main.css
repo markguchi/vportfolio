@@ -99,6 +99,14 @@ code {
   width: 33.33%;
 }
 
+.w-120 {
+  width: 120%;
+}
+
+.h-120 {
+  height: 120%;
+}
+
 .opacity-65 {
   opacity: 0.65;
 }
