@@ -28,6 +28,8 @@ export default function View(props){
         const [touchStart, setTouchStart] = useState(null)
         const [touchEnd, setTouchEnd] = useState(null)
 
+        const [isGalleryThumbnailsScrollable, setIsGalleryThumbnailsScrollable] = useState(false)
+
         const minSwipeDistance = 50 
 
         const onTouchStart = (e) => {
@@ -52,7 +54,21 @@ export default function View(props){
                 width: window.innerWidth
               })
             }
-            window.addEventListener('resize', handleResize)
+
+            const checkForScrollBar = () => {
+                let galleryThumbnails = document.querySelector('.gallery-thumbnails')
+                let scrollableCheck = galleryThumbnails.scrollWidth > galleryThumbnails.clientWidth
+                console.log(scrollableCheck)
+                setIsGalleryThumbnailsScrollable(scrollableCheck);
+            }
+
+            checkForScrollBar()
+
+            window.addEventListener('resize', () => {    
+                handleResize();
+                checkForScrollBar();    
+            })
+
             return _ => {
               window.removeEventListener('resize', handleResize)
             }
@@ -143,7 +159,7 @@ export default function View(props){
                     <button className="lightbox-close" onClick={params.onHide}>×</button>
                     <div className="lightbox-contents">
                         <button 
-                            className="d-none d-lg-inline-block gallery-nav"
+                            className="gallery-nav"
                             disabled={params.isEndless? false : currentIndex === 0}
                             onClick={()=>{
                                 previousImage()
@@ -152,8 +168,8 @@ export default function View(props){
                             &#10094;
                         </button>
                         <div className="lightbox-gallery">
-                            <div className="lightbox-gallery-content touchable" onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
-                                <div className="gallery-images">
+                            <div className="lightbox-gallery-content touchable">
+                                <div className="gallery-images" onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
                                     <div className="album-entry">
                                         <img src={album[currentIndex].img} alt={album[currentIndex].description}/>
                                     </div>
@@ -162,6 +178,11 @@ export default function View(props){
                                     {album[currentIndex].description}
                                 </div>
                                 <div className="gallery-thumbnails">
+                                    {isGalleryThumbnailsScrollable && 
+                                        <div className="gallery-thumbnails-overflow-indicator">
+                                            &#10095;
+                                        </div>
+                                    }
                                     {album.map((albumImage, index) => {
                                         return(
                                             <div 
@@ -182,7 +203,7 @@ export default function View(props){
                             </div>
                         </div>
                         <button 
-                            className="d-none d-lg-inline-block gallery-nav"
+                            className="gallery-nav"
                             disabled={params.isEndless? false : currentIndex === album.length - 1}
                             onClick={()=>{
                                 nextImage()
@@ -207,8 +228,7 @@ export default function View(props){
                     currentIndex={imageToViewIndex}
                 />
                 <div id="work-view" className="w-100 h-100 m-0 p-0 row align-items-stretch justify-content-center">
-                    <div className="col-12 px-1 py-2 p-md-0 text-start">
-                        <section id="view">
+                <section id="view">
                             <div className="w-100 d-flex flex-column justify-content-between align-items-center">
                                 <div className="w-100 w-lg-75 w-xl-50 d-flex align-items-center justify-content-center with-animation">
                                     <hr className="flex-grow-1 my-4 animate fade-in"/>
@@ -332,9 +352,9 @@ export default function View(props){
                                                         key={screen.img}
                                                         className={
                                                             props.data.content === undefined || props.data.content === null?
-                                                                "with-animation col-12 col-md-4 p-2 m-0)"
+                                                                "with-animation col-6 col-md-4 p-2 m-0)"
                                                             :
-                                                                ("with-animation col-12 col-md-" + (12/props.data.screens.length) + " p-2 m-0 animate bump-scoot-right delay-" + (index % 3))
+                                                                ("with-animation col-6 col-md-" + (12/props.data.screens.length) + " p-2 m-0 animate bump-scoot-right delay-" + (index % 3))
                                                         }
                                                     >
                                                         <div 
@@ -408,7 +428,6 @@ export default function View(props){
                                 </div> 
                             </div>
                         </section>
-                    </div>
                 </div>
             </>
         )

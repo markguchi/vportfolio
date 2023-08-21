@@ -737,6 +737,7 @@ a.social-link:hover {
   background: transparent;
   box-shadow: 0;
   transition: background 0.5s ease, box-shadow 0.5s ease;
+  display: none;
 }
 
 .lightbox-contents button.gallery-nav:not(:disabled):hover {
@@ -791,6 +792,10 @@ a.social-link:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  padding: 0.5em;
+  font-weight: 200;
+  font-size: 0.9em;
 }
 
 .gallery-thumbnails {
@@ -801,6 +806,15 @@ a.social-link:hover {
   justify-content: center;
   gap: 5px;
   overflow-x: scroll;
+}
+
+.gallery-thumbnails-overflow-indicator {
+  position: absolute;
+  right: 0.25em;
+  bottom: 0.25em;
+  padding: 0.5em;
+  background: linear-gradient(90deg, transparent, white);
+  display: inline-block;
 }
 
 .album-thumbnail {
@@ -824,4 +838,22 @@ a.social-link:hover {
 
 .album-thumbnail.active img {
   filter: brightness(0.5);
+}
+
+@media only screen and (min-width: 992px){
+  .gallery-thumbnails {
+    overflow-x: hidden;
+  }
+
+  .lightbox-contents button.gallery-nav {
+    display: inline-block;
+  }
+  
+  .gallery-image-description {
+    font-size: 1em;
+  }
+  
+  .gallery-thumbnails-overflow-indicator {
+    display: none;
+  }
 }

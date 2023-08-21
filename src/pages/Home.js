@@ -134,15 +134,15 @@ function Home(props){
                   <div className="flex-basis-60 d-flex align-items-center justify-content-center">
                     <img src={techIcons[tech.id]} alt={techIcons[tech.id]} className="tech-icon w-50 w-md-75 h-auto object-fit-contain opacity-75"/>
                   </div>
-                  <div className="flex-basis-40">
+                  <div className="flex-basis-40 d-flex flex-column align-items-center justify-content-around">
                     {tech.name?
-                      <h4>{tech.name}</h4>
+                      <h4 className="text-center">{tech.name}</h4>
                     :
                       
                       <h4>{tech.id.charAt(0).toUpperCase() + tech.id.slice(1, tech.id.length)}</h4>
                     }
                     <div className="py-2"></div>
-                    <small className="font-light mx-3">
+                    <small className="font-light text-center">
                       {tech.years > 1?
                       <>{tech.years} YEARS</>
                       :
@@ -161,15 +161,20 @@ function Home(props){
                   <div className="flex-basis-60 d-flex align-items-center justify-content-center">
                     <img src={techIcons[tech.id]} alt={techIcons[tech.id]} className="tech-icon light w-50 w-md-75 h-auto object-fit-contain opacity-75"/>
                   </div>
-                  <div className="flex-basis-40">
+                  <div className="flex-basis-40 d-flex flex-column align-items-center justify-content-around">
                     {tech.name?
-                      <h4>{tech.name}</h4>
+                      <h4 className="text-center">{tech.name}</h4>
                     :
                       
                       <h4>{tech.id.charAt(0).toUpperCase() + tech.id.slice(1, tech.id.length)}</h4>
                     }
-                    <div className="py-2"/>
-                    <small className="font-light mx-3">{tech.years} YEARS</small>
+                    <small className="font-light text-center">
+                      {tech.years > 1?
+                      <>{tech.years} YEARS</>
+                      :
+                      <>{tech.years} YEAR</>
+                      }
+                    </small>
                   </div>
                 </div>
               </div>

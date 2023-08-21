@@ -129,10 +129,6 @@
   *.w-lg-75 {
     width: 75% !important;
   }
-
-  .gallery-thumbnails {
-    overflow-x: hidden;
-  }
   
 }
 
