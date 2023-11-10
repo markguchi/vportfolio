@@ -39,7 +39,7 @@ function Resume(props) {
           {props.date}
         </div> 
         {!isFlipped?
-          <div className="flex-grow-1 frame shape-square text-white py-4 px-5 p-lg-5 aspect-ratio-3-4 aspect-ratio-md-1-1 shadow-none bg-gradient-blue clickable rotate-out d-flex flex-column align-items-center justify-content-between" onClick={()=>{setIsFlipped(!isFlipped)}}>
+          <div className="experience-card flex-grow-1 frame shape-square text-white py-4 px-5 p-lg-5 aspect-ratio-3-4 aspect-ratio-md-1-1 shadow-none clickable rotate-out d-flex flex-column align-items-center justify-content-between" onClick={()=>{setIsFlipped(!isFlipped)}}>
             <h3 className="text-center">{props.position}</h3>
             {props.image && (<img className="w-25 object-fit-contain" alt={props.company + " logo"} src={props.image}/>)}
             <h4 className="opacity-75 text-center">{props.company}</h4>
@@ -80,7 +80,7 @@ function Resume(props) {
           <h1 className="font-bold mega text-upright text-xxl-sideways bottom mb-4 mb-xxl-0">Education</h1>
           <div className="px-5"></div>
           <div className="row h-100 w-100 m-0 p-0">
-            <div className="col-12 col-xxl-7 mb-5 mb-xxl-0">
+            <div className="col-12 col-md-7 mb-5 mb-xxl-0">
               <div className="curvy-card mt-0 mt-xxl-5 animate grow-bottom">
                 <div className="w-100 h-100 d-flex flex-column flex-md-row justify-content-start align-items-center align-items-md-start" style={{gap: "2em"}}>
                   <img src={adnuLogo} alt="AdNU Logo" className="w-25 w-xl-50"/>
@@ -104,7 +104,7 @@ function Resume(props) {
                 </div>
               </div>
             </div>
-            <div className="col-12 col-xxl-5">
+            <div className="col-12 col-md-5">
               <div className="curvy-card animate grow-bottom very-slow">
                 <div className="w-100 h-100 d-flex flex-column flex-md-row justify-content-start align-items-center align-items-md-start" style={{gap: "2em"}}>
                   <img src={ncshsLogo} alt="NCSHS Logo" className="w-25"/>
@@ -132,11 +132,11 @@ function Resume(props) {
             </button>
             <div className="w-100 h-100 d-flex scroll-horizontal scrollbar-hidden p-3 p-xxl-5" ref={experienceRef}>
               {workExperience.map((experience, index) => {
-                return (
-                  <>
-                  {index === 0?
+                if(index === 0) {
+                  return(
                     <div className="flex-basis-75 flex-basis-xl-50 flex-basis-xxl-25 me-4 me-lg-5" ref={workRef} key={experience.position}>
                       <ExperienceCard
+                        key={experience.position}
                         date={experience.date}
                         position={experience.position}
                         company={experience.company}
@@ -145,9 +145,13 @@ function Resume(props) {
                         index={index}
                       />
                     </div>
-                    :
-                      <div className="flex-basis-75 flex-basis-xl-50 flex-basis-xxl-25 me-4 me-lg-5" key={experience.position}>
+                  )
+                }
+                else {
+                  return(
+                    <div className="flex-basis-75 flex-basis-xl-50 flex-basis-xxl-25 me-4 me-lg-5" key={experience.position}>
                         <ExperienceCard
+                          key={experience.position}
                           date={experience.date}
                           position={experience.position}
                           company={experience.company}
@@ -156,9 +160,8 @@ function Resume(props) {
                           index={index}
                         />
                       </div>
-                    }
-                  </>
-                )
+                  )  
+                }
               }
               )}
             </div>
@@ -183,11 +186,11 @@ function Resume(props) {
             </button>
             <div className="w-100 h-100 d-flex scroll-horizontal scrollbar-hidden p-3 p-xxl-5" ref={certificationsRef}>
               {certifications.map((experience, index) => {
-                return (
-                  <>
-                  {index === 0?
+                if(index === 0) {
+                  return (
                     <div className="flex-basis-75 flex-basis-xl-50 flex-basis-xxl-25 me-4 me-lg-5" ref={certificateRef} key={experience.position}>
                       <CertificateCard
+                        key={experience.position}
                         date={experience.date}
                         certification={experience.certification}
                         grantee={experience.grantee}
@@ -196,20 +199,23 @@ function Resume(props) {
                         index={index}
                       />
                     </div>
-                    :
-                      <div className="flex-basis-75 flex-basis-xl-50 flex-basis-xxl-25 me-4 me-lg-5" key={experience.position}>
-                        <CertificateCard
-                          date={experience.date}
-                          certification={experience.certification}
-                          grantee={experience.grantee}
-                          image={experience.image}
-                          description={experience.description}
-                          index={index}
-                        />
-                      </div>
-                    }
-                  </>
-                )
+                  )
+                }
+                else {
+                  return(
+                    <div className="flex-basis-75 flex-basis-xl-50 flex-basis-xxl-25 me-4 me-lg-5" key={experience.position}>
+                      <CertificateCard
+                        key={experience.position}
+                        date={experience.date}
+                        certification={experience.certification}
+                        grantee={experience.grantee}
+                        image={experience.image}
+                        description={experience.description}
+                        index={index}
+                      />
+                    </div>
+                  )
+                }
               }
               )}
             </div>

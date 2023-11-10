@@ -19,7 +19,7 @@ export default function ListBySubtitle(props){
     {
         return(
             <section id="subtitle">
-                <div className="w-100 row align-items-stretch justify-content-start with-animation">
+                <div className="w-100 row align-items-stretch justify-content-start with-animation text-center">
                     <h1 className="primary-text giga animate appear-top">
                         <strong>{value}s</strong>
                     </h1>
@@ -27,7 +27,7 @@ export default function ListBySubtitle(props){
                     <div className="w-100 row with-animation">
                         {data.map((work) => {
                             return(
-                                <div className="col-12 col-md-6 col-lg-4 p-2 p-md-3 p-xl-4 px-1 py-3 p-md-2 p-lg-3" key={work.title}>
+                                <div className="col-12 col-md-6 col-lg-3 p-2 p-md-3 p-xl-4 px-1 py-3 p-md-2 p-lg-3" key={work.title}>
                                     <WorkCard
                                         work={work}
                                         isCategoryVisible={props.isCategoryVisible}

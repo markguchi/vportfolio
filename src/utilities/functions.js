@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router"
-
 export const addIntersectionObserver = () => {
     const intersectionCallback = (entries) => {
         for (const entry of entries) {
@@ -14,7 +12,7 @@ export const addIntersectionObserver = () => {
       }
       const observer = new IntersectionObserver(intersectionCallback,{
         root: null,
-        threshold: window.innerWidth < 768? 0 : 0.25
+        threshold: window.innerWidth < 768? 0 : 0.125
      });
       const items = document.querySelectorAll('.with-animation');
       for (const item of items) {
@@ -24,4 +22,13 @@ export const addIntersectionObserver = () => {
 
 export const sectionHeight = () => {
   return window.screen.height * .75 + "px"
+}
+
+export const toTitleCase = (str) => {
+  return str.replace(
+    /\p{L}+/gu,
+    function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    }
+  )
 }

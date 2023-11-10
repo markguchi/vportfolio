@@ -287,11 +287,11 @@
 
 @keyframes bumpScootFromRight {
   0% {
-    transform: translateX(25%) scaleX(1);
+    transform: translateX(10%) scaleX(1);
     visibility: hidden;
   }
   50%{
-    transform: translateX(-25%) scaleX(0.85);
+    transform: translateX(-10%) scaleX(0.95);
     visibility: visible;
   }
   100% {
@@ -302,11 +302,11 @@
 
 @keyframes bumpScootFromLeft {
   0% {
-    transform: translateX(-25%) scaleX(1);
+    transform: translateX(-10%) scaleX(1);
     visibility: hidden;
   }
   50%{
-    transform: translateX(25%) scaleX(0.85);
+    transform: translateX(10%) scaleX(0.95);
     visibility: visible;
   }
   100% {

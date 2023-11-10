@@ -22,7 +22,7 @@ export default function WorkCard(props) {
                 className="work-card w-100 h-100 d-flex flex-column align-items-center align-items-md-start justify-content-center shadow-full animate fade-in very-fast aspect-ratio-4-3 aspect-ratio-md-0 bg-md-white text-md-black"
                 style={{ rowGap: "0.6em", background: "linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(" + props.work.screens[0].img + ") ", backgroundSize: "cover" }}
                 onClick={(e)=>{
-                    navigate("/view-work/" + props.work.id)
+                    navigate("/works/" + props.work.id)
                 }}
             >
                 <div 
@@ -42,7 +42,7 @@ export default function WorkCard(props) {
                             )
                         }>
                             
-                            <img src={props.work.screens[0].img} alt={""} className="w-120 h-120 object-fit-cover"/>
+                            <img src={props.work.screens[0].img + "?v=202311061043"} alt={""} className="w-120 h-120 object-fit-cover"/>
                         </div>
                         <div id="image-frame-slideshow"  className="w-100 h-25">
                             <div className="w-100 h-100 row">
@@ -57,7 +57,7 @@ export default function WorkCard(props) {
                                                     ""
                                                 )
                                             }>
-                                                <img src={screen.img} alt={""} className="w-100 h-100 object-fit-cover" style={{objectPosition: "center center"}}/>
+                                                <img src={screen.img + "?v=202311061043"} alt={""} className="w-100 h-100 object-fit-cover" style={{objectPosition: "center center"}}/>
                                             </div>
                                         </div>
                                     )

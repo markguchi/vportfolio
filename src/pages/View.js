@@ -58,11 +58,8 @@ export default function View(props){
             const checkForScrollBar = () => {
                 let galleryThumbnails = document.querySelector('.gallery-thumbnails')
                 let scrollableCheck = galleryThumbnails.scrollWidth > galleryThumbnails.clientWidth
-                console.log(scrollableCheck)
                 setIsGalleryThumbnailsScrollable(scrollableCheck);
             }
-
-            checkForScrollBar()
 
             window.addEventListener('resize', () => {    
                 handleResize();

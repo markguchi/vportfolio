@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 export default function Works(props) {
     const works = props.works
     const [filteredWorks, setFilteredWorks] = useState(works)
+    const [selectedFilter, setSelectedFilter] = useState("all")
     const location = useLocation();
     const navigate = useNavigate()
     const [index, setIndex] = useState(0);
@@ -40,6 +41,7 @@ export default function Works(props) {
     }, [filteredWorks]);
 
     const filterWorks = (filterValue) => {
+        setSelectedFilter(filterValue)
         if(filterValue === "all"){
             setFilteredWorks(works)
         }
@@ -76,7 +78,7 @@ export default function Works(props) {
                                     return(
                                         <Carousel.Item key={image.img}>
                                             <img
-                                                src={image.img}
+                                                src={image.img + "?v=202311061043"}
                                                 alt={""}
                                                 style={{
                                                     width: "100%",
@@ -94,8 +96,8 @@ export default function Works(props) {
                 <div className="col-12 col-md-5 col-xl-4 p-0 p-md-2 p-lg-3 p-xl-4 with-animation">
                     <div className="w-100 h-100 d-flex align-items-start justify-content-center flex-column animate appear-right" style={{ gap: "1em" }}>
                         <div className="w-100 d-flex align-items-center justify-content-between">
-                            <Link className="text-decoration-none" to={"/view-work/" + filteredWorks[0].id}>
-                                <h1 className="text-start tera lh-half font-bold"><strong>{filteredWorks[0].title}</strong></h1>
+                            <Link className="text-decoration-none" to={"/works/" + filteredWorks[0].id}>
+                                <h1 className="text-start tera lh-3quarter font-bold"><strong>{filteredWorks[0].title}</strong></h1>
                             </Link>
                             {props.isCategoryVisible &&
                                 <h2 
@@ -147,18 +149,15 @@ export default function Works(props) {
             </div>
         </section>
         <section id="works" className="w-100 row section-padding">
-            <div className="row justify-content-center">
-                <div className="col-12 col-md-6 col-lg-4 col-xl-3 text-center with-animation">
-                    <select
-                        id="work-type"
-                        name="work-type"
-                        className="p-3 border-round animate appear-top"
-                        onChange={(e)=>{filterWorks(e.target.value)}}
-                    >
-                        <option value="all" className='text-blue'>All Works</option>
-                        <option value="development">Development</option>
-                        <option value="design">Design</option>
-                    </select>
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3 text-center with-animation start">
+                    <div class="w-100 d-flex align-items-center justify-content-center">
+                        <h5 class={"bttn-transparent clickable opacity" + (selectedFilter === "all"? "-100": "-50")} onClick={()=>{filterWorks("all")}}>All</h5>
+                        <h5 class="px-2 opacity-25">/</h5>
+                        <h5 class={"bttn-transparent clickable opacity" + (selectedFilter === "development"? "-100": "-50")} onClick={()=>{filterWorks("development")}}>Development</h5>
+                        <h5 class="px-2 opacity-25">/</h5>
+                        <h5 class={"bttn-transparent clickable opacity" + (selectedFilter === "design"? "-100": "-50")} onClick={()=>{filterWorks("design")}}>Design</h5>
+                    </div>
                 </div>
             </div>
             <div className="py-2 py-md-3 py-lg-4"></div>

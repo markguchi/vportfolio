@@ -103,12 +103,24 @@ import roll1 from '../images/works/roll_1.jpg'
 import roll2 from '../images/works/roll_2.jpg'
 import roll3 from '../images/works/roll_3.jpg'
 import roll4 from '../images/works/roll_4.jpg'
-import arluz1 from '../images/works/arluz_status.jpg'
+import arluz1 from '../images/works/arluz_login.jpg'
 import arluz2 from '../images/works/arluz_home.jpg'
-import arluz3 from '../images/works/arluz_employee.jpg'
-import arluz4 from '../images/works/arluz_new_order.jpg'
-import arluz5 from '../images/works/arluz_new_purchase.jpg'
-import arluz6 from '../images/works/arluz_strict.jpg'
+import arluz3 from '../images/works/arluz_status_summary.jpg'
+import arluz4 from '../images/works/arluz_status_breakdown.jpg'
+import arluz5 from '../images/works/arluz_accounting_accounts.jpg'
+import arluz6 from '../images/works/arluz_accounting_ledger.jpg'
+import arluz7 from '../images/works/arluz_new_voucher.jpg'
+import arluz8 from '../images/works/arluz_employee_list.jpg'
+import arluz9 from '../images/works/arluz_employee.jpg'
+import arluz10 from '../images/works/arluz_new_calculation.jpg'
+import arluz11 from '../images/works/arluz_new_customer.jpg'
+import arluz12 from '../images/works/arluz_new_order.jpg'
+import arluz13 from '../images/works/arluz_new_purchase.jpg'
+import arluzlogo1 from '../images/works/arluz_animation_1.png'
+import arluzlogo2 from '../images/works/arluz_animation_2.png'
+import arluzlogo3 from '../images/works/arluz_animation_3.png'
+import arluzlogo4 from '../images/works/arluz_animation_4.png'
+import arluzlogocontent from '../images/works/arluz_animation.mp4'
 
 import pandaliveryLogo from '../images/resume/pandalivery_logo.png'
 import asiawiseLogo from '../images/resume/asiawise_logo.png'
@@ -120,6 +132,31 @@ import { faDesktop, faBriefcase, faVideoCamera } from '@fortawesome/free-solid-s
   
   export const works = [
     {
+      "id": "arluz-logo",
+      "title": "ArLuz Logo Animation",
+      "category": "design",
+      "subtitle": "Commisioned Work",
+      "description": "An animation of ArLuz logo.",
+      "years": [2023],
+      "technologies": ["photoshop", "aftereffects"],
+      "tags": ["AfterEffects", "Graphic design", "Animation", "Photoshop"],
+      "screens": [
+          {
+          "img": arluzlogo1
+          },
+          {
+          "img": arluzlogo2
+          },
+          {
+          "img": arluzlogo3
+          },
+          {
+          "img": arluzlogo4
+          }
+      ],
+      "content": { "type": 'video', "src": arluzlogocontent }
+    },
+    {
       "id": "arluz",
       "title": "Ar.Luz",
       "category": "development",
@@ -128,36 +165,55 @@ import { faDesktop, faBriefcase, faVideoCamera } from '@fortawesome/free-solid-s
       "years": [2023],
       "languages": ["dart"],
       "technologies": ["flutter", "firebase", "photoshop"],
-      "tags": ["Flutter", "Android", "Mobile", "Photoshhop"],
+      "tags": ["Flutter", "Android", "Mobile", "Photoshop"],
       "screens": [
-          {
-          "img": arluz1,
-          "desc": "The Business Status screen shows the current performance of the business.",
-          },
-          {
-          "img": arluz6,
-          "desc": "Some screens require admin privileges to be accessed."
-          },
-          {
-          "img": arluz2,
-          },
-          {
-          "img": arluz3,
-          },
-          {
-          "img": arluz4,
-          },
-          {
-          "img": arluz5,
-          },
+        {
+        "img": arluz1,
+        },
+        {
+        "img": arluz2,
+        },
+        {
+        "img": arluz3,
+        },
+        {
+        "img": arluz4,
+        },
+        {
+        "img": arluz5,
+        },
+        {
+        "img": arluz6,
+        },
+        {
+        "img": arluz7,
+        },
+        {
+        "img": arluz8,
+        },
+        {
+        "img": arluz9,
+        },
+        {
+        "img": arluz10,
+        },
+        {
+        "img": arluz11,
+        },
+        {
+        "img": arluz12,
+        },
+        {
+        "img": arluz13,
+        },
       ]
-      },
+    },
       {
         "id": "woop-admin",
         "title": "Woop! Admin",
         "category": "development",
         "subtitle": "Internship Project",
-        "description": "Woop! Admin is the web app component of Woop! developed for the employees of Pandalivery to handle riders, orders, and customer concerns.",
+        "description": "Woop! Admin is the web app component of Woop! developed for Pandalivery employees that aids in handling riders, orders, and customer concerns.",
         "years": [2023],
         "contributions": [
             "Spearheaded the documentation process",
@@ -172,7 +228,7 @@ import { faDesktop, faBriefcase, faVideoCamera } from '@fortawesome/free-solid-s
         "screens": [
             {
             "img": woopWeb2,
-            "desc": "The scheduling page allows admins to approve orders and assign them with riders.",
+            "desc": "The scheduling page allows admins to approve orders and assign them to riders.",
             },
             {
             "img": woopWeb1,
@@ -189,7 +245,7 @@ import { faDesktop, faBriefcase, faVideoCamera } from '@fortawesome/free-solid-s
         "title": "Woop! for Riders",
         "category": "development",
         "subtitle": "Internship Project",
-        "description": "Woop! for Riders is a mobile component of Woop! where riders can fulfill the orders assigned to them.",
+        "description": "Woop! for Riders is a mobile component of Woop! where riders can fulfill orders assigned to them.",
         "years": [2023],
         "contributions": [
             "Spearheaded the documentation process",
@@ -389,7 +445,7 @@ import { faDesktop, faBriefcase, faVideoCamera } from '@fortawesome/free-solid-s
       "title": "Dengue Fever Pamphlet",
       "category": "design",
       "subtitle": "Commisioned Work",
-      "description": "A pamphlet made that gives relevant information about Dengue Fever — it's causes, symptoms, and treatments.",
+      "description": "A pamphlet that gives relevant information about Dengue Fever — its causes, symptoms, and treatments.",
       "years": [2021],
       "technologies": ["photoshop"],
       "tags": ["Photoshop", "Graphic design", "Pamphlet"],

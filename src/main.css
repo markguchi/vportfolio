@@ -16,6 +16,7 @@
 :root {
   --smeared-shadow: 10px 20px 40px 10px rgba(105, 105, 105, 0.25);
   --blue: #006cb4;
+  --dark-blue: #003e68;
   --black: #212529;
   --black-65: rgba(0, 0, 0, 0.65);
   --background-color: #f5f5f7 !important;
@@ -448,9 +449,18 @@ select::after {
   justify-content: center;
   border-radius: 100%;
   overflow: hidden;
+  transition: background-color 0.25s ease;
 }
 
 .active #logo {
+  background-color: var(--blue);
+}
+
+a:hover #logo {
+  background-color: var(--dark-blue);
+}
+
+a.active:hover #logo {
   background-color: var(--blue);
 }
 
@@ -593,7 +603,17 @@ a.social-link:hover {
 #works a:hover,
 #view a:hover,
 .work-card a:hover {
-  filter: brightness(2);
+  filter: brightness(2.0);
+}
+
+.experience-card {
+  background: linear-gradient(135deg, #1c7df3, #1abcfa);
+  transition: background 0.5s ease;
+}
+
+.experience-card.clickable:hover {
+  filter: brightness(1.0);
+  background: linear-gradient(135deg, #1c9df3, #42d9ff);
 }
 
 /** ----------------- **/
@@ -610,7 +630,8 @@ a.social-link:hover {
   aspect-ratio: 1/1;
   transition: scale 0.2s ease;
   pointer-events: none;
-  border: 0;
+  border: 3px solid white;
+  border-radius: 5px;
 }
 
 .screen-card img {
@@ -628,7 +649,7 @@ a.social-link:hover {
   filter: brightness(0.5)
 }
 
-.explore-link {
+/* .explore-link {
   background-color: white;
   padding: 0.25em 0.75em;
   border-radius: 5px;
@@ -684,8 +705,8 @@ a.social-link:hover {
 }
 
 #work-view .accordion-body ul{
-  margin: 0 !important;
-}
+  margin: 0 !important; 
+}*/
 
 /** ----------------- **/
 

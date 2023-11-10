@@ -6,7 +6,7 @@ import { techIcons } from "../utilities/library";
 import { skillSet } from "../utilities/data";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 
 import me1 from '../images/me_1.png';
 import me2 from '../images/me_2.png';
@@ -77,7 +77,7 @@ function Skills(){
                     <div className="w-100 emphasis-none emphasis-md ps-0 ps-md-3 ps-lg-4 opacity-75">
                       {skillSet[0].skills.map((skill) => {
                         return(
-                          <div className="d-flex flex-row align-items-center justify-content-between">
+                          <div key={skill.skill} className="d-flex flex-row align-items-center justify-content-between">
                             <p className="d-flex flex-column justify-content-start align-items-start">
                               <small className="font-light text-blue">{skill.category}</small>
                               <span>{skill.skill}</span>
@@ -232,7 +232,7 @@ function Home(props){
         <div className="row">
           {props.developmentBackground.filter(tech => tech.years >= 1).map((tech) => {
             return(
-              <div className="col-6 col-md-4 col-xxl-2 px-2 py-3 px-md-3 py-md-4 px-xl-4 py-xl-5 with-animation">
+              <div key={tech.name} className="col-6 col-md-4 col-xxl-2 px-2 py-3 px-md-3 py-md-4 px-xl-4 py-xl-5 with-animation">
                 <div className="w-100 h-100 bg-white border-round d-flex flex-column align-items-center px-3 py-2 mb-5 animate fade-blur-float">
                   <div className="flex-basis-60 d-flex align-items-center justify-content-center">
                     <img src={techIcons[tech.id]} alt={techIcons[tech.id]} className="tech-icon w-50 w-md-75 h-auto object-fit-contain opacity-75"/>
@@ -259,7 +259,7 @@ function Home(props){
           })}
           {props.designBackground.filter(tech => tech.years >= 1).map((tech) => {
             return(
-              <div className="col-6 col-md-4 col-xxl-2 px-2 py-3 px-md-3 py-md-4 px-xl-4 py-xl-5 with-animation">
+              <div key={tech.name} className="col-6 col-md-4 col-xxl-2 px-2 py-3 px-md-3 py-md-4 px-xl-4 py-xl-5 with-animation">
                 <div className="w-100 h-100 bg-dark border-round d-flex flex-column align-items-center px-3 py-2 mb-5 text-white animate fade-blur-float">
                   <div className="flex-basis-60 d-flex align-items-center justify-content-center">
                     <img src={techIcons[tech.id]} alt={techIcons[tech.id]} className="tech-icon light w-50 w-md-75 h-auto object-fit-contain opacity-75"/>
@@ -292,7 +292,7 @@ function Home(props){
               <div className="flex-basis-60 d-flex">
                 {props.developmentBackground.filter(tech => tech.years < 1.0).map((tech) => {
                   return(
-                    <div className="h-100 d-flex flex-column align-items-start justify-content-between p-2 text-center">
+                    <div key={tech.name} className="h-100 d-flex flex-column align-items-start justify-content-between p-2 text-center">
                       <div className="h-100 d-flex align-items-center justify-content-center">
                         <img src={techIcons[tech.id]} alt={techIcons[tech.id]} className="tech-icon w-50 h-auto object-fit-contain opacity-75"/>
                       </div>
@@ -313,9 +313,14 @@ function Home(props){
         </div>
       </section>
       <section id="recent-works">
-        <h1 className="giga text-center with-animation">
-          <span className="animate fade-in">My most recent works</span>
-        </h1>
+        <div className="d-flex align-items-start justify-content-center">
+          <h1 className="giga text-center with-animation">
+            <span className="animate fade-in">My most recent works</span>
+          </h1>
+          <a href="/works" title="See all" target="_blank" rel="noreferrer">
+            <FontAwesomeIcon icon={faUpRightFromSquare}/>
+          </a>
+        </div>
         <div className="py-3 py-md-5"></div>
         <div className="row">
           <div className="col-12 mb-4 col-xl-6">
@@ -325,6 +330,7 @@ function Home(props){
                   {props.recentWorks[0].screens.slice(0, 5).map((work, index) => {
                     return(
                       <img 
+                        key={work.img} 
                         src={work.img}
                         alt={work.img}
                         className={"stack-item flex-basis-100 w-100 h-auto object-fit-contain shadow-full border-round animate bump-scoot-right delay-" + index}
@@ -344,7 +350,7 @@ function Home(props){
                   <h1 
                     className="mega font-bold clickable me-0 me-md-4 animate fade-in very-slow"
                     onClick={(e)=>{
-                      navigate("/view-work/" + props.recentWorks[0].id)
+                      navigate("/works/" + props.recentWorks[0].id)
                     }}
                   >
                     {props.recentWorks[0].title}
@@ -393,7 +399,8 @@ function Home(props){
                 <div className="flex-basis-75 d-flex">
                   {props.recentWorks[1].screens.slice(0, 5).map((work, index) => {
                     return(
-                      <img 
+                      <img
+                        key={work.id + index} 
                         src={work.img} 
                         alt={work.img}
                         className={"stack-item flex-basis-100 w-100 h-auto object-fit-contain shadow-full border-round animate bump-scoot-left delay-" + index}

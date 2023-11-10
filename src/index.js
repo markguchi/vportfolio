@@ -13,7 +13,7 @@ import { useLayoutEffect } from 'react';
 const Wrapper = ({children}) => {
   const location = useLocation();
   useLayoutEffect(() => {
-    document.documentElement.scrollTo(0, 0);
+    document.documentElement.scrollTo({ top:0, left:0, behavior: "instant"})
   }, [location.pathname]);
   return children
 } 
