@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
+import { Helmet } from 'react-helmet';
 
 import { addIntersectionObserver } from '../utilities/functions';
 import { Intro, Skills } from './Home';
@@ -9,7 +10,9 @@ import adnuLogo from '../images/resume/adnu_logo.png'
 import ncshsLogo from '../images/resume/ncshs_logo.png'
 
 function Resume(props) {
-
+  console.log(props)
+  const options = { year: 'numeric', month: 'short' }
+  const options_full = { year: 'numeric', month: 'short', day: '2-digit' }
   const experienceRef = useRef(null)
   const workRef = useRef(null)
   const certificationsRef = useRef(null)
@@ -32,11 +35,10 @@ function Resume(props) {
 
   function ExperienceCard(props){
     const [isFlipped, setIsFlipped] = useState(false)
-
     return(
       <div className={"w-100 h-100 d-flex flex-column align-items-center justify-content-between animate bump-scoot-right delay-" + props.index} style={{gap: "2em"}}>
         <div className="curvy-card py-2 px-3 px-lg-4">
-          {props.date}
+        {props.start_date.toLocaleString('en-US', options)} - {props.start_date.toLocaleString('en-US', options)}
         </div> 
         {!isFlipped?
           <div className="experience-card flex-grow-1 frame shape-square text-white py-4 px-5 p-lg-5 aspect-ratio-3-4 aspect-ratio-md-1-1 shadow-none clickable rotate-out d-flex flex-column align-items-center justify-content-between" onClick={()=>{setIsFlipped(!isFlipped)}}>
@@ -62,7 +64,7 @@ function Resume(props) {
     return(
       <div className="w-100 d-flex flex-column align-items-center animate appear-top" style={{gap: "2em"}}>
         <div className="curvy-card py-2 px-4">
-          {props.date}
+          {props.date.toLocaleString('en-US', options_full)}
         </div> 
         <div className="frame shape-square p-0 shadow-none bg-transparent d-flex flex-column align-items-center justify-content-between overflow-visible">
             {props.image && (<img className="w-100 object-fit-contain shadow-full" alt={props.grantee + " logo"} src={props.image}/>)}
@@ -73,8 +75,14 @@ function Resume(props) {
 
   return (
     <div id="resume">
+      <Helmet>
+        <title>Resume | MBG Portfolio</title>
+        <meta name="description" content="Helmet application" />
+      </Helmet>
       <Intro/>
-      <Skills/>
+      <Skills
+        skillSet={props.skillSets}
+      />
       <section id="education" className="">
         <div className="h-100 w-100 d-flex flex-column flex-xxl-row align-items-start with-animation">
           <h1 className="font-bold mega text-upright text-xxl-sideways bottom mb-4 mb-xxl-0">Education</h1>
@@ -136,8 +144,9 @@ function Resume(props) {
                   return(
                     <div className="flex-basis-75 flex-basis-xl-50 flex-basis-xxl-25 me-4 me-lg-5" ref={workRef} key={experience.position}>
                       <ExperienceCard
-                        key={experience.position}
-                        date={experience.date}
+                        key={experience.position + '-card'}
+                        start_date={experience.start_date}
+                        end_date={experience.end_date}
                         position={experience.position}
                         company={experience.company}
                         image={experience.image}
@@ -151,8 +160,9 @@ function Resume(props) {
                   return(
                     <div className="flex-basis-75 flex-basis-xl-50 flex-basis-xxl-25 me-4 me-lg-5" key={experience.position}>
                         <ExperienceCard
-                          key={experience.position}
-                          date={experience.date}
+                          key={experience.position + '-card'}
+                          start_date={experience.start_date}
+                          end_date={experience.end_date}
                           position={experience.position}
                           company={experience.company}
                           image={experience.image}
@@ -185,17 +195,17 @@ function Resume(props) {
               <FontAwesomeIcon icon={faChevronLeft} />
             </button>
             <div className="w-100 h-100 d-flex scroll-horizontal scrollbar-hidden p-3 p-xxl-5" ref={certificationsRef}>
-              {certifications.map((experience, index) => {
+              {certifications.map((certification, index) => {
                 if(index === 0) {
                   return (
-                    <div className="flex-basis-75 flex-basis-xl-50 flex-basis-xxl-25 me-4 me-lg-5" ref={certificateRef} key={experience.position}>
+                    <div className="flex-basis-75 flex-basis-xl-50 flex-basis-xxl-25 me-4 me-lg-5" ref={certificateRef} key={certification.position}>
                       <CertificateCard
-                        key={experience.position}
-                        date={experience.date}
-                        certification={experience.certification}
-                        grantee={experience.grantee}
-                        image={experience.image}
-                        description={experience.description}
+                        key={certification.position + '-card'}
+                        date={certification.date}
+                        certification={certification.certification}
+                        grantee={certification.grantee}
+                        image={certification.image}
+                        description={certification.description}
                         index={index}
                       />
                     </div>
@@ -203,14 +213,14 @@ function Resume(props) {
                 }
                 else {
                   return(
-                    <div className="flex-basis-75 flex-basis-xl-50 flex-basis-xxl-25 me-4 me-lg-5" key={experience.position}>
+                    <div className="flex-basis-75 flex-basis-xl-50 flex-basis-xxl-25 me-4 me-lg-5" key={certification.position}>
                       <CertificateCard
-                        key={experience.position}
-                        date={experience.date}
-                        certification={experience.certification}
-                        grantee={experience.grantee}
-                        image={experience.image}
-                        description={experience.description}
+                        key={certification.position + '-card'}
+                        date={certification.date}
+                        certification={certification.certification}
+                        grantee={certification.grantee}
+                        image={certification.image}
+                        description={certification.description}
                         index={index}
                       />
                     </div>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 
 import WorkCard from '../layout/WorkCard'
 import { addIntersectionObserver } from '../utilities/functions'
@@ -54,6 +55,10 @@ export default function Works(props) {
 
     return(
     <div id="works" className="w-100 row align-items-stretch justify-content-start">
+        <Helmet>
+            <title>Works | MBG Portfolio</title>
+            <meta name="description" content="Helmet application" />
+        </Helmet>
         <section className="col-12 mb-0 mb-md-4">
             <div className="w-100 row">
                 <div className="col-12 col-md-7 col-xl-6 p-0 p-md-2 p-lg-3 p-xl-4 mb-5 mb-md-0 with-animation">
@@ -149,21 +154,27 @@ export default function Works(props) {
             </div>
         </section>
         <section id="works" className="w-100 row section-padding">
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-6 col-lg-4 col-xl-3 text-center with-animation start">
-                    <div class="w-100 d-flex align-items-center justify-content-center">
-                        <h5 class={"bttn-transparent clickable opacity" + (selectedFilter === "all"? "-100": "-50")} onClick={()=>{filterWorks("all")}}>All</h5>
-                        <h5 class="px-2 opacity-25">/</h5>
-                        <h5 class={"bttn-transparent clickable opacity" + (selectedFilter === "development"? "-100": "-50")} onClick={()=>{filterWorks("development")}}>Development</h5>
-                        <h5 class="px-2 opacity-25">/</h5>
-                        <h5 class={"bttn-transparent clickable opacity" + (selectedFilter === "design"? "-100": "-50")} onClick={()=>{filterWorks("design")}}>Design</h5>
+            <div className="row justify-content-center">
+                <div className="col-12 col-md-6 col-lg-4 col-xl-3 text-center with-animation start">
+                    <div className="w-100 d-flex align-items-center justify-content-center">
+                        <h5 className={"bttn-transparent clickable opacity" + (selectedFilter === "all"? "-100": "-50")} onClick={()=>{filterWorks("all")}}>All</h5>
+                        <h5 className="px-2 opacity-25">/</h5>
+                        <h5 className={"bttn-transparent clickable opacity" + (selectedFilter === "development"? "-100": "-50")} onClick={()=>{filterWorks("development")}}>Development</h5>
+                        <h5 className="px-2 opacity-25">/</h5>
+                        <h5 className={"bttn-transparent clickable opacity" + (selectedFilter === "design"? "-100": "-50")} onClick={()=>{filterWorks("design")}}>Design</h5>
                     </div>
                 </div>
             </div>
             <div className="py-2 py-md-3 py-lg-4"></div>
-            {filteredWorks.slice(1).map((work) => {
+            {filteredWorks.slice(1).map((work, index) => {
                 return(
-                    <div className="col-12 col-md-6 col-lg-4 col-xxl-3 px-0 px-sm-1 px-md-3 px-xl-4 py-3 py-md-4 py-xl-5 with-animation" key={work.title}>
+                    <div 
+                        key={work.title}
+                        className={
+                            "col-6 col-lg-4 col-xxl-3 px-1 px-md-3 px-xl-4 py-3 py-md-4 py-xl-5 with-animation " +
+                            (index % 2 === 0? "pe-2 pe-md-3 pe-xl-4" : "ps-2 ps-md-3 ps-xl-4")
+                        }
+                    >
                         <WorkCard
                             work={work}
                             isCategoryVisible={props.isCategoryVisible}

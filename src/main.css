@@ -15,6 +15,7 @@
 
 :root {
   --smeared-shadow: 10px 20px 40px 10px rgba(105, 105, 105, 0.25);
+  --smeared-shadow-backwards: 0 10px 20px 10px rgba(105, 105, 105, 0.35);
   --blue: #006cb4;
   --dark-blue: #003e68;
   --black: #212529;
@@ -28,6 +29,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--background-color) !important;
   font-family: 'Helvetica-Regular' !important;
+  font-size: 11pt !important;
 }
 
 code {
@@ -117,6 +119,19 @@ code {
 
 /*** TEXT ***/
 
+h5 {
+  font-size: 1.1em !important;
+}
+
+h4.sm {
+  font-size: 1em !important;
+}
+
+h6.sm {
+  font-size: 1em !important;
+  font-weight: 300 !important;
+}
+
 h1.mega {
   font-size: calc(1.4em + 1.8vw ) !important;
 }
@@ -143,6 +158,10 @@ h1.zetta{
 
 h1.yota{
   font-size: calc(1.925em + 3.6vw ) !important;
+}
+
+.lh-none {
+  line-height: 0 !important;
 }
 
 .lh-half {
@@ -173,7 +192,7 @@ h1.yota{
   font-family: 'Helvetica-Regular' !important;
 }
 
-.font-bold{
+.font-bold {
   font-family: 'Helvetica-Bold' !important;
 }
 
@@ -277,11 +296,11 @@ h1.yota{
 /*** SHAPES ***/
 
 section {
-  padding: 2em 1.6em !important;
+  padding: 1.6em 1em !important;
 }
 
 .section-padding {
-  padding: 2em 1.6em !important;
+  padding: 1.6em 1em !important;
 }
 
 .frame {
@@ -328,6 +347,10 @@ img.shadow-full {
   box-shadow: var(--smeared-shadow);
 }
 
+.shadow-full-backwards {
+  box-shadow: var(--smeared-shadow-backwards);
+}
+
 .shadow-none {
   box-shadow: 0 !important;
 }
@@ -349,6 +372,14 @@ img.shadow-full {
 .border-round-left {
   border-top-left-radius: 15px !important;
   border-bottom-left-radius: 15px !important;
+}
+
+.border-2 {
+  border-width: 2px;
+}
+
+.border-blue {
+  border-color: var(--blue);
 }
 
 .aspect-ratio-0 {
@@ -416,6 +447,11 @@ img.shadow-full {
   overflow: hidden;
 }
 
+.btn-blue:hover {
+  background-color: var(--blue);
+  border-color: var(--blue);
+}
+
 /** ----------------- **/
 
 
@@ -477,7 +513,7 @@ a.active:hover #logo {
 #nav-socials-container {
   flex: none;
   display: inline-block;
-  position: absolute;
+  /* position: absolute; */
   padding: 0 !important;
   right: 0;
   top: 0;
@@ -502,6 +538,8 @@ a.social-link {
 a.social-link:hover {
   color: var(--blue) !important;
 }
+
+
 
 /** ----------------- **/
 
@@ -606,6 +644,11 @@ a.social-link:hover {
   filter: brightness(2.0);
 }
 
+.image-frame-slideshow {
+  display: inline-block;
+  position: relative;
+}
+
 .experience-card {
   background: linear-gradient(135deg, #1c7df3, #1abcfa);
   transition: background 0.5s ease;
@@ -642,7 +685,7 @@ a.social-link:hover {
 
   object-fit: cover;
   object-position: center top;
-  transition: translate 0.2s ease;
+  transition: filter 0.2s ease;
 }
 
 .screen-card:hover img {
@@ -884,5 +927,15 @@ a.social-link:hover {
   
   .gallery-thumbnails-overflow-indicator {
     display: none;
+  }
+
+  .position-md-absolute {
+    position: absolute !important;
+  }
+}
+
+@media only screen and (min-width: 577px){
+  .position-sm-absolute {
+    position: absolute !important;
   }
 }

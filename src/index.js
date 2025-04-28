@@ -5,8 +5,7 @@ import './main.css';
 import './animations.css';
 import './responsiveness.css';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter} from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { BrowserRouter, useLocation} from 'react-router-dom';
 import { useLayoutEffect } from 'react';
 
 

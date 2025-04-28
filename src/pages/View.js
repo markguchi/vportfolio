@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 import { categoryIcons, techIcons } from "../utilities/library";
 import { addIntersectionObserver } from "../utilities/functions";
@@ -218,6 +219,10 @@ export default function View(props){
     {
         return(
             <>
+            <Helmet>
+                <title>{props.data.title} | MBG Portfolio</title>
+                <meta name="description" content="Helmet application" />
+            </Helmet>
                 <EnlargedImage
                     show={showEnlargedImageModal}
                     isEndless={true}
@@ -268,22 +273,25 @@ export default function View(props){
                                                 <div className="flex-separator px-2 opacity-50 animate appear-top">•</div>
                                             </>
                                         }
-                                        <div className={
-                                            "px-2 px-lg-4 flex-basis-50 opacity-50 animate appear-top " +
-                                            (props.data.category === "development"? "text-start" : "text-center")
-                                        }>
-                                            {props.data.technologies.map((technology) => {
-                                                return (
-                                                    <img 
-                                                        key={technology}
-                                                        src={techIcons[technology]}
-                                                        alt={technology}
-                                                        title={technology.charAt(0).toUpperCase() + technology.slice(1).replace("_", " ")}
-                                                        className="tech-icon opacity-75 mx-2"
-                                                    />
-                                                )
-                                            })}
-                                        </div>
+                                        
+                                        {props.data.technologies !== undefined &&
+                                            <div className={
+                                                "px-2 px-lg-4 flex-basis-50 opacity-50 animate appear-top " +
+                                                (props.data.category === "development"? "text-start" : "text-center")
+                                            }>
+                                                {props.data.technologies.map((technology) => {
+                                                    return (
+                                                        <img 
+                                                            key={technology}
+                                                            src={techIcons[technology]}
+                                                            alt={technology}
+                                                            title={technology.charAt(0).toUpperCase() + technology.slice(1).replace("_", " ")}
+                                                            className="tech-icon opacity-75 mx-2"
+                                                        />
+                                                    )
+                                                })}
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                                 <div className="py-5"></div>
@@ -312,9 +320,9 @@ export default function View(props){
                                 <div className="py-2 py-md-5"></div>
                                 <div className="w-100 w-lg-75 w-xl-50">
                                     <div className="h-100 text-start border-round d-flex flex-column align-items-start justify-content-between">
-                                        <div className="mb-3 font-light d-flex animate with-animation">
+                                        <div className="w-100 mb-3 font-light d-flex animate with-animation">
                                             <h1 className="tera animate fade-in very-slow">&ldquo;</h1>
-                                            <h4 className="px-5 text-justified animate fade-in very-slow">{props.data.description}</h4>
+                                            <h4 className="flex-grow-1 px-5 text-justified animate fade-in very-slow">{props.data.description}</h4>
                                             <h1 className="tera align-self-end animate fade-in very-slow">&rdquo;</h1>
                                         </div>
                                         <div className="py-4"></div>
@@ -354,15 +362,15 @@ export default function View(props){
                                                         key={screen.img}
                                                         className={
                                                             props.data.content === undefined || props.data.content === null?
-                                                                "with-animation col-6 col-md-4 p-2 m-0)"
+                                                                "with-animation col-12 col-md-4 col-xl-3 p-2 m-0)"
                                                             :
-                                                                ("with-animation col-6 col-md-" + (12/props.data.screens.length) + " p-2 m-0 animate bump-scoot-right delay-" + (index % 3))
+                                                                ("with-animation col-12 col-md-" + (12/props.data.screens.length) + " p-2 m-0 animate fade-in very-fast")
                                                         }
                                                     >
                                                         <div 
                                                             className={
                                                                 "screen-card" + (screen.desc ? " hoverable" : "") +
-                                                                " animate bump-scoot-right delay-" + (index % 3)
+                                                                " animate fade-in very-fast"
                                                             }>
                                                             <img
                                                                 src={screen.img}

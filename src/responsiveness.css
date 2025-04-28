@@ -38,7 +38,23 @@
 
 /*** MD **/
 
-@media only screen and (min-width: 768px){
+@media only screen and (min-width: 768px) {
+  h5 {
+    font-size: 1.25em !important;
+  }
+
+  h4.sm {
+    font-size: calc(1.275rem + 0.3vw) !important;
+  }
+
+  h6.sm {
+    font-weight: 500 !important;
+  }
+
+  body {
+    font-size: 12pt !important;
+  }
+
   section {
     padding: 2em 3.2em !important;
   }
@@ -105,7 +121,11 @@
 
 /*** LG **/
 
-@media only screen and (min-width: 992px){
+@media only screen and (min-width: 992px) {
+  body {
+    font-size: 12.5pt !important;
+  }
+
   section {
     padding: 3em 4.8em !important;
   }
@@ -137,6 +157,10 @@
 /*** XL **/
 
 @media only screen and (min-width: 1200px) {
+  body {
+    font-size: 13pt !important;
+  }
+
   section {
     padding: 4em 6.45em !important;
   }

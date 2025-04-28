@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { Helmet } from "react-helmet";
 
 import { addIntersectionObserver } from "../utilities/functions";
 import { techIcons } from "../utilities/library";
-import { skillSet } from "../utilities/data";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
@@ -38,9 +38,6 @@ function Intro(){
   return(
     <section id="intro" style={{height: dimensions.height + "px"}} className="d-flex align-items-center justify-content-center ">
       <div className="w-100 p-0 m-0 d-flex align-items-center justify-content-center p-0 p-md-5 flex-column with-animation">
-        <h5 className="font-light w-100 w-xl-25 w-xxl-25 opacity-50 d-flex flex-column flex-lg-row justify-content-between ">
-          <span className="w-100 px-3 mb-3 text-center animate fade-in very-slow delay-1000">09615383895  /  rmbg2798@gmail.com</span>
-        </h5>
         <div className="py-2"></div>
         <h1 className="font-regular yota lh-3quarter animate appear-top fast">Mark Borja</h1>
         <h1 className="font-regular yota lh-3quarter animate appear-top very-fast">Gutierrez</h1>
@@ -55,7 +52,7 @@ function Intro(){
   )
 }
 
-function Skills(){
+function Skills(props){
   const starsContainer = ["", "", "", "", ""]
 
   useEffect(() => {
@@ -69,13 +66,13 @@ function Skills(){
             <div className="col-12 col-xxl-7 px-0 px-xxl-4 mb-5 mb-xxl-0">
               <div className="curvy-card shadow-none animate fade-in">
                 <div className="w-100 h-100 d-flex flex-column flex-xxl-row justify-content-start align-items-center align-items-xxl-start">
-                  <h1 className="mega me-0 me-lg-5"><FontAwesomeIcon icon={skillSet[0].icon}/></h1>
+                  <h1 className="mega me-0 me-lg-5"><FontAwesomeIcon icon={props.skillSet[0].icon}/></h1>
                   <div className="w-100 d-flex flex-column align-items-center align-items-xxl-start">
-                    <h3 className="font-regular text-center text-lg-start">{skillSet[0].set}</h3>
-                    <h5 className="font-light text-center text-lg-start">{skillSet[0].description}</h5>
+                    <h3 className="font-regular text-center text-lg-start">{props.skillSet[0].set}</h3>
+                    <h5 className="font-light text-center text-lg-start">{props.skillSet[0].description}</h5>
                     <div className="py-2"></div>
                     <div className="w-100 emphasis-none emphasis-md ps-0 ps-md-3 ps-lg-4 opacity-75">
-                      {skillSet[0].skills.map((skill) => {
+                      {props.skillSet[0].skills.map((skill) => {
                         return(
                           <div key={skill.skill} className="d-flex flex-row align-items-center justify-content-between">
                             <p className="d-flex flex-column justify-content-start align-items-start">
@@ -103,18 +100,18 @@ function Skills(){
               </div>
             </div>
             <div className="col-12 col-xxl-5 px-0 px-xxl-4">
-              {skillSet.slice(1, skillSet.length).map((skillset) => {
+              {props.skillSet.slice(1, props.skillSet.length).map((skillSet) => {
                 return (
                   <div className="col-12 mb-5">
                     <div className="curvy-card shadow-none animate fade-in very-slow">
                       <div className="w-100 h-100 d-flex flex-column flex-xxl-row justify-content-start align-items-center align-items-xxl-start">
-                        <h2 className="me-0 me-lg-4"><FontAwesomeIcon icon={skillset.icon}/></h2>
+                        <h2 className="me-0 me-lg-4"><FontAwesomeIcon icon={skillSet.icon}/></h2>
                         <div className="w-100 d-flex flex-column align-items-center align-items-xxl-start">
-                          <h4 className="font-regular text-center text-lg-start">{skillset.set}</h4>
-                          <p className="font-light text-center text-lg-start">{skillset.description}</p>
+                          <h4 className="font-regular text-center text-lg-start">{skillSet.set}</h4>
+                          <p className="font-light text-center text-lg-start">{skillSet.description}</p>
                           <div className="py-1"></div>
                           <div className="w-100 emphasis-none emphasis-md ps-0 ps-md-3 ps-lg-4 opacity-75">
-                            {skillset.skills.map((skill) => {
+                            {skillSet.skills.map((skill) => {
                               return(
                                 <div className="d-flex flex-row align-items-center justify-content-between">
                                   <p className="d-flex flex-column justify-content-start align-items-start">
@@ -179,6 +176,10 @@ function Home(props){
 
   return(
     <div>
+      <Helmet>
+        <title>Mark Gutierrez Portfolio</title>
+        <meta name="description" content="Helmet application" />
+      </Helmet>
       <Intro/>
       <section id="profile">
         <div className="row h-100">
@@ -205,16 +206,16 @@ function Home(props){
               <div className="py-3"></div>
               <div className="text-start font-light lh-2 animate fade-in">
                 <div className="row">
-                  <div className="col-12 col-xxl-6 p-3">
+                  <div className="col-12 col-xxl-6 py-3 px-1 px-md-3">
                     While accomplishing my degree, I have taken up multiple jobs to support my studies. I worked as a food service crew in a small canteen, a teacher assistant in the university, a tutor in a renowned study center, and an office staff in a corporation.
                   </div>
-                  <div className="col-12 col-xxl-6 p-3">
+                  <div className="col-12 col-xxl-6 py-3 px-1 px-md-3">
                     Also, I dabbled in freelance work which consisted mainly of commissioned artworks such as t-shirt designs, posters, and infographics, some technical and creative writing, and website design. 
                   </div>
-                  <div className="col-12 p-3">
+                  <div className="col-12 py-3 px-1 px-md-3">
                     Because of my former jobs I learned how to manage people, understand business processes, prioritize tasks, and most importantly, work with different personalities. They have helped me learn new skills and knowledge that prepared me as an IT professional.
                   </div>
-                  <div className="col-12 p-3 lh-2">
+                  <div className="col-12 py-3 px-1 px-md-3 lh-2">
                     In the Information Technology environment, I consider myself a jack-of-all-trades. I am able to take on leadership duties as well as programming duties. I am a capable full-stack developer and a passionate web and mobile UI designer. Moreover, I enjoy project documentation that usually includes itemization of objectives and needs, and diagramming.
                   </div>
                 </div>
@@ -223,7 +224,9 @@ function Home(props){
           </div>
         </div>
       </section>
-      <Skills/>
+      <Skills
+        skillSet={props.skillSets}
+      />
       <section id="tech-background">
         <h1 className="giga text-center with-animation with-animation">
           <span className="animate fade-in">Tools I work with</span>
@@ -437,7 +440,7 @@ function Home(props){
                   <h1 
                     className="mega font-bold clickable ms-0 ms-md-4 animate fade-in very-slow"
                     onClick={(e)=>{
-                      navigate("/view-work/" + props.recentWorks[1].id)
+                      navigate("/works/" + props.recentWorks[1].id)
                     }}
                   >
                     {props.recentWorks[1].title}
