@@ -27,7 +27,7 @@ export default function WorkCard(props) {
                 }}
             >
                 <div 
-                    className="w-100 aspect-ratio-4-3" 
+                    className="w-100 h-100 aspect-ratio-4-3" 
                     style={{
                         overflow: "hidden",
                         textAlign: "center",

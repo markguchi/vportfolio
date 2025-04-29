@@ -57,9 +57,10 @@ export default function View(props){
             }
 
             const checkForScrollBar = () => {
+                let scrollableCheck
                 let galleryThumbnails = document.querySelector('.gallery-thumbnails')
-                let scrollableCheck = galleryThumbnails.scrollWidth > galleryThumbnails.clientWidth
-                setIsGalleryThumbnailsScrollable(scrollableCheck);
+                if (galleryThumbnails) {scrollableCheck = galleryThumbnails.scrollWidth > galleryThumbnails.clientWidth}
+                if (scrollableCheck) {setIsGalleryThumbnailsScrollable(scrollableCheck);}
             }
 
             window.addEventListener('resize', () => {    

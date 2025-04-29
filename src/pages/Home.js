@@ -151,6 +151,7 @@ function Skills(props){
 }
 
 function Home(props){
+  console.log(props.recentWorks)
   const navigate = useNavigate()
   const [dimensions, setDimensions] = useState({ 
     height: window.innerHeight,
@@ -224,251 +225,259 @@ function Home(props){
           </div>
         </div>
       </section>
-      <Skills
-        skillSet={props.skillSets}
-      />
-      <section id="tech-background">
-        <h1 className="giga text-center with-animation with-animation">
-          <span className="animate fade-in">Tools I work with</span>
-        </h1>
-        <div className="py-3 py-md-5"></div>
-        <div className="row">
-          {props.developmentBackground.filter(tech => tech.years >= 1).map((tech) => {
-            return(
-              <div key={tech.name} className="col-6 col-md-4 col-xxl-2 px-2 py-3 px-md-3 py-md-4 px-xl-4 py-xl-5 with-animation">
-                <div className="w-100 h-100 bg-white border-round d-flex flex-column align-items-center px-3 py-2 mb-5 animate fade-blur-float">
-                  <div className="flex-basis-60 d-flex align-items-center justify-content-center">
-                    <img src={techIcons[tech.id]} alt={techIcons[tech.id]} className="tech-icon w-50 w-md-75 h-auto object-fit-contain opacity-75"/>
-                  </div>
-                  <div className="flex-basis-40 d-flex flex-column align-items-center justify-content-around">
-                    {tech.name?
-                      <h4 className="text-center">{tech.name}</h4>
-                    :
-                      
-                      <h4>{tech.id.charAt(0).toUpperCase() + tech.id.slice(1, tech.id.length)}</h4>
-                    }
-                    <div className="py-2"></div>
-                    <small className="font-light text-center">
-                      {tech.years > 1?
-                      <>{tech.years} YEARS</>
-                      :
-                      <>{tech.years} YEAR</>
-                      }
-                    </small>
-                  </div>
-                </div>
-              </div>
-            )
-          })}
-          {props.designBackground.filter(tech => tech.years >= 1).map((tech) => {
-            return(
-              <div key={tech.name} className="col-6 col-md-4 col-xxl-2 px-2 py-3 px-md-3 py-md-4 px-xl-4 py-xl-5 with-animation">
-                <div className="w-100 h-100 bg-dark border-round d-flex flex-column align-items-center px-3 py-2 mb-5 text-white animate fade-blur-float">
-                  <div className="flex-basis-60 d-flex align-items-center justify-content-center">
-                    <img src={techIcons[tech.id]} alt={techIcons[tech.id]} className="tech-icon light w-50 w-md-75 h-auto object-fit-contain opacity-75"/>
-                  </div>
-                  <div className="flex-basis-40 d-flex flex-column align-items-center justify-content-around">
-                    {tech.name?
-                      <h4 className="text-center">{tech.name}</h4>
-                    :
-                      
-                      <h4>{tech.id.charAt(0).toUpperCase() + tech.id.slice(1, tech.id.length)}</h4>
-                    }
-                    <small className="font-light text-center">
-                      {tech.years > 1?
-                      <>{tech.years} YEARS</>
-                      :
-                      <>{tech.years} YEAR</>
-                      }
-                    </small>
-                  </div>
-                </div>
-              </div>
-            )
-          })}
-          <div className="col-12 col-md-8 col-xxl-4 px-2 py-3 px-md-3 py-md-4 px-xl-4 py-xl-5 with-animation">
-            <div className="w-100 h-100 bg-blue-10 border-round d-flex flex-column align-items-center justify-content-between p-4 mb-5 text-start animate fade-blur-float">
-              <div className="flex-basis-40 w-100 d-flex align-items-center">
-                <h4 className="font-bold m-0 lh-0">Others</h4>
-                <h6 className="ps-2 font-light m-0 lh-0 opacity-75">(Less than a year)</h6>
-              </div>
-              <div className="flex-basis-60 d-flex">
-                {props.developmentBackground.filter(tech => tech.years < 1.0).map((tech) => {
-                  return(
-                    <div key={tech.name} className="h-100 d-flex flex-column align-items-start justify-content-between p-2 text-center">
-                      <div className="h-100 d-flex align-items-center justify-content-center">
-                        <img src={techIcons[tech.id]} alt={techIcons[tech.id]} className="tech-icon w-50 h-auto object-fit-contain opacity-75"/>
-                      </div>
-                      <div className="w-100">
-                        {tech.name?
-                          <h6 className="w-100">{tech.name}</h6>
-                        :
-                            
-                          <h6 className="w-100">{tech.id.charAt(0).toUpperCase() + tech.id.slice(1, tech.id.length)}</h6>
-                        }
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="recent-works">
-        <div className="d-flex align-items-start justify-content-center">
-          <h1 className="giga text-center with-animation">
-            <span className="animate fade-in">My most recent works</span>
+      {props.skillSets.length > 0 &&
+        <Skills
+          skillSet={props.skillSets}
+        />
+      }
+      {props.developmentBackground.length > 0 && props.designBackground.length > 0 &&
+        <section id="tech-background">
+          <h1 className="giga text-center with-animation with-animation">
+            <span className="animate fade-in">Tools I work with</span>
           </h1>
-          <a href="/works" title="See all" target="_blank" rel="noreferrer">
-            <FontAwesomeIcon icon={faUpRightFromSquare}/>
-          </a>
-        </div>
-        <div className="py-3 py-md-5"></div>
-        <div className="row">
-          <div className="col-12 mb-4 col-xl-6">
-            <div className="h-100 d-flex flex-column align-items-start justify-content-between">
-              <div className="d-flex flex-row with-animation">
-                <div className="flex-basis-33 d-flex flex-row">
-                  {props.recentWorks[0].screens.slice(0, 5).map((work, index) => {
-                    return(
-                      <img 
-                        key={work.img} 
-                        src={work.img}
-                        alt={work.img}
-                        className={"stack-item flex-basis-100 w-100 h-auto object-fit-contain shadow-full border-round animate bump-scoot-right delay-" + index}
-                        style={{
-                          translate: index * - 50 + "% 0",
-                          scale: 1 - (index * 0.1) + "",
-                          zIndex: props.recentWorks[0].screens.length - index
-                        }}
-                      />
-                    )
-                  })}
+          <div className="py-3 py-md-5"></div>
+          <div className="row">
+            {props.developmentBackground.filter(tech => tech.years >= 1).map((tech) => {
+              return(
+                <div key={tech.name} className="col-6 col-md-4 col-xxl-2 px-2 py-3 px-md-3 py-md-4 px-xl-4 py-xl-5 with-animation">
+                  <div className="w-100 h-100 bg-white border-round d-flex flex-column align-items-center px-3 py-2 mb-5 animate fade-blur-float">
+                    <div className="flex-basis-60 d-flex align-items-center justify-content-center">
+                      <img src={techIcons[tech.id]} alt={techIcons[tech.id]} className="tech-icon w-50 w-md-75 h-auto object-fit-contain opacity-75"/>
+                    </div>
+                    <div className="flex-basis-40 d-flex flex-column align-items-center justify-content-around">
+                      {tech.name?
+                        <h4 className="text-center">{tech.name}</h4>
+                      :
+                        
+                        <h4>{tech.id.charAt(0).toUpperCase() + tech.id.slice(1, tech.id.length)}</h4>
+                      }
+                      <div className="py-2"></div>
+                      <small className="font-light text-center">
+                        {tech.years > 1?
+                        <>{tech.years} YEARS</>
+                        :
+                        <>{tech.years} YEAR</>
+                        }
+                      </small>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="p-4"></div>
-              <div className="with-animation">
-                <div className="d-flex flex-column flex-md-row align-items-center justify-content-start mb-2 mb-md-0">
-                  <h1 
-                    className="mega font-bold clickable me-0 me-md-4 animate fade-in very-slow"
-                    onClick={(e)=>{
-                      navigate("/works/" + props.recentWorks[0].id)
-                    }}
-                  >
-                    {props.recentWorks[0].title}
-                  </h1>
-                  <div className="d-flex">
-                    {props.recentWorks[0].languages.map((language) => {
-                      return (
-                        <div className="mx-1 bg-blue shape-circle d-flex align-items-center justify-content-center lh-0 animate fade-in very-slow" style={{letterSpacing: "0.05em"}}>
-                          <img
-                            key={language}
-                            src={techIcons[language]}
-                            alt={language}
-                            title={language.charAt(0).toUpperCase() + language.slice(1)}
-                            className="tech-icon light mx-2"
-                            style={{height: "1em"}}
-                          />
+              )
+            })}
+            {props.designBackground.filter(tech => tech.years >= 1).map((tech) => {
+              return(
+                <div key={tech.name} className="col-6 col-md-4 col-xxl-2 px-2 py-3 px-md-3 py-md-4 px-xl-4 py-xl-5 with-animation">
+                  <div className="w-100 h-100 bg-dark border-round d-flex flex-column align-items-center px-3 py-2 mb-5 text-white animate fade-blur-float">
+                    <div className="flex-basis-60 d-flex align-items-center justify-content-center">
+                      <img src={techIcons[tech.id]} alt={techIcons[tech.id]} className="tech-icon light w-50 w-md-75 h-auto object-fit-contain opacity-75"/>
+                    </div>
+                    <div className="flex-basis-40 d-flex flex-column align-items-center justify-content-around">
+                      {tech.name?
+                        <h4 className="text-center">{tech.name}</h4>
+                      :
+                        
+                        <h4>{tech.id.charAt(0).toUpperCase() + tech.id.slice(1, tech.id.length)}</h4>
+                      }
+                      <small className="font-light text-center">
+                        {tech.years > 1?
+                        <>{tech.years} YEARS</>
+                        :
+                        <>{tech.years} YEAR</>
+                        }
+                      </small>
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+            {props.developmentBackground.filter(tech => tech.years < 1.0).length > 0 &&
+              <div className="col-12 col-md-8 col-xxl-4 px-2 py-3 px-md-3 py-md-4 px-xl-4 py-xl-5 with-animation">
+                <div className="w-100 h-100 bg-blue-10 border-round d-flex flex-column align-items-center justify-content-between p-4 mb-5 text-start animate fade-blur-float">
+                  <div className="flex-basis-40 w-100 d-flex align-items-center">
+                    <h4 className="font-bold m-0 lh-0">Others</h4>
+                    <h6 className="ps-2 font-light m-0 lh-0 opacity-75">(Less than a year)</h6>
+                  </div>
+                  <div className="flex-basis-60 d-flex">
+                    {props.developmentBackground.filter(tech => tech.years < 1.0).map((tech) => {
+                      return(
+                        <div key={tech.name} className="h-100 d-flex flex-column align-items-start justify-content-between p-2 text-center">
+                          <div className="h-100 d-flex align-items-center justify-content-center">
+                            <img src={techIcons[tech.id]} alt={techIcons[tech.id]} className="tech-icon w-50 h-auto object-fit-contain opacity-75"/>
+                          </div>
+                          <div className="w-100">
+                            {tech.name?
+                              <h6 className="w-100">{tech.name}</h6>
+                            :
+                                
+                              <h6 className="w-100">{tech.id.charAt(0).toUpperCase() + tech.id.slice(1, tech.id.length)}</h6>
+                            }
+                          </div>
                         </div>
                       )
                     })}
                   </div>
                 </div>
-                <div className="opacity-75 text-center text-md-start animate fade-in very-slow">
-                  {props.recentWorks[0].technologies.map((technology) => {
-                    return (
-                      <img
-                        key={technology}
-                        src={techIcons[technology]}
-                        alt={technology}
-                        title={technology.charAt(0).toUpperCase() + technology.slice(1)}
-                        className="tech-icon opacity-75 mx-2"
-                        style={{ height: "1.5em" }}
-                      />
-                    )
-                  })}
-                </div>
-                <div className="p-3"></div>
-                <h5 className="text-center text-md-start font-light lh-2 animate fade-in very-slow">
-                  {props.recentWorks[0].description}
-                </h5>
               </div>
-            </div>
+            }
           </div>
-          <div className="col-12 col-xl-6">
-            <div className="h-100 d-flex flex-column align-items-start justify-content-between">
-              <div className="d-flex with-animation" style={{height: "max-content"}}>
-                <div className="flex-basis-75 d-flex">
-                  {props.recentWorks[1].screens.slice(0, 5).map((work, index) => {
-                    return(
-                      <img
-                        key={work.id + index} 
-                        src={work.img} 
-                        alt={work.img}
-                        className={"stack-item flex-basis-100 w-100 h-auto object-fit-contain shadow-full border-round animate bump-scoot-left delay-" + index}
-                        style={{
-                          translate: index * - 75 + "% " + index * 50 + "%",
-                          scale: 1 - (index * 0.1) + "",
-                          zIndex: props.recentWorks[1].screens.length - index
-                        }}
-                      />
-                    )
-                  })}
+        </section>
+      }
+      {props.recentWorks.length > 0 &&
+        <section id="recent-works">
+          <div className="d-flex align-items-start justify-content-center">
+            <h1 className="giga text-center with-animation">
+              <span className="animate fade-in">My most recent works</span>
+            </h1>
+            <a href="/works" title="See all" target="_blank" rel="noreferrer">
+              <FontAwesomeIcon icon={faUpRightFromSquare}/>
+            </a>
+          </div>
+          <div className="py-3 py-md-5"></div>
+          <div className="row">
+            <div className="col-12 mb-4 col-xl-6">
+              <div className="h-100 d-flex flex-column align-items-start justify-content-between">
+                <div className="d-flex flex-row with-animation">
+                  <div className="flex-basis-33 d-flex flex-row">
+                    {props.recentWorks[0].screens.slice(0, 5).map((work, index) => {
+                      return(
+                        <img 
+                          key={work.img} 
+                          src={work.img}
+                          alt={work.img}
+                          className={"stack-item flex-basis-100 w-100 h-auto object-fit-contain shadow-full border-round animate bump-scoot-right delay-" + index}
+                          style={{
+                            translate: index * - 50 + "% 0",
+                            scale: 1 - (index * 0.1) + "",
+                            zIndex: props.recentWorks[0].screens.length - index
+                          }}
+                        />
+                      )
+                    })}
+                  </div>
                 </div>
-              </div>
-              <div className="d-inline-block d-md-none" style={{height: dimensions.width * 0.25 + "px"}}></div>
-              <div className="p-4"></div>
-              <div className="with-animation">
-                <div className="d-flex flex-column-reverse flex-md-row align-items-center justify-content-end mb-2 mb-md-0">
+                <div className="p-4"></div>
+                <div className="with-animation">
+                  <div className="d-flex flex-column flex-md-row align-items-center justify-content-start mb-2 mb-md-0">
+                    <h1 
+                      className="mega font-bold clickable me-0 me-md-4 animate fade-in very-slow"
+                      onClick={(e)=>{
+                        navigate("/works/" + props.recentWorks[0].id)
+                      }}
+                    >
+                      {props.recentWorks[0].title}
+                    </h1>
                     <div className="d-flex">
-                    {props.recentWorks[1].languages.map((language) => {
+                      {props.recentWorks[0].languages.map((language) => {
+                        return (
+                          <div className="mx-1 bg-blue shape-circle d-flex align-items-center justify-content-center lh-0 animate fade-in very-slow" style={{letterSpacing: "0.05em"}}>
+                            <img
+                              key={language}
+                              src={techIcons[language]}
+                              alt={language}
+                              title={language.charAt(0).toUpperCase() + language.slice(1)}
+                              className="tech-icon light mx-2"
+                              style={{height: "1em"}}
+                            />
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                  <div className="opacity-75 text-center text-md-start animate fade-in very-slow">
+                    {props.recentWorks[0].technologies.map((technology) => {
                       return (
-                        <div className="mx-1 bg-blue shape-circle d-flex align-items-center justify-content-center lh-0 animate fade-in very-slow" style={{letterSpacing: "0.05em"}}>
-                          <img
-                            key={language}
-                            src={techIcons[language]}
-                            alt={language}
-                            title={language.charAt(0).toUpperCase() + language.slice(1)}
-                            className="tech-icon light mx-2"
-                            style={{height: "1em"}}
-                          />
-                        </div>
+                        <img
+                          key={technology}
+                          src={techIcons[technology]}
+                          alt={technology}
+                          title={technology.charAt(0).toUpperCase() + technology.slice(1)}
+                          className="tech-icon opacity-75 mx-2"
+                          style={{ height: "1.5em" }}
+                        />
                       )
                     })}
                   </div>
-                  <h1 
-                    className="mega font-bold clickable ms-0 ms-md-4 animate fade-in very-slow"
-                    onClick={(e)=>{
-                      navigate("/works/" + props.recentWorks[1].id)
-                    }}
-                  >
-                    {props.recentWorks[1].title}
-                  </h1>
+                  <div className="p-3"></div>
+                  <h5 className="text-center text-md-start font-light lh-2 animate fade-in very-slow">
+                    {props.recentWorks[0].description}
+                  </h5>
                 </div>
-                <div className="opacity-75 text-center text-md-end">
-                  {props.recentWorks[1].technologies.map((technology) => {
-                    return (
-                      <img
-                        key={technology}
-                        src={techIcons[technology]}
-                        alt={technology}
-                        title={technology.charAt(0).toUpperCase() + technology.slice(1)}
-                        className="tech-icon opacity-75 mx-2 animate fade-in very-slow"
-                        style={{ height: "1.5em" }}
-                      />
-                    )
-                  })}
+              </div>
+            </div>
+            <div className="col-12 col-xl-6">
+              <div className="h-100 d-flex flex-column align-items-start justify-content-between">
+                <div className="d-flex with-animation" style={{height: "max-content"}}>
+                  <div className="flex-basis-75 d-flex">
+                    {props.recentWorks[1].screens.slice(0, 3).map((work, index) => {
+                      return(
+                        <img
+                          key={work.id + index} 
+                          src={work.img} 
+                          alt={work.img}
+                          className={"stack-item flex-basis-100 w-100 h-auto object-fit-contain shadow-full border-round animate bump-scoot-left delay-" + index}
+                          style={{
+                            translate: index * - 75 + "% " + index * 50 + "%",
+                            scale: 1 - (index * 0.1) + "",
+                            zIndex: props.recentWorks[1].screens.length - index
+                          }}
+                        />
+                      )
+                    })}
+                  </div>
                 </div>
-                <div className="p-3"></div>
-                <h5 className="font-light lh-2 text-center text-md-end animate fade-in very-slow">
-                  {props.recentWorks[1].description}
-                </h5>
+                <div className="d-inline-block d-md-none" style={{height: dimensions.width * 0.25 + "px"}}></div>
+                <div className="p-4"></div>
+                <div className="with-animation">
+                  <div className="d-flex flex-column-reverse flex-md-row align-items-center justify-content-end mb-2 mb-md-0">
+                      <div className="d-flex">
+                      {props.recentWorks[1].languages.map((language) => {
+                        return (
+                          <div className="mx-1 bg-blue shape-circle d-flex align-items-center justify-content-center lh-0 animate fade-in very-slow" style={{letterSpacing: "0.05em"}}>
+                            <img
+                              key={language}
+                              src={techIcons[language]}
+                              alt={language}
+                              title={language.charAt(0).toUpperCase() + language.slice(1)}
+                              className="tech-icon light mx-2"
+                              style={{height: "1em"}}
+                            />
+                          </div>
+                        )
+                      })}
+                    </div>
+                    <h1 
+                      className="mega font-bold clickable ms-0 ms-md-4 animate fade-in very-slow"
+                      onClick={(e)=>{
+                        navigate("/works/" + props.recentWorks[1].id)
+                      }}
+                    >
+                      {props.recentWorks[1].title}
+                    </h1>
+                  </div>
+                  <div className="opacity-75 text-center text-md-end">
+                    {props.recentWorks[1].technologies.map((technology) => {
+                      return (
+                        <img
+                          key={technology}
+                          src={techIcons[technology]}
+                          alt={technology}
+                          title={technology.charAt(0).toUpperCase() + technology.slice(1)}
+                          className="tech-icon opacity-75 mx-2 animate fade-in very-slow"
+                          style={{ height: "1.5em" }}
+                        />
+                      )
+                    })}
+                  </div>
+                  <div className="p-3"></div>
+                  <h5 className="font-light lh-2 text-center text-md-end animate fade-in very-slow">
+                    {props.recentWorks[1].description}
+                  </h5>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      }
     </div>
   )
 }

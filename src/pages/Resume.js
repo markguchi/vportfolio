@@ -10,7 +10,6 @@ import adnuLogo from '../images/resume/adnu_logo.png'
 import ncshsLogo from '../images/resume/ncshs_logo.png'
 
 function Resume(props) {
-  console.log(props)
   const options = { year: 'numeric', month: 'short' }
   const options_full = { year: 'numeric', month: 'short', day: '2-digit' }
   const experienceRef = useRef(null)
@@ -38,7 +37,7 @@ function Resume(props) {
     return(
       <div className={"w-100 h-100 d-flex flex-column align-items-center justify-content-between animate bump-scoot-right delay-" + props.index} style={{gap: "2em"}}>
         <div className="curvy-card py-2 px-3 px-lg-4">
-        {props.start_date.toLocaleString('en-US', options)} - {props.start_date.toLocaleString('en-US', options)}
+        {props.start_date.toLocaleString('en-US', options)} - {props.end_date.toLocaleString('en-US', options)}
         </div> 
         {!isFlipped?
           <div className="experience-card flex-grow-1 frame shape-square text-white py-4 px-5 p-lg-5 aspect-ratio-3-4 aspect-ratio-md-1-1 shadow-none clickable rotate-out d-flex flex-column align-items-center justify-content-between" onClick={()=>{setIsFlipped(!isFlipped)}}>

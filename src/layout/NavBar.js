@@ -127,7 +127,7 @@ function NavigationBar() {
                       >
                       </textarea>
                     </div>
-                    <button className="btn btn-secondary btn-blue lh-none p-3" type="submit">Send Message</button>
+                    <button className="btn btn-secondary btn-blue lh-none p-3 mt-4" type="submit">Send Message</button>
                   </form>
                 </div>
                 <div className="modal-footer bg-gray-25 border-blue">

@@ -955,3 +955,54 @@ import { faDesktop, faBriefcase, faVideoCamera } from '@fortawesome/free-solid-s
       "years": 1.0
     }
   ]
+
+  for (const work of developmentBackground) {
+    const docRef = doc(db, "skillsets", work.set);
+    const { image, ...rest } = work;
+    // const updatedGallery = [];
+    // for (const [index, screen] of screens.entries()) {
+    //   // Upload each image inside the gallery
+    //   const response = await fetch(screen.img);
+    //   const blob = await response.blob();
+    //   const fileName = screen.img.split('/').pop();  // Extract the file name from the path
+    //   const imageRef = ref(str, `works/${fileName}`);
+    //   const snapshot = await uploadBytes(imageRef, blob);
+    //   const imageUrl = await getDownloadURL(snapshot.ref);
+
+    //   updatedGallery.push({
+    //     ...screen,
+    //     img: imageUrl,
+    //   });
+    // }
+
+    // updatedGallery.push({
+    //   ...screen,
+    //   img: imageUrl,
+    // });
+    // if (image) {
+    //   const response = await fetch(image);
+    //   const blob = await response.blob();
+    //   const fileName = image.split('/').pop();  // Extract the file name from the path
+    //   const imageRef = ref(str, `skillsets/${fileName}`);
+    //   const snapshot = await uploadBytes(imageRef, blob);
+    //   const imageUrl = await getDownloadURL(snapshot.ref);
+
+    //   await setDoc(docRef, {
+    //     ...rest,
+    //     image: imageUrl,
+    //   });
+    // }
+    // else {
+
+    //   await setDoc(docRef, {
+    //     ...rest,
+    //     image: null,
+    //   });
+
+    // }
+
+    await setDoc(docRef, work);
+  }
+
+  console.log("All nested images uploaded and documents saved!");
+
